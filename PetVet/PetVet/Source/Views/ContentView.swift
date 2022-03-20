@@ -16,6 +16,9 @@ struct ContentView: View {
             ZStack(alignment: .leading) {
                 BackgroundView(color: .ui.background)
                 ProfileView()
+                CustomButtonView(title: "Log out", backgroundColor: .ui.purple) {
+                    User.logOut()
+                }
                 if menuIsShown {
                     MenuView(isShown: $menuIsShown)
                         .transition(.move(edge: .leading))

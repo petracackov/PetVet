@@ -10,39 +10,6 @@ import Parse
 
 class User: ParseObject, ObservableObject {
 
-    var username: String?
-    var userId: String?
-    var dateCreated: Date?
-    var email: String?
-
-    // The _ in User is an exception for creating PFObject with just an object id. For some reason it does not work without _ .
-    override class var entityName: String { return "_User" }
-
-    override init() {
-        super.init()
-    }
-
-    convenience init(user: PFUser) {
-        self.init()
-        updateUser(user: user)
-    }
-    override func updateWithPFObject(_ object: PFObject) throws {
-        try super.updateWithPFObject(object)
-        guard let username = object[Object.username.rawValue] as? String, let userId = object.objectId, let dateCreated = object.createdAt else {
-            throw NSError(domain: "ParseObject", code: 400, userInfo: ["dev_message": "Could not parse User data from PFObject"])
-        }
-        self.username = username
-        self.userId = userId
-        self.dateCreated = dateCreated
-        //NOTE: Can't guard email since the return value is nil if the user fetching that user is not the same or admin.
-        self.email = object[Object.email.rawValue] as? String
-    }
-
-    private func updateUser(user: PFUser) {
-        try? self.updateWithPFObject(user)
-    }
-
-
     private static var currentLoadedUser: User? {
         didSet {
             if currentLoadedUser == nil && oldValue != nil {
@@ -65,17 +32,54 @@ class User: ParseObject, ObservableObject {
             return user
         }
     }
+
+    var username: String?
+    var userId: String?
+    var dateCreated: Date?
+    var email: String?
+
+    // The _ in User is an exception for creating PFObject with just an object id. For some reason it does not work without _ .
+    override class var entityName: String { return "_User" }
+    
+
+    override init() {
+        super.init()
+    }
+
+    convenience init(user: PFUser) {
+        self.init()
+        updateUser(user: user)
+    }
+
+    override func updateWithPFObject(_ object: PFObject) throws {
+        try super.updateWithPFObject(object)
+        guard let username = object[Object.username.rawValue] as? String, let userId = object.objectId, let dateCreated = object.createdAt else {
+            throw NSError(domain: "ParseObject", code: 400, userInfo: ["dev_message": "Could not parse User data from PFObject"])
+        }
+        self.username = username
+        self.userId = userId
+        self.dateCreated = dateCreated
+        //NOTE: Can't guard email since the return value is nil if the user fetching that user is not the same or admin.
+        self.email = object[Object.email.rawValue] as? String
+    }
+
+    private func updateUser(user: PFUser) {
+        try? self.updateWithPFObject(user)
+    }
+
 }
+
+// MARK: - Static Helpers
 
 extension User {
 
-    static func generateQueryWithUsername(_ username: String ) -> PFQuery<PFObject>? {
+    static private func generateQueryWithUsername(_ username: String ) -> PFQuery<PFObject>? {
         let query = PFUser.query()
         query?.whereKey(Object.username.rawValue, equalTo: username)
         return query
     }
 
-    static func generateQueryWithEmail(_ email: String ) -> PFQuery<PFObject>? {
+    static private func generateQueryWithEmail(_ email: String ) -> PFQuery<PFObject>? {
         let query = PFUser.query()
         query?.whereKey(Object.email.rawValue, equalTo: email)
         return query
@@ -119,30 +123,4 @@ private extension User {
         case userId = "userId"
         case pets = "pets"
     }
-}
-
-class LoginManager: ObservableObject {
-
-    static var shared: LoginManager = LoginManager()
-
-    @Published var isLoggedIn: Bool = false
-    @Published var userRegistrationInProgress: Bool = false
-
-
-    static func logIn(username: String, password: String, _ completion: ((_ user: PFUser?, _ error: Error?) -> Void)? = nil) {
-        PFUser.logInWithUsername(inBackground: username, password: password) { (user, error) in
-            completion?(user, error)
-        }
-    }
-
-    static func signUpUser(username: String, password: String, email: String,  _ completion: ((_ user: Bool?, _ error: Error?) -> Void)? = nil)  {
-        let user = PFUser()
-        user.username = username
-        user.password = password
-        user.email = email
-        user.signUpInBackground { (success, error) in
-            completion?(success, error)
-        }
-    }
-
 }

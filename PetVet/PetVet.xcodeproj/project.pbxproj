@@ -22,6 +22,7 @@
 		C040B98C27E751F50077EA04 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B98B27E751F50077EA04 /* LaunchScreen.swift */; };
 		C040B98E27E754B40077EA04 /* UsernameAndPasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B98D27E754B40077EA04 /* UsernameAndPasswordVM.swift */; };
 		C040B99127E75E870077EA04 /* FieldValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B99027E75E870077EA04 /* FieldValidator.swift */; };
+		C040B99427E767E70077EA04 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B99327E767E70077EA04 /* LoginManager.swift */; };
 		C086E32D27B7D1B10050EB25 /* PetVetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C086E32C27B7D1B10050EB25 /* PetVetApp.swift */; };
 		C086E32F27B7D1B10050EB25 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C086E32E27B7D1B10050EB25 /* ContentView.swift */; };
 		C086E33127B7D1B20050EB25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C086E33027B7D1B20050EB25 /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		C040B98B27E751F50077EA04 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		C040B98D27E754B40077EA04 /* UsernameAndPasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameAndPasswordVM.swift; sourceTree = "<group>"; };
 		C040B99027E75E870077EA04 /* FieldValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldValidator.swift; sourceTree = "<group>"; };
+		C040B99327E767E70077EA04 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		C086E32927B7D1B10050EB25 /* PetVet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetVet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C086E32C27B7D1B10050EB25 /* PetVetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetVetApp.swift; sourceTree = "<group>"; };
 		C086E32E27B7D1B10050EB25 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				C086E34827B7FEFC0050EB25 /* ProfileHeaderView.swift */,
 				C01E781A27E611E600633AC0 /* CustomTextFieldView.swift */,
 				C031E8F627E6246C000E01F5 /* CustomButtonView.swift */,
+				C086E34227B7D4580050EB25 /* BackgroundView.swift */,
 				C031E8FA27E62D32000E01F5 /* CustomNavigationButton.swift */,
 			);
 			path = ComponentViews;
@@ -127,7 +130,6 @@
 		C040B97F27E742440077EA04 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				C040B98027E7425D0077EA04 /* ParseManager.swift */,
 				C040B98227E7457E0077EA04 /* ParseObject.swift */,
 				C040B98927E74EAF0077EA04 /* AppError.swift */,
 			);
@@ -150,6 +152,15 @@
 				C086E34627B7E3DF0050EB25 /* ProfileView.swift */,
 			);
 			path = SupportingViews;
+			sourceTree = "<group>";
+		};
+		C040B99227E767AF0077EA04 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C040B98027E7425D0077EA04 /* ParseManager.swift */,
+				C040B99327E767E70077EA04 /* LoginManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		C086E32027B7D1B10050EB25 = {
@@ -191,6 +202,7 @@
 		C086E33A27B7D1E00050EB25 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				C040B99227E767AF0077EA04 /* Managers */,
 				C040B98427E745A40077EA04 /* Models */,
 				C040B97F27E742440077EA04 /* API */,
 				C086E33E27B7D39C0050EB25 /* Views */,
@@ -224,7 +236,6 @@
 		C086E34127B7D4580050EB25 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				C086E34227B7D4580050EB25 /* BackgroundView.swift */,
 				C086E34327B7D4580050EB25 /* Appearance.swift */,
 				C040B99027E75E870077EA04 /* FieldValidator.swift */,
 			);
@@ -353,6 +364,7 @@
 				C01E781B27E611E600633AC0 /* CustomTextFieldView.swift in Sources */,
 				C040B98627E745B30077EA04 /* User.swift in Sources */,
 				C040B99127E75E870077EA04 /* FieldValidator.swift in Sources */,
+				C040B99427E767E70077EA04 /* LoginManager.swift in Sources */,
 				C086E32F27B7D1B10050EB25 /* ContentView.swift in Sources */,
 				C040B98327E7457E0077EA04 /* ParseObject.swift in Sources */,
 				C031E8F927E629B7000E01F5 /* UsernameAndPasswordView.swift in Sources */,
