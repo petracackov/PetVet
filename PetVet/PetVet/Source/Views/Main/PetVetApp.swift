@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct PetVetApp: App {
+
+    init() {
+        ParseManager.initialize()
+    }
+
     var body: some Scene {
         WindowGroup {
-            RegistrationandLoginView()
+            LaunchScreen()
         }
     }
 }

@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct CustomTextFieldView: View {
-    @State var text: String = ""
-    @State var title: String = "Title"
+    
+    var title: String = "Title"
+    @Binding var text: String
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(title)
@@ -33,7 +35,8 @@ struct CustomTextFieldView: View {
 }
 
 struct CustomTextFieldView_Previews: PreviewProvider {
+    @State static var text: String = ""
     static var previews: some View {
-        CustomTextFieldView()
+        CustomTextFieldView(text: $text)
     }
 }
