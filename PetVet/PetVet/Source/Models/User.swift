@@ -37,6 +37,10 @@ class User: ParseObject, ObservableObject {
     var userId: String?
     var dateCreated: Date?
     var email: String?
+    var name: String?
+    var phoneNumber: String?
+    var address: String?
+    var city: String?
 
     // The _ in User is an exception for creating PFObject with just an object id. For some reason it does not work without _ .
     override class var entityName: String { return "_User" }
@@ -61,6 +65,21 @@ class User: ParseObject, ObservableObject {
         self.dateCreated = dateCreated
         //NOTE: Can't guard email since the return value is nil if the user fetching that user is not the same or admin.
         self.email = object[Object.email.rawValue] as? String
+        self.name = object[Object.name.rawValue] as? String
+        self.address = object[Object.address.rawValue] as? String
+        self.city = object[Object.city.rawValue] as? String
+        self.phoneNumber = object[Object.phoneNumber.rawValue] as? String
+    }
+
+    override func generetePFObject() -> PFObject? {
+        let object = pfObject ?? PFUser.current()
+        object?[Object.username.rawValue] = username
+        object?[Object.email.rawValue] = email
+        object?[Object.name.rawValue] = name
+        object?[Object.address.rawValue] = address
+        object?[Object.city.rawValue] = city
+        object?[Object.phoneNumber.rawValue] = phoneNumber
+        return object
     }
 
     private func updateUser(user: PFUser) {
@@ -118,9 +137,12 @@ extension User {
 
 private extension User {
     enum Object: String {
-        case username = "username"
-        case email = "email"
-        case userId = "userId"
-        case pets = "pets"
+        case username
+        case email
+        case userId
+        case name
+        case city
+        case address
+        case phoneNumber
     }
 }

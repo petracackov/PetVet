@@ -14,9 +14,9 @@ struct LaunchScreen: View {
     var body: some View {
         if loginManager.isLoggedIn {
             if loginManager.userRegistrationInProgress {
-                ContentView()
+                ProfileCreationView()
             } else {
-                ContentView()
+                PetProfileView()
             }
         } else {
             RegistrationAndLoginView()

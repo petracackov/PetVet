@@ -13,6 +13,8 @@ struct ProfileCreationView: View {
     @State private var city: String = ""
     @State private var phoneNumber: String = ""
 
+    private var viewModel = ProfileCreationVM()
+
     var body: some View {
         VStack {
             VStack(spacing: 30) {
@@ -22,18 +24,24 @@ struct ProfileCreationView: View {
                 CustomTextFieldView(title: "City", text: $city)
                 CustomTextFieldView(title: "Phone Number", text: $phoneNumber)
                 Spacer()
-                CustomNavigationButton(buttonTitle: "Save") {
-                    ContentView()
+                CustomButtonView(title: "Save") {
+                    viewModel.editProfile(
+                        name: name,
+                        address: address,
+                        city: city,
+                        phoneNumber: phoneNumber)
                 }
             }
             .padding()
 
-        }.navigationTitle("Registration")
+        }.navigationTitle("Profile")
     }
 }
 
 struct ProfileCreationView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileCreationView()
+        CustomNavigationView {
+            ProfileCreationView()
+        }
     }
 }

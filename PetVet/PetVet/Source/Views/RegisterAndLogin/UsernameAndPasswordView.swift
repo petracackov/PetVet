@@ -49,6 +49,9 @@ struct UsernameAndPasswordView: View {
 
 struct UsernameAndPasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        UsernameAndPasswordView(isRegistrationFlow: true)
+        CustomNavigationView {
+            UsernameAndPasswordView(isRegistrationFlow: true)
+        }
+
     }
 }

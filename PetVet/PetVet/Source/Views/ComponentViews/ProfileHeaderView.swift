@@ -12,20 +12,30 @@ struct ProfileHeaderView: View {
     var title: String?
 
     var body: some View {
-        VStack {
-            Circle()
-                .frame(height: 200, alignment: .center)
-                .padding(EdgeInsets(top: 0, leading: 70, bottom: 0, trailing: 70))
+        GeometryReader { geometryReader in
 
-            if let title = title {
-                Text(title)
+            VStack(alignment: .center, spacing: 20) {
+                Spacer()
+                Circle()
+                    .frame(height: geometryReader.size.width * 0.6, alignment: .center)
+
+                if let title = title {
+                    Text(title)
+                        .font(.ui.titleBold)
+                        .foregroundColor(.ui.gray)
+                }
+                Spacer()
             }
         }
+
     }
 }
 
 struct ProfileHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileHeaderView(title: "Some title")
+        NavigationView {
+            ProfileHeaderView(title: "Some title")
+                .edgesIgnoringSafeArea(.all)
+        }
     }
 }

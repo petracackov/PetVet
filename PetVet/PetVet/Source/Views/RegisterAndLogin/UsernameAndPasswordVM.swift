@@ -22,7 +22,7 @@ class UsernameAndPasswordVM {
         if isRegistrationFlow {
             validateAndSignUp(username: username, email: email, password: password, confirmPassword: confirmPassword)
         } else {
-            login()
+            login(username: username, password: password)
         }
     }
 
@@ -49,8 +49,15 @@ class UsernameAndPasswordVM {
         }
     }
 
-    private func login() {
-
+    private func login(username: String, password: String) {
+        LoginManager.logIn(username: username, password: password) { user, error in
+            if user != nil {
+                LoginManager.shared.userRegistrationInProgress = false
+                LoginManager.shared.isLoggedIn = true
+            } else {
+                // TODO: handle error
+            }
+        }
     }
 
 }
