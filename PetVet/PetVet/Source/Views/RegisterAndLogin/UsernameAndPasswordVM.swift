@@ -12,6 +12,7 @@ class UsernameAndPasswordVM {
 
     var isRegistrationFlow: Bool
     var buttonTitle: String { isRegistrationFlow ? "Register" : "Login" }
+    var navigationTitle: String { isRegistrationFlow ? "Registration" : "Login" }
 
     init(isRegistrationFlow: Bool) {
         self.isRegistrationFlow = isRegistrationFlow

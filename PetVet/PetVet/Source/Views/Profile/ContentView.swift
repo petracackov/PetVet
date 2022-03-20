@@ -12,7 +12,7 @@ struct ContentView: View {
     @State var menuIsShown: Bool = false
 
     var body: some View {
-        NavigationView {
+        CustomNavigationView {
             ZStack(alignment: .leading) {
                 BackgroundView(color: .ui.background)
                 ProfileView()
@@ -40,7 +40,6 @@ struct ContentView: View {
                     }
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
         }
 
     }

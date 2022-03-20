@@ -43,8 +43,7 @@ struct UsernameAndPasswordView: View {
             }
         }
         .padding()
-        .navigationTitle("Login")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(viewModel.navigationTitle)
     }
 }
 

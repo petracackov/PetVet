@@ -23,6 +23,8 @@
 		C040B98E27E754B40077EA04 /* UsernameAndPasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B98D27E754B40077EA04 /* UsernameAndPasswordVM.swift */; };
 		C040B99127E75E870077EA04 /* FieldValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B99027E75E870077EA04 /* FieldValidator.swift */; };
 		C040B99427E767E70077EA04 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B99327E767E70077EA04 /* LoginManager.swift */; };
+		C040B99727E768E00077EA04 /* ProfileCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B99627E768E00077EA04 /* ProfileCreationView.swift */; };
+		C040B99927E76B320077EA04 /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B99827E76B320077EA04 /* CustomNavigationView.swift */; };
 		C086E32D27B7D1B10050EB25 /* PetVetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C086E32C27B7D1B10050EB25 /* PetVetApp.swift */; };
 		C086E32F27B7D1B10050EB25 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C086E32E27B7D1B10050EB25 /* ContentView.swift */; };
 		C086E33127B7D1B20050EB25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C086E33027B7D1B20050EB25 /* Assets.xcassets */; };
@@ -52,6 +54,8 @@
 		C040B98D27E754B40077EA04 /* UsernameAndPasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameAndPasswordVM.swift; sourceTree = "<group>"; };
 		C040B99027E75E870077EA04 /* FieldValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldValidator.swift; sourceTree = "<group>"; };
 		C040B99327E767E70077EA04 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		C040B99627E768E00077EA04 /* ProfileCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationView.swift; sourceTree = "<group>"; };
+		C040B99827E76B320077EA04 /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
 		C086E32927B7D1B10050EB25 /* PetVet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetVet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C086E32C27B7D1B10050EB25 /* PetVetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetVetApp.swift; sourceTree = "<group>"; };
 		C086E32E27B7D1B10050EB25 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 				C031E8F627E6246C000E01F5 /* CustomButtonView.swift */,
 				C086E34227B7D4580050EB25 /* BackgroundView.swift */,
 				C031E8FA27E62D32000E01F5 /* CustomNavigationButton.swift */,
+				C040B99827E76B320077EA04 /* CustomNavigationView.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -161,6 +166,15 @@
 				C040B99327E767E70077EA04 /* LoginManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		C040B99527E768C20077EA04 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C086E32E27B7D1B10050EB25 /* ContentView.swift */,
+				C040B99627E768E00077EA04 /* ProfileCreationView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		C086E32027B7D1B10050EB25 = {
@@ -223,11 +237,11 @@
 		C086E33E27B7D39C0050EB25 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C040B99527E768C20077EA04 /* Profile */,
 				C01E781527E6107B00633AC0 /* Main */,
 				C01E781927E6119100633AC0 /* ComponentViews */,
 				C040B98F27E75A9B0077EA04 /* SupportingViews */,
 				C01E781627E610FA00633AC0 /* RegisterAndLogin */,
-				C086E32E27B7D1B10050EB25 /* ContentView.swift */,
 				C031E8FC27E63011000E01F5 /* MainView.swift */,
 			);
 			path = Views;
@@ -359,12 +373,14 @@
 			files = (
 				C086E34527B7D4580050EB25 /* Appearance.swift in Sources */,
 				C031E8FD27E63011000E01F5 /* MainView.swift in Sources */,
+				C040B99927E76B320077EA04 /* CustomNavigationView.swift in Sources */,
 				C040B98A27E74EAF0077EA04 /* AppError.swift in Sources */,
 				C086E34027B7D3C20050EB25 /* MenuView.swift in Sources */,
 				C01E781B27E611E600633AC0 /* CustomTextFieldView.swift in Sources */,
 				C040B98627E745B30077EA04 /* User.swift in Sources */,
 				C040B99127E75E870077EA04 /* FieldValidator.swift in Sources */,
 				C040B99427E767E70077EA04 /* LoginManager.swift in Sources */,
+				C040B99727E768E00077EA04 /* ProfileCreationView.swift in Sources */,
 				C086E32F27B7D1B10050EB25 /* ContentView.swift in Sources */,
 				C040B98327E7457E0077EA04 /* ParseObject.swift in Sources */,
 				C031E8F927E629B7000E01F5 /* UsernameAndPasswordView.swift in Sources */,

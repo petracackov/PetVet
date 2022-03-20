@@ -10,7 +10,7 @@ import SwiftUI
 struct RegistrationAndLoginView: View {
 
     var body: some View {
-        NavigationView {
+        CustomNavigationView() {
             VStack(spacing: 30) {
                 Spacer()
                 ProfileHeaderView()
