@@ -136,6 +136,32 @@
 			path = ComponentViews;
 			sourceTree = "<group>";
 		};
+		C030DF4527EF3F8900EFB26F /* ProfileCteationView */ = {
+			isa = PBXGroup;
+			children = (
+				C040B99627E768E00077EA04 /* ProfileCreationView.swift */,
+				C040B99A27E77A330077EA04 /* ProfileCreationVM.swift */,
+			);
+			path = ProfileCteationView;
+			sourceTree = "<group>";
+		};
+		C030DF4627EF3F9F00EFB26F /* PetProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				C040B99C27E780270077EA04 /* PetProfileView.swift */,
+				C09ED22A27E786D7002D4AFE /* PetProfileVM.swift */,
+			);
+			path = PetProfileView;
+			sourceTree = "<group>";
+		};
+		C030DF4727EF3FB000EFB26F /* UserProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				C086E34627B7E3DF0050EB25 /* ProfileView.swift */,
+			);
+			path = UserProfileView;
+			sourceTree = "<group>";
+		};
 		C040B97F27E742440077EA04 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,11 +200,9 @@
 		C040B99527E768C20077EA04 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				C040B99627E768E00077EA04 /* ProfileCreationView.swift */,
-				C040B99A27E77A330077EA04 /* ProfileCreationVM.swift */,
-				C040B99C27E780270077EA04 /* PetProfileView.swift */,
-				C09ED22A27E786D7002D4AFE /* PetProfileVM.swift */,
-				C086E34627B7E3DF0050EB25 /* ProfileView.swift */,
+				C030DF4727EF3FB000EFB26F /* UserProfileView */,
+				C030DF4627EF3F9F00EFB26F /* PetProfileView */,
+				C030DF4527EF3F8900EFB26F /* ProfileCteationView */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
