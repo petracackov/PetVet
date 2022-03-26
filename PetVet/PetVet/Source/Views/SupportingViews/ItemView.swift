@@ -10,13 +10,13 @@ import SwiftUI
 struct ItemView: View {
 
     var item: MenuVM.ListItems
-    var onSelection: (() -> Void)?
+    var onSelection: ((MenuVM.ListItems) -> Void)?
 
     private let viewModel: MenuVM = MenuVM()
 
     var body: some View {
         Button {
-            onSelection?()
+            onSelection?(item)
         } label: {
             circle(item: item)
 

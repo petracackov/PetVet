@@ -10,11 +10,13 @@ import SwiftUI
 struct MainView: View {
 
     @State private var menuIsShown: Bool = false
+    @State private var selectedItem: MenuVM.ListItems? = nil
 
     var body: some View {
 
         ZStack(alignment: .center) {
             CustomNavigationView {
+                NavigationLink(destination: ProfileView(), tag: MenuVM.ListItems.user, selection: $selectedItem) { EmptyView() }
                 PetProfileView()
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading) {
@@ -41,11 +43,11 @@ struct MainView: View {
 
     private func menuView() -> some View {
         return HStack {
-            MenuView(isShown: $menuIsShown)
+            MenuView(isShown: $menuIsShown, selectedItem: $selectedItem)
             Spacer()
         }
         .transition(.move(edge: .leading))
-        .zIndex(1)
+        .zIndex(100)
 
     }
 

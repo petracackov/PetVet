@@ -10,6 +10,7 @@ import SwiftUI
 struct MenuView: View {
 
     @Binding var isShown: Bool
+    @Binding var selectedItem: MenuVM.ListItems?
 
     private let viewModel: MenuVM = MenuVM()
 
@@ -19,7 +20,10 @@ struct MenuView: View {
             ScrollView {
                 VStack(alignment: .center, spacing: 20) {
                     ForEach(viewModel.items) { item in
-                        ItemView(item: item)
+                        ItemView(item: item) { selectedItem in
+                            hideView()
+                            self.selectedItem = selectedItem
+                        }
                     }
                 }
             }
@@ -29,19 +33,24 @@ struct MenuView: View {
             DragGesture()
                 .onEnded({ value in
                     if value.translation.width < 0 {
-                        withAnimation {
-                            isShown = false
-                        }
+                        hideView()
                     }
                 })
         )
+    }
+
+    private func hideView() {
+        withAnimation {
+            isShown = false
+        }
     }
 
 }
 
 struct MenuView_Previews: PreviewProvider {
     @State static var menuIsShown: Bool = true
+    @State static var selectedItem: MenuVM.ListItems? = .user
     static var previews: some View {
-        MenuView(isShown: $menuIsShown)
+        MenuView(isShown: $menuIsShown, selectedItem: $selectedItem)
     }
 }

@@ -12,20 +12,20 @@ struct ProfileView: View {
     var body: some View {
         ZStack {
             BackgroundView(color: .ui.background)
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    ProfileHeaderView()
-                    dataView(title: "Adress", content: "Some Adress")
-                    dataView(title: "Adress", content: "Some Adress")
-                    dataView(title: "Adress", content: "Some Adress")
-                    Spacer()
-                    CustomButtonView(title: "Log out", backgroundColor: .ui.purple) {
-                        User.logOut()
-                    }
+            VStack(alignment: .leading, spacing: 20) {
+                ProfileHeaderView()
+                dataView(title: "Adress", content: "Some Adress")
+                dataView(title: "Adress", content: "Some Adress")
+                dataView(title: "Adress", content: "Some Adress")
+                Spacer()
+                CustomButtonView(title: "Log out", backgroundColor: .ui.purple) {
+                    User.logOut()
                 }
-
-            }.padding()
+            }
+            .padding()
         }
+        .navigationTitle(Text("Profile"))
+        .navigationBarTitleDisplayMode(.inline)
     }
 
     func dataView(title: String, content: String) -> some View {
