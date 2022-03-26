@@ -15,17 +15,16 @@ struct ProfileHeaderView: View {
         GeometryReader { geometryReader in
 
             VStack(alignment: .center, spacing: 20) {
-                Spacer()
                 Circle()
-                    .frame(height: geometryReader.size.width * 0.6, alignment: .center)
+                    .frame(width: geometryReader.size.width * 0.6, height: geometryReader.size.width * 0.6, alignment: .center)
 
                 if let title = title {
                     Text(title)
                         .font(.ui.titleBold)
                         .foregroundColor(.ui.gray)
                 }
-                Spacer()
             }
+            .position(x: geometryReader.size.width/2, y: geometryReader.size.height/2)
         }
 
     }
