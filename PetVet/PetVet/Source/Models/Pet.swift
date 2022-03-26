@@ -7,6 +7,6 @@
 
 import Foundation
 
-class Pet {
+class Pet: Identifiable {
     
 }

@@ -16,7 +16,7 @@ struct LaunchScreen: View {
             if loginManager.userRegistrationInProgress {
                 ProfileCreationView()
             } else {
-                PetProfileView()
+                MainView()
             }
         } else {
             RegistrationAndLoginView()

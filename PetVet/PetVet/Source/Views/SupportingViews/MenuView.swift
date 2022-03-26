@@ -11,15 +11,16 @@ struct MenuView: View {
 
     @Binding var isShown: Bool
 
+    private let viewModel: MenuVM = MenuVM()
+
     var body: some View {
         ZStack() {
-            BackgroundView(color: .ui.gray)
+            BackgroundView(color: .ui.borderGray)
             ScrollView {
                 VStack(alignment: .center, spacing: 20) {
-                    circle()
-                    circle()
-                    circle()
-                    circle()
+                    ForEach(viewModel.items) { item in
+                        ItemView(item: item)
+                    }
                 }
             }
         }
@@ -36,11 +37,6 @@ struct MenuView: View {
         )
     }
 
-    func circle() -> some View {
-        return Circle()
-            .foregroundColor(Color.ui.orange)
-            .frame(width: 60, height: 60, alignment: .center)
-    }
 }
 
 struct MenuView_Previews: PreviewProvider {

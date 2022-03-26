@@ -9,39 +9,17 @@ import SwiftUI
 
 struct PetProfileView: View {
 
-    @State private var menuIsShown: Bool = false
     private var viewModel = PetProfileVM()
 
     var body: some View {
-        CustomNavigationView {
-            ZStack(alignment: .center) {
+        ZStack(alignment: .center) {
 
-                BackgroundView(color: .ui.background)
+            BackgroundView(color: .ui.background)
 
-                if viewModel.pets.isEmpty {
-                    showNoPetsView()
-                } else {
-                    showPetProfile()
-                }
-
-                if menuIsShown {
-                    menuView()
-                }
-            }
-            .onTapGesture {
-                showMenu(false)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Menu") {
-                        showMenu(true)
-                    }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Edit") {
-                        print("Edit tapped!")
-                    }
-                }
+            if viewModel.pets.isEmpty {
+                showNoPetsView()
+            } else {
+                showPetProfile()
             }
         }
     }
@@ -59,17 +37,6 @@ struct PetProfileView: View {
         return ProfileHeaderView(title: "You have no pets yet").edgesIgnoringSafeArea(.all)
     }
 
-    private func menuView() -> some View {
-        return MenuView(isShown: $menuIsShown)
-            .transition(.move(edge: .leading))
-            .zIndex(1)
-    }
-
-    private func showMenu(_ shouldShow: Bool) {
-        withAnimation {
-            menuIsShown = shouldShow
-        }
-    }
 }
 
 struct PetProfileView_Previews: PreviewProvider {

@@ -9,8 +9,50 @@ import SwiftUI
 
 struct MainView: View {
 
+    @State private var menuIsShown: Bool = false
+
     var body: some View {
-        Text("Main view")
+
+        ZStack(alignment: .center) {
+            CustomNavigationView {
+                PetProfileView()
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button("Menu") {
+                                showMenu(true)
+                            }
+                        }
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button("Edit") {
+                                print("Edit tapped!")
+                            }
+                        }
+                    }
+            }
+            if menuIsShown {
+                menuView()
+            }
+        }
+        .onTapGesture {
+            showMenu(false)
+        }
+
+    }
+
+    private func menuView() -> some View {
+        return HStack {
+            MenuView(isShown: $menuIsShown)
+            Spacer()
+        }
+        .transition(.move(edge: .leading))
+        .zIndex(1)
+
+    }
+
+    private func showMenu(_ shouldShow: Bool) {
+        withAnimation {
+            menuIsShown = shouldShow
+        }
     }
 
 }
