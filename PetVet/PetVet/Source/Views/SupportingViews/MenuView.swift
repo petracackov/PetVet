@@ -12,7 +12,13 @@ struct MenuView: View {
     @Binding var isShown: Bool
     @Binding var selectedItem: MenuVM.ListItems?
 
-    private let viewModel: MenuVM = MenuVM()
+    init(pets: [Pet], isShown: Binding<Bool>, selectedItem: Binding<MenuVM.ListItems?>) {
+        self.viewModel = MenuVM(pets: pets)
+        _isShown = isShown
+        _selectedItem = selectedItem
+    }
+
+    private let viewModel: MenuVM
 
     var body: some View {
         ZStack() {
@@ -51,6 +57,6 @@ struct MenuView_Previews: PreviewProvider {
     @State static var menuIsShown: Bool = true
     @State static var selectedItem: MenuVM.ListItems? = .user
     static var previews: some View {
-        MenuView(isShown: $menuIsShown, selectedItem: $selectedItem)
+        MenuView(pets: [], isShown: $menuIsShown, selectedItem: $selectedItem)
     }
 }

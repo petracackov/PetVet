@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		961F422B10DFDA8BF0213A92 /* Pods_PetVet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C142CACD30FF251DEF9754 /* Pods_PetVet.framework */; };
+		C0022719280C3F96000D13D5 /* MainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0022718280C3F96000D13D5 /* MainVM.swift */; };
+		C002271C280C43B0000D13D5 /* View+navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002271B280C43B0000D13D5 /* View+navigation.swift */; };
 		C01E781827E6116300633AC0 /* RegistrationandLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01E781727E6116300633AC0 /* RegistrationandLoginView.swift */; };
 		C01E781B27E611E600633AC0 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01E781A27E611E600633AC0 /* CustomTextFieldView.swift */; };
 		C030DF4927EF43F600EFB26F /* MenuVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C030DF4827EF43F600EFB26F /* MenuVM.swift */; };
@@ -43,6 +45,8 @@
 
 /* Begin PBXFileReference section */
 		49C142CACD30FF251DEF9754 /* Pods_PetVet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetVet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0022718280C3F96000D13D5 /* MainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVM.swift; sourceTree = "<group>"; };
+		C002271B280C43B0000D13D5 /* View+navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+navigation.swift"; sourceTree = "<group>"; };
 		C01E781727E6116300633AC0 /* RegistrationandLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationandLoginView.swift; sourceTree = "<group>"; };
 		C01E781A27E611E600633AC0 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
 		C030DF4827EF43F600EFB26F /* MenuVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVM.swift; sourceTree = "<group>"; };
@@ -106,6 +110,21 @@
 				49C142CACD30FF251DEF9754 /* Pods_PetVet.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C002271A280C4377000D13D5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C002271B280C43B0000D13D5 /* View+navigation.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C002271D280C4FC8000D13D5 /* PetProfileCreation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PetProfileCreation;
 			sourceTree = "<group>";
 		};
 		C01E781527E6107B00633AC0 /* Main */ = {
@@ -206,6 +225,7 @@
 		C040B99527E768C20077EA04 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				C002271D280C4FC8000D13D5 /* PetProfileCreation */,
 				C030DF4727EF3FB000EFB26F /* UserProfileView */,
 				C030DF4627EF3F9F00EFB26F /* PetProfileView */,
 				C030DF4527EF3F8900EFB26F /* ProfileCteationView */,
@@ -279,6 +299,7 @@
 				C040B98F27E75A9B0077EA04 /* SupportingViews */,
 				C01E781627E610FA00633AC0 /* RegisterAndLogin */,
 				C031E8FC27E63011000E01F5 /* MainView.swift */,
+				C0022718280C3F96000D13D5 /* MainVM.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -286,6 +307,7 @@
 		C086E34127B7D4580050EB25 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				C002271A280C4377000D13D5 /* Extensions */,
 				C086E34327B7D4580050EB25 /* Appearance.swift */,
 				C040B99027E75E870077EA04 /* FieldValidator.swift */,
 			);
@@ -423,7 +445,9 @@
 				C09ED22B27E786D7002D4AFE /* PetProfileVM.swift in Sources */,
 				C040B98327E7457E0077EA04 /* ParseObject.swift in Sources */,
 				C030DF4927EF43F600EFB26F /* MenuVM.swift in Sources */,
+				C0022719280C3F96000D13D5 /* MainVM.swift in Sources */,
 				C031E8F927E629B7000E01F5 /* UsernameAndPasswordView.swift in Sources */,
+				C002271C280C43B0000D13D5 /* View+navigation.swift in Sources */,
 				C031E8F727E6246C000E01F5 /* CustomButtonView.swift in Sources */,
 				C040B98127E7425D0077EA04 /* ParseManager.swift in Sources */,
 				C040B98C27E751F50077EA04 /* LaunchScreen.swift in Sources */,

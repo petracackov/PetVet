@@ -12,8 +12,6 @@ struct ItemView: View {
     var item: MenuVM.ListItems
     var onSelection: ((MenuVM.ListItems) -> Void)?
 
-    private let viewModel: MenuVM = MenuVM()
-
     var body: some View {
         Button {
             onSelection?(item)

@@ -10,7 +10,7 @@ import SwiftUI
 
 class MenuVM {
 
-    var pets: [Pet] = []
+    let pets: [Pet]
 
     var items: [ListItems] { [ListItems.user] + pets.map { _ in ListItems.pet } + [ListItems.addNew] }
 
@@ -20,6 +20,10 @@ class MenuVM {
         case user
         case pet
         case addNew
+    }
+
+    init(pets: [Pet]) {
+        self.pets = pets
     }
 
 }

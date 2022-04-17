@@ -9,14 +9,28 @@ import SwiftUI
 
 struct MainView: View {
 
-    @State private var menuIsShown: Bool = false
-    @State private var selectedItem: MenuVM.ListItems? = nil
+    @State var menuIsShown: Bool = false
+    @ObservedObject var viewModel: MainVM = MainVM()
 
     var body: some View {
 
         ZStack(alignment: .center) {
             CustomNavigationView {
-                NavigationLink(destination: ProfileView(), tag: MenuVM.ListItems.user, selection: $selectedItem) { EmptyView() }
+
+                NavigationLink(
+                    destination: ProfileView(),
+                    isActive: $viewModel.showProfile
+                ) {
+                   EmptyView()
+                }
+
+                NavigationLink(
+                    destination: ProfileView(),
+                    isActive: $viewModel.showProfile
+                ) {
+                   EmptyView()
+                }
+
                 PetProfileView()
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading) {
@@ -30,20 +44,24 @@ struct MainView: View {
                             }
                         }
                     }
+                    .onTapGesture {
+                        if menuIsShown {
+                            showMenu(false)
+                        }
+                    }
             }
+
             if menuIsShown {
                 menuView()
             }
         }
-        .onTapGesture {
-            showMenu(false)
-        }
+
 
     }
 
     private func menuView() -> some View {
         return HStack {
-            MenuView(isShown: $menuIsShown, selectedItem: $selectedItem)
+            MenuView(pets: viewModel.pets, isShown: $menuIsShown, selectedItem: $viewModel.selectedItem)
             Spacer()
         }
         .transition(.move(edge: .leading))
@@ -64,3 +82,4 @@ struct MainView_Previews: PreviewProvider {
         MainView()
     }
 }
+
