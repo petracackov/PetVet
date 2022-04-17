@@ -9,15 +9,14 @@ import SwiftUI
 
 struct CustomTextFieldView: View {
     
-    var title: String = "Title"
+    var title: String = ""
     @Binding var text: String
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(title)
                 .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
-                .font(.ui.title)
-                .foregroundColor(.ui.gray)
+                .titleStyle()
             TextField("", text: $text)
                 .textFieldStyle(.plain)
                 .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
