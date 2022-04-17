@@ -14,6 +14,7 @@
 		C0022721280C54AE000D13D5 /* PetProfileCreationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0022720280C54AE000D13D5 /* PetProfileCreationVM.swift */; };
 		C0022723280C5767000D13D5 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0022722280C5767000D13D5 /* Modifiers.swift */; };
 		C0022726280C5928000D13D5 /* SegmentedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0022725280C5928000D13D5 /* SegmentedControlView.swift */; };
+		C0022728280C6A24000D13D5 /* DateSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0022727280C6A24000D13D5 /* DateSelectionView.swift */; };
 		C01E781827E6116300633AC0 /* RegistrationandLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01E781727E6116300633AC0 /* RegistrationandLoginView.swift */; };
 		C01E781B27E611E600633AC0 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01E781A27E611E600633AC0 /* CustomTextFieldView.swift */; };
 		C030DF4927EF43F600EFB26F /* MenuVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C030DF4827EF43F600EFB26F /* MenuVM.swift */; };
@@ -55,6 +56,7 @@
 		C0022720280C54AE000D13D5 /* PetProfileCreationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfileCreationVM.swift; sourceTree = "<group>"; };
 		C0022722280C5767000D13D5 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		C0022725280C5928000D13D5 /* SegmentedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlView.swift; sourceTree = "<group>"; };
+		C0022727280C6A24000D13D5 /* DateSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionView.swift; sourceTree = "<group>"; };
 		C01E781727E6116300633AC0 /* RegistrationandLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationandLoginView.swift; sourceTree = "<group>"; };
 		C01E781A27E611E600633AC0 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
 		C030DF4827EF43F600EFB26F /* MenuVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVM.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				C031E8FA27E62D32000E01F5 /* CustomNavigationButton.swift */,
 				C040B99827E76B320077EA04 /* CustomNavigationView.swift */,
 				C0022725280C5928000D13D5 /* SegmentedControlView.swift */,
+				C0022727280C6A24000D13D5 /* DateSelectionView.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				C086E34527B7D4580050EB25 /* Appearance.swift in Sources */,
 				C0022723280C5767000D13D5 /* Modifiers.swift in Sources */,
 				C002271F280C549B000D13D5 /* PetProfileCreationView.swift in Sources */,
+				C0022728280C6A24000D13D5 /* DateSelectionView.swift in Sources */,
 				C031E8FD27E63011000E01F5 /* MainView.swift in Sources */,
 				C040B99927E76B320077EA04 /* CustomNavigationView.swift in Sources */,
 				C040B98A27E74EAF0077EA04 /* AppError.swift in Sources */,

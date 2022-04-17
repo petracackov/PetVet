@@ -15,7 +15,7 @@ struct SegmentedControlView: View {
     var body: some View {
         HStack {
             ForEach(Array(items.enumerated()), id: \.offset) { index, item in
-                SmallButton(title: item, isSelected: index == selectedIndex) {
+                BorderButton(title: item, isSelected: index == selectedIndex) {
                     withAnimation {
                         self.selectedIndex = index
                     }
@@ -26,7 +26,7 @@ struct SegmentedControlView: View {
 
 }
 
-private struct SmallButton: View {
+private struct BorderButton: View {
 
     var title: String
     var isSelected: Bool
@@ -48,8 +48,9 @@ private struct SmallButton: View {
         .background(backgroundColor)
         .clipShape(Capsule())
         .overlay(
-            Capsule(style: .continuous)
+            Capsule()
                 .stroke(borderColor, style: StrokeStyle(lineWidth: 2))
+            
         )
     }
 }

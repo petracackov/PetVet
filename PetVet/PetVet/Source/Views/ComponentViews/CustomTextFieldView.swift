@@ -28,7 +28,6 @@ struct CustomTextFieldView: View {
                     Capsule(style: .circular)
                         .stroke(Color.ui.borderGray, style: StrokeStyle(lineWidth: 2))
                 )
-                .foregroundColor(Color.ui.gray)
         }
     }
 }

@@ -11,6 +11,7 @@ import Foundation
 class PetProfileCreationVM: ObservableObject {
 
     @Published var selectedGender: Int = 0
+    @Published var selectedDate: Date = Date()
 
     enum Gender: String, CaseIterable {
         case male = "Male"
