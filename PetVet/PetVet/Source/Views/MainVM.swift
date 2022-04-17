@@ -20,7 +20,7 @@ class MainVM: ObservableObject {
 
     private func handleSelectedItemChange() {
         switch selectedItem {
-        case .user: profileIsShown = true
+        case .user: showProfile = true
         case .addNew: return
         case .pet: return
         case .none: return
