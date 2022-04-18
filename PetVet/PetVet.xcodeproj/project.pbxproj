@@ -36,6 +36,7 @@
 		C040B99927E76B320077EA04 /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B99827E76B320077EA04 /* CustomNavigationView.swift */; };
 		C040B99B27E77A330077EA04 /* ProfileCreationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B99A27E77A330077EA04 /* ProfileCreationVM.swift */; };
 		C040B99D27E780270077EA04 /* PetProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B99C27E780270077EA04 /* PetProfileView.swift */; };
+		C068267F280D7A200012E96B /* BarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C068267E280D7A200012E96B /* BarcodeView.swift */; };
 		C086E32D27B7D1B10050EB25 /* PetVetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C086E32C27B7D1B10050EB25 /* PetVetApp.swift */; };
 		C086E33127B7D1B20050EB25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C086E33027B7D1B20050EB25 /* Assets.xcassets */; };
 		C086E33427B7D1B20050EB25 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C086E33327B7D1B20050EB25 /* Preview Assets.xcassets */; };
@@ -78,6 +79,7 @@
 		C040B99827E76B320077EA04 /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
 		C040B99A27E77A330077EA04 /* ProfileCreationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationVM.swift; sourceTree = "<group>"; };
 		C040B99C27E780270077EA04 /* PetProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfileView.swift; sourceTree = "<group>"; };
+		C068267E280D7A200012E96B /* BarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeView.swift; sourceTree = "<group>"; };
 		C086E32927B7D1B10050EB25 /* PetVet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetVet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C086E32C27B7D1B10050EB25 /* PetVetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetVetApp.swift; sourceTree = "<group>"; };
 		C086E33027B7D1B20050EB25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				C040B99827E76B320077EA04 /* CustomNavigationView.swift */,
 				C0022725280C5928000D13D5 /* SegmentedControlView.swift */,
 				C0022727280C6A24000D13D5 /* DateSelectionView.swift */,
+				C068267E280D7A200012E96B /* BarcodeView.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				C086E34527B7D4580050EB25 /* Appearance.swift in Sources */,
 				C0022723280C5767000D13D5 /* Modifiers.swift in Sources */,
 				C002271F280C549B000D13D5 /* PetProfileCreationView.swift in Sources */,
+				C068267F280D7A200012E96B /* BarcodeView.swift in Sources */,
 				C0022728280C6A24000D13D5 /* DateSelectionView.swift in Sources */,
 				C031E8FD27E63011000E01F5 /* MainView.swift in Sources */,
 				C040B99927E76B320077EA04 /* CustomNavigationView.swift in Sources */,

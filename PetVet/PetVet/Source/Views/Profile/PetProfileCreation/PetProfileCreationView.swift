@@ -49,7 +49,10 @@ struct PetProfileCreationView: View {
         VStack(alignment: .leading) {
             Text("Transponder code:")
                 .titleStyle()
-            Rectangle().frame(height: 100)
+            BarcodeView(barcode: "123456789")
+                .frame(height: 130)
+                .border(Color.ui.borderGray, width: 2)
+
             Text("12345678902345").frame(width: .infinity)
             Rectangle().frame(height: 3)
             Text("Transponder location:")
@@ -68,6 +71,10 @@ struct PetProfileCreationView: View {
 
 struct PetProfileCreationView_Previews: PreviewProvider {
     static var previews: some View {
-        PetProfileCreationView()
+        Group {
+            PetProfileCreationView()
+            PetProfileCreationView().preferredColorScheme(.dark)
+        }
+
     }
 }
