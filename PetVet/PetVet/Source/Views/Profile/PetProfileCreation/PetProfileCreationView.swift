@@ -10,7 +10,12 @@ import SwiftUI
 struct PetProfileCreationView: View {
 
     @State var petName: String = ""
+    @State var transponderCode: String = "12345678"
+    @State var transponderCodeLocation: String = "Neck"
     @State var datePickerIsOpened: Bool = false
+    @State var selectedGender: Int = 0
+    @State var selectedDate: Date = Date()
+
     @ObservedObject var viewModel = PetProfileCreationVM()
 
     var body: some View {
@@ -24,14 +29,17 @@ struct PetProfileCreationView: View {
                         .titleStyle()
                     SegmentedControlView(
                         items: PetProfileCreationVM.Gender.allCases.map{ $0.rawValue },
-                        selectedIndex: $viewModel.selectedGender)
+                        selectedIndex: $selectedGender)
                 }
 
-                DateSelectionView(selectedDate: $viewModel.selectedDate, pickerIsShown: $datePickerIsOpened)
+                DateSelectionView(selectedDate: $selectedDate, pickerIsShown: $datePickerIsOpened)
                 profileImage()
-                transponderCode()
-
-
+                transponderCodeView()
+                CustomTextFieldView(title: "Transponder Location", text: $transponderCodeLocation)
+                CustomButtonView(title: viewModel.buttonTitle) {
+                    viewModel.createPet()
+                    // pop on success
+                }
             }
             .padding()
         }
@@ -45,20 +53,16 @@ struct PetProfileCreationView: View {
         }
     }
 
-    private func transponderCode() -> some View {
-        VStack(alignment: .leading) {
+    private func transponderCodeView() -> some View {
+        VStack(alignment: .leading, spacing: 5) {
             Text("Transponder code:")
                 .titleStyle()
             BarcodeView(barcode: "123456789")
                 .frame(height: 130)
                 .border(Color.ui.borderGray, width: 2)
 
-            Text("12345678902345").frame(width: .infinity)
-            Rectangle().frame(height: 3)
-            Text("Transponder location:")
-                .titleStyle()
-            Text("Neck")
-            Rectangle().frame(height: 3)
+            LineTextFieldView(text: $transponderCode)
+
         }
     }
 

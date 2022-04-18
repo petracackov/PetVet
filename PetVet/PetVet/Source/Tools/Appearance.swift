@@ -20,6 +20,7 @@ struct Appearance {
         static var background: UIColor = UIColor(named: "Background")!
         static var backgroundGray: UIColor = UIColor(named: "BackgroundGray")!
         static var borderGray: UIColor = UIColor(named: "BorderGray")!
+        static var text: UIColor = UIColor(named: "Text")!
     }
 
 }
@@ -37,6 +38,7 @@ extension Color {
         let background = Color(Appearance.Color.background)
         let borderGray = Color(Appearance.Color.borderGray)
         let backgroundGray = Color(Appearance.Color.backgroundGray)
+        let text = Color(Appearance.Color.text)
     }
 
 }

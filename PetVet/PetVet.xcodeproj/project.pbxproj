@@ -37,6 +37,7 @@
 		C040B99B27E77A330077EA04 /* ProfileCreationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B99A27E77A330077EA04 /* ProfileCreationVM.swift */; };
 		C040B99D27E780270077EA04 /* PetProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B99C27E780270077EA04 /* PetProfileView.swift */; };
 		C068267F280D7A200012E96B /* BarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C068267E280D7A200012E96B /* BarcodeView.swift */; };
+		C0682681280D8C260012E96B /* LineTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0682680280D8C260012E96B /* LineTextFieldView.swift */; };
 		C086E32D27B7D1B10050EB25 /* PetVetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C086E32C27B7D1B10050EB25 /* PetVetApp.swift */; };
 		C086E33127B7D1B20050EB25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C086E33027B7D1B20050EB25 /* Assets.xcassets */; };
 		C086E33427B7D1B20050EB25 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C086E33327B7D1B20050EB25 /* Preview Assets.xcassets */; };
@@ -80,6 +81,7 @@
 		C040B99A27E77A330077EA04 /* ProfileCreationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationVM.swift; sourceTree = "<group>"; };
 		C040B99C27E780270077EA04 /* PetProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfileView.swift; sourceTree = "<group>"; };
 		C068267E280D7A200012E96B /* BarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeView.swift; sourceTree = "<group>"; };
+		C0682680280D8C260012E96B /* LineTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineTextFieldView.swift; sourceTree = "<group>"; };
 		C086E32927B7D1B10050EB25 /* PetVet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetVet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C086E32C27B7D1B10050EB25 /* PetVetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetVetApp.swift; sourceTree = "<group>"; };
 		C086E33027B7D1B20050EB25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				C0022725280C5928000D13D5 /* SegmentedControlView.swift */,
 				C0022727280C6A24000D13D5 /* DateSelectionView.swift */,
 				C068267E280D7A200012E96B /* BarcodeView.swift */,
+				C0682680280D8C260012E96B /* LineTextFieldView.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				C040B98A27E74EAF0077EA04 /* AppError.swift in Sources */,
 				C086E34027B7D3C20050EB25 /* MenuView.swift in Sources */,
 				C01E781B27E611E600633AC0 /* CustomTextFieldView.swift in Sources */,
+				C0682681280D8C260012E96B /* LineTextFieldView.swift in Sources */,
 				C0022721280C54AE000D13D5 /* PetProfileCreationVM.swift in Sources */,
 				C040B99B27E77A330077EA04 /* ProfileCreationVM.swift in Sources */,
 				C040B98627E745B30077EA04 /* User.swift in Sources */,

@@ -10,8 +10,17 @@ import Foundation
 
 class PetProfileCreationVM: ObservableObject {
 
-    @Published var selectedGender: Int = 0
-    @Published var selectedDate: Date = Date()
+    
+
+    var buttonTitle: String = "Add Pet"
+
+    func createPet() {
+
+    }
+
+    func updatePet() {
+
+    }
 
     enum Gender: String, CaseIterable {
         case male = "Male"
