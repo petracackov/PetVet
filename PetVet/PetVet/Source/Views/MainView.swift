@@ -25,8 +25,8 @@ struct MainView: View {
                 }
 
                 NavigationLink(
-                    destination: ProfileView(),
-                    isActive: $viewModel.showProfile
+                    destination: PetProfileCreationView(),
+                    isActive: $viewModel.showPetCreationView
                 ) {
                    EmptyView()
                 }

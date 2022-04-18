@@ -17,14 +17,24 @@ class MainVM: ObservableObject {
     }
 
     @Published var showProfile: Bool = false
+    @Published var showPetCreationView: Bool = false
 
     private func handleSelectedItemChange() {
+
+        hideAllViews()
+
         switch selectedItem {
         case .user: showProfile = true
-        case .addNew: return
+        case .addNew: showPetCreationView = true
         case .pet: return
         case .none: return
         }
+    }
+
+
+    func hideAllViews() {
+        showProfile = false
+        showPetCreationView = false
     }
 
 }

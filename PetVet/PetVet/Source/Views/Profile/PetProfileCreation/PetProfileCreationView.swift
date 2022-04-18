@@ -15,6 +15,8 @@ struct PetProfileCreationView: View {
     @State var datePickerIsOpened: Bool = false
     @State var selectedGender: Int = 0
     @State var selectedDate: Date = Date()
+    @State var selectedImage: UIImage?
+    @State var imagePickerIsShown: Bool = false
 
     @ObservedObject var viewModel = PetProfileCreationVM()
 
@@ -24,24 +26,35 @@ struct PetProfileCreationView: View {
 
                 CustomTextFieldView(title: "Name", text: $petName)
 
-                HStack() {
-                    Text("Gender:")
-                        .titleStyle()
-                    SegmentedControlView(
-                        items: PetProfileCreationVM.Gender.allCases.map{ $0.rawValue },
-                        selectedIndex: $selectedGender)
-                }
+                genderSelectionView()
 
                 DateSelectionView(selectedDate: $selectedDate, pickerIsShown: $datePickerIsOpened)
+
                 profileImage()
+
                 transponderCodeView()
+
                 CustomTextFieldView(title: "Transponder Location", text: $transponderCodeLocation)
+
                 CustomButtonView(title: viewModel.buttonTitle) {
                     viewModel.createPet()
                     // pop on success
                 }
             }
             .padding()
+            .sheet(isPresented: $imagePickerIsShown) {
+                ImagePicker(image: $selectedImage)
+            }
+        }
+    }
+
+    private func genderSelectionView() -> some View {
+        HStack() {
+            Text("Gender:")
+                .titleStyle()
+            SegmentedControlView(
+                items: PetProfileCreationVM.Gender.allCases.map{ $0.rawValue },
+                selectedIndex: $selectedGender)
         }
     }
 
@@ -49,7 +62,27 @@ struct PetProfileCreationView: View {
         VStack(alignment: .leading) {
             Text("Image:")
                 .titleStyle()
-            Circle().frame(width: 130, height: 130)
+            ZStack {
+                Image(uiImage: selectedImage ?? UIImage())
+                    .resizable()
+                    .background(Color.ui.purple)
+                    .opacity(0.5)
+
+                Button {
+                    imagePickerIsShown = true
+                } label: {
+                    Image(systemName: "camera")
+                        .resizable()
+                        .scaledToFit()
+                        .opacity(0.5)
+                        .foregroundColor(Color.ui.white)
+                        .padding(30)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+            }
+            .frame(width: 130, height: 130)
+            .contentShape(Circle())
+            .clipShape(Circle())
         }
     }
 
