@@ -6,27 +6,32 @@
 //
 
 import Foundation
+import UIKit
 
 
 class PetProfileCreationVM: ObservableObject {
 
-    
-
     var buttonTitle: String = "Add Pet"
 
-    func createPet() {
+    func createPet(name: String, gender: Pet.Gender, dateOfBirth: Date, image: UIImage?, transponderCode: String, transponderLocation: String) {
+        // TODO
+        guard let ownerId = User.current?.userId else { return }
+        let pet = Pet(name: name,
+                      ownerId: ownerId,
+                      gender: gender,
+                      dateOfBirth: dateOfBirth,
+                      image: image,
+                      transponderCode: transponderCode.isEmpty ? nil : transponderCode,
+                      transponderLocation: transponderLocation.isEmpty ? nil : transponderLocation)
 
+        pet.save { success, error in
+            // TODO
+            print(success, error)
+        }
     }
 
     func updatePet() {
-
-    }
-
-    enum Gender: String, CaseIterable {
-        case male = "Male"
-        case female = "Female"
-
-        var index: Int { Gender.allCases.firstIndex(of: self) ?? 0 }
+        // TODO
     }
 
 }

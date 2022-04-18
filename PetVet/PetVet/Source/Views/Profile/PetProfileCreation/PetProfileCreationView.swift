@@ -10,13 +10,13 @@ import SwiftUI
 struct PetProfileCreationView: View {
 
     @State var petName: String = ""
-    @State var transponderCode: String = "12345678"
-    @State var transponderCodeLocation: String = "Neck"
-    @State var datePickerIsOpened: Bool = false
+    @State var transponderCode: String = ""
+    @State var transponderCodeLocation: String = ""
     @State var selectedGender: Int = 0
     @State var selectedDate: Date = Date()
     @State var selectedImage: UIImage?
     @State var imagePickerIsShown: Bool = false
+    @State var datePickerIsOpened: Bool = false
 
     @ObservedObject var viewModel = PetProfileCreationVM()
 
@@ -37,7 +37,12 @@ struct PetProfileCreationView: View {
                 CustomTextFieldView(title: "Transponder Location", text: $transponderCodeLocation)
 
                 CustomButtonView(title: viewModel.buttonTitle) {
-                    viewModel.createPet()
+                    viewModel.createPet(name: petName,
+                                        gender: Pet.Gender.allCases[selectedGender],
+                                        dateOfBirth: selectedDate,
+                                        image: selectedImage,
+                                        transponderCode: transponderCode,
+                                        transponderLocation: transponderCodeLocation)
                     // pop on success
                 }
             }
@@ -53,7 +58,7 @@ struct PetProfileCreationView: View {
             Text("Gender:")
                 .titleStyle()
             SegmentedControlView(
-                items: PetProfileCreationVM.Gender.allCases.map{ $0.rawValue },
+                items: Pet.Gender.allCases.map { $0.string },
                 selectedIndex: $selectedGender)
         }
     }

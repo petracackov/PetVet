@@ -86,6 +86,13 @@ class User: ParseObject, ObservableObject {
         try? self.updateWithPFObject(user)
     }
 
+    func fetchPets(completion: ((_ objects: [Pet]?, _ error: Error?) -> Void)?) {
+        guard let userId = userId, let query = Pet.generateQueryWithUserId(userId) else { return }
+        query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+            completion?(objects?.compactMap { Pet(pfObject: $0) }, error)
+        }
+    }
+
 }
 
 // MARK: - Static Helpers
