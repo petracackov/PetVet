@@ -18,6 +18,7 @@ class Pet: ParseObject, Identifiable {
     var transponderCode: String?
     var transponderLocation: String?
     var image: UIImage?
+    private var type: String?
     private var gender: String?
 
     var genderUi: Gender {
@@ -25,9 +26,14 @@ class Pet: ParseObject, Identifiable {
         return Gender.fromApiString(gender) ?? .male
     }
 
+    var typeUi: PetType {
+        guard let type = type else { return .other }
+        return PetType.fromApiString(type) ?? .other
+    }
+
     override class var entityName: String { return "Pet" }
 
-    init(name: String, ownerId: String, gender: Gender, dateOfBirth: Date, image: UIImage? = nil, transponderCode: String? = nil, transponderLocation: String? = nil) {
+    init(name: String, ownerId: String, gender: Gender, dateOfBirth: Date, type: PetType, image: UIImage? = nil, transponderCode: String? = nil, transponderLocation: String? = nil) {
         self.name = name
         self.gender = gender.apiString
         self.dateOfBirth = dateOfBirth
@@ -36,6 +42,7 @@ class Pet: ParseObject, Identifiable {
         self.transponderLocation = transponderLocation
         self.id = UUID().uuidString
         self.ownerId = ownerId
+        self.type = type.apiString
         super.init()
     }
 
@@ -49,6 +56,7 @@ class Pet: ParseObject, Identifiable {
         item?[Object.ownerId.rawValue] = ownerId
         item?[Object.dateOfBirth.rawValue] = dateOfBirth
         item?[Object.gender.rawValue] = gender
+        item?[Object.petType.rawValue] = type
         item?[Object.transponderCode.rawValue] = transponderCode == nil ? NSNull() : transponderCode
         item?[Object.transponderLocation.rawValue] = transponderLocation == nil ? NSNull() : transponderLocation
         //item?[Object.image.rawValue] = image
@@ -72,6 +80,7 @@ class Pet: ParseObject, Identifiable {
         self.gender = gender
         self.transponderCode = object[Object.transponderCode.rawValue] as? String
         self.transponderLocation = object[Object.transponderLocation.rawValue] as? String
+        self.type = object[Object.petType.rawValue] as? String
         //self.image = object[Object.image.rawValue] as UIImage?
 
     }
@@ -95,6 +104,7 @@ extension Pet {
         case transponderLocation
         case image
         case gender
+        case petType
     }
 }
 
@@ -125,6 +135,45 @@ extension Pet {
 
         static func fromApiString(_ string: String) -> Gender? {
             Gender.allCases.first(where: { $0.apiString == string })
+        }
+    }
+
+    enum PetType: String, CaseIterable, Identifiable {
+
+        var id: Self { self }
+        
+        case cat
+        case dog
+        case fish
+        case rodent
+        case bird
+        case reptile
+        case insect
+        case other
+
+        var emoji: String {
+            switch self {
+            case .cat: return "🐈"
+            case .dog: return "🐕"
+            case .fish: return "🐠"
+            case .rodent: return "🐁"
+            case .bird: return "🦜"
+            case .reptile: return "🦎"
+            case .insect: return "🕷"
+            case .other: return "🦥"
+            }
+        }
+
+        var apiString: String {
+            return self.rawValue
+        }
+
+        var string: String {
+            return self.rawValue.uppercased()
+        }
+
+        static func fromApiString(_ string: String) -> PetType? {
+            PetType.allCases.first(where: { $0.apiString == string })
         }
     }
 

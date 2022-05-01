@@ -15,6 +15,7 @@ struct PetProfileCreationView: View {
     @State var selectedGender: Int = 0
     @State var selectedDate: Date = Date()
     @State var selectedImage: UIImage?
+    @State var petType: Pet.PetType = .cat
     @State var imagePickerIsShown: Bool = false
     @State var datePickerIsOpened: Bool = false
 
@@ -24,33 +25,43 @@ struct PetProfileCreationView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 40) {
 
-                CustomTextFieldView(title: "Name", text: $petName)
+                VStack(alignment: .leading, spacing: 40)  {
+                    CustomTextFieldView(title: "Name", text: $petName)
 
-                genderSelectionView()
-
-                DateSelectionView(selectedDate: $selectedDate, pickerIsShown: $datePickerIsOpened)
-
-                profileImage()
-
-                transponderCodeView()
-
-                CustomTextFieldView(title: "Transponder Location", text: $transponderCodeLocation)
-
-                CustomButtonView(title: viewModel.buttonTitle) {
-                    viewModel.createPet(name: petName,
-                                        gender: Pet.Gender.allCases[selectedGender],
-                                        dateOfBirth: selectedDate,
-                                        image: selectedImage,
-                                        transponderCode: transponderCode,
-                                        transponderLocation: transponderCodeLocation)
-                    // pop on success
+                    genderSelectionView()
                 }
+                .padding([.leading, .top, .trailing])
+
+                PetTypeListView(selectedPet: $petType)
+
+                VStack(alignment: .leading, spacing: 40) {
+
+                    DateSelectionView(selectedDate: $selectedDate, pickerIsShown: $datePickerIsOpened)
+                    
+                    profileImage()
+                    
+                    transponderCodeView()
+                    
+                    CustomTextFieldView(title: "Transponder Location", text: $transponderCodeLocation)
+                    
+                    CustomButtonView(title: viewModel.buttonTitle) {
+                        viewModel.createPet(name: petName,
+                                            gender: Pet.Gender.allCases[selectedGender],
+                                            dateOfBirth: selectedDate,
+                                            type: petType,
+                                            image: selectedImage,
+                                            transponderCode: transponderCode,
+                                            transponderLocation: transponderCodeLocation)
+                        // pop on success
+                    }
+                }
+                .padding([.leading, .bottom, .trailing])
             }
-            .padding()
             .sheet(isPresented: $imagePickerIsShown) {
                 ImagePicker(image: $selectedImage)
             }
         }
+        .hideKeyboard()
     }
 
     private func genderSelectionView() -> some View {
@@ -95,7 +106,7 @@ struct PetProfileCreationView: View {
         VStack(alignment: .leading, spacing: 5) {
             Text("Transponder code:")
                 .titleStyle()
-            BarcodeView(barcode: "123456789")
+            BarcodeView(barcode: transponderCode)
                 .frame(height: 130)
                 .border(Color.ui.borderGray, width: 2)
 

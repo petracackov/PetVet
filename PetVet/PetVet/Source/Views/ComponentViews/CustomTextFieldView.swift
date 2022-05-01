@@ -11,6 +11,7 @@ struct CustomTextFieldView: View {
     
     var title: String = ""
     @Binding var text: String
+    @FocusState var isFocused: Bool
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -24,6 +25,7 @@ struct CustomTextFieldView: View {
                 .foregroundColor(.ui.gray)
                 .font(.ui.subtitle)
                 .clipShape(Capsule())
+                .focused($isFocused)
                 .overlay(
                     Capsule(style: .circular)
                         .stroke(Color.ui.borderGray, style: StrokeStyle(lineWidth: 2))

@@ -26,8 +26,9 @@ struct MenuView: View {
             ScrollView {
                 VStack(alignment: .center, spacing: 20) {
                     ForEach(viewModel.items) { item in
-                        ItemView(item: item) { selectedItem in
+                        ItemView(item: item, isSelected: item == selectedItem) { selectedItem in
                             hideView()
+                            guard self.selectedItem != selectedItem else { return }
                             self.selectedItem = selectedItem
                         }
                     }

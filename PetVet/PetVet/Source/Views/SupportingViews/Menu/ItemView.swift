@@ -10,6 +10,7 @@ import SwiftUI
 struct ItemView: View {
 
     var item: MenuVM.ListItems
+    var isSelected: Bool
     var onSelection: ((MenuVM.ListItems) -> Void)?
 
     var body: some View {
@@ -17,32 +18,14 @@ struct ItemView: View {
             onSelection?(item)
         } label: {
             circle(item: item)
-
         }
     }
     func circle(item: MenuVM.ListItems) -> some View {
         switch item {
-        case .user: return AnyView(profileView())
-        case .pet: return AnyView(petView())
+        case .user: return AnyView(EmojiView(emoji: "🙂", border: isSelected ? .ui.white : .clear))
+        case .pet: return AnyView(EmojiView(emoji: "🐈", border: isSelected ? .ui.white : .clear))
         case .addNew: return AnyView(addNewView())
         }
-    }
-
-    func profileView() -> some View {
-        return ZStack {
-            Circle()
-                .strokeBorder(Color.ui.white, lineWidth: 3)
-                .background(Circle().fill(Color.ui.borderGray))
-            .frame(width: 60, height: 60, alignment: .center)
-            Text("🙂")
-                .font(.system(size: 35))
-        }
-    }
-
-    func petView() -> some View {
-        return Circle()
-            .foregroundColor(Color.ui.orange)
-            .frame(width: 60, height: 60, alignment: .center)
     }
 
     func addNewView() -> some View {
@@ -63,6 +46,6 @@ struct ItemView: View {
 
 struct ItemView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemView(item: .user)
+        ItemView(item: .user, isSelected: false)
     }
 }

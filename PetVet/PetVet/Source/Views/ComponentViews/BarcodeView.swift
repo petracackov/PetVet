@@ -18,13 +18,16 @@ struct BarcodeView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UIImageView, context: Context) {
-        uiView.image = generateBarcode(from: barcode)
-        uiView.backgroundColor = .red
-        uiView.tintColor = .yellow
+        print("Update barcode")
+        DispatchQueue.main.async {
+            let image = generateBarcode(from: barcode)
+            uiView.image = image
+        }
     }
 
     private func generateBarcode(from string: String) -> UIImage? {
-        let data = barcode.data(using: .ascii)
+        print(string)
+        let data = string.data(using: .ascii)
 
         guard let filter = CIFilter(name: "CICode128BarcodeGenerator"), let colorFilter = CIFilter(name: "CIFalseColor") else {
             return nil
