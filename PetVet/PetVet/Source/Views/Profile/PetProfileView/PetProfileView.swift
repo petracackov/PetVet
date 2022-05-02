@@ -10,6 +10,7 @@ import SwiftUI
 struct PetProfileView: View {
 
     private var viewModel: PetProfileVM
+    @State var showDetails: Bool = false
 
     init(pet: Pet?) {
         self.viewModel = PetProfileVM(pet: pet)
@@ -17,6 +18,14 @@ struct PetProfileView: View {
 
     var body: some View {
         ZStack(alignment: .center) {
+            if let pet = viewModel.pet {
+                NavigationLink(
+                    destination: PetDetailsView(pet: pet),
+                    isActive: $showDetails
+                ) {
+                   EmptyView()
+                }
+            }
 
             BackgroundView(color: .ui.background)
 
@@ -32,7 +41,7 @@ struct PetProfileView: View {
         return ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 ProfileHeaderView(title: pet.name, leftIcon: pet.typeUi.emoji, rightIcon: pet.genderUi.emoji) {
-                    print("show details")
+                    showDetails = true
                 }
             }
         }.padding()
