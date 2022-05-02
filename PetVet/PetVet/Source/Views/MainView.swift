@@ -31,24 +31,28 @@ struct MainView: View {
                    EmptyView()
                 }
 
-                PetProfileView()
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            Button("Menu") {
-                                showMenu(true)
+                if viewModel.isLoading {
+                    ProgressView("Calling your pets...")
+                } else {
+                    PetProfileView(pet: viewModel.selectedPet)
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                Button("Menu") {
+                                    showMenu(true)
+                                }
+                            }
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                Button("Edit") {
+                                    print("Edit tapped!")
+                                }
                             }
                         }
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Button("Edit") {
-                                print("Edit tapped!")
+                        .onTapGesture {
+                            if menuIsShown {
+                                showMenu(false)
                             }
                         }
-                    }
-                    .onTapGesture {
-                        if menuIsShown {
-                            showMenu(false)
-                        }
-                    }
+                }
             }
 
             if menuIsShown {
@@ -61,7 +65,10 @@ struct MainView: View {
 
     private func menuView() -> some View {
         return HStack {
-            MenuView(pets: viewModel.pets, isShown: $menuIsShown, selectedItem: $viewModel.selectedItem)
+            MenuView(pets: viewModel.pets,
+                     isLoading: viewModel.isLoading,
+                     isShown: $menuIsShown,
+                     selectedItem: $viewModel.selectedItem)
             Spacer()
         }
         .transition(.move(edge: .leading))

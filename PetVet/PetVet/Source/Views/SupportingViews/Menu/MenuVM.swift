@@ -8,22 +8,38 @@
 import Foundation
 import SwiftUI
 
-class MenuVM {
+class MenuVM: ObservableObject {
 
-    let pets: [Pet]
+    private let pets: [Pet]
+    private let isLoading: Bool
 
-    var items: [ListItems] { [ListItems.user] + pets.map { _ in ListItems.pet } + [ListItems.addNew] }
-
-    enum ListItems: Identifiable {
-        var id: Self { self }
-
-        case user
-        case pet
-        case addNew
+    init(pets: [Pet], isLoading: Bool) {
+        self.pets = pets
+        self.isLoading = isLoading
     }
 
-    init(pets: [Pet]) {
-        self.pets = pets
+    var items: [ListItems] {
+        let items: [ListItems] = [.user] + pets.map { .pet($0) }
+        return isLoading ? items + [.loading] : items + [.addNew]
+    }
+
+    enum ListItems: Identifiable, Equatable {
+        static func == (lhs: MenuVM.ListItems, rhs: MenuVM.ListItems) -> Bool {
+            lhs.id == rhs.id
+        }
+
+        var id: String {
+            switch self {
+            case .loading: return "loading"
+            case .user: return "user"
+            case .pet(let pet): return pet.id ?? "pet"
+            case .addNew: return "addNew"
+            }
+        }
+        case user
+        case pet(Pet)
+        case addNew
+        case loading
     }
 
 }

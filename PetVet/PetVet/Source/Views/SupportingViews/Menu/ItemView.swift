@@ -23,8 +23,9 @@ struct ItemView: View {
     func circle(item: MenuVM.ListItems) -> some View {
         switch item {
         case .user: return AnyView(EmojiView(emoji: "🙂", border: isSelected ? .ui.white : .clear))
-        case .pet: return AnyView(EmojiView(emoji: "🐈", border: isSelected ? .ui.white : .clear))
+        case .pet(let pet): return AnyView(EmojiView(emoji: pet.typeUi.emoji, border: isSelected ? .ui.white : .clear))
         case .addNew: return AnyView(addNewView())
+        case .loading: return AnyView(ProgressView())
         }
     }
 

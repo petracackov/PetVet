@@ -11,6 +11,9 @@ import Foundation
 class PetProfileVM {
 
 
-    let pets: [Pet] = []
+    let pet: Pet?
 
+    init(pet: Pet?) {
+        self.pet = pet
+    }
 }

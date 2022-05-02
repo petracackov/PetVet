@@ -9,27 +9,32 @@ import SwiftUI
 
 struct PetProfileView: View {
 
-    private var viewModel = PetProfileVM()
+    private var viewModel: PetProfileVM
+
+    init(pet: Pet?) {
+        self.viewModel = PetProfileVM(pet: pet)
+    }
 
     var body: some View {
         ZStack(alignment: .center) {
 
             BackgroundView(color: .ui.background)
 
-            if viewModel.pets.isEmpty {
-                showNoPetsView()
+            if let pet = viewModel.pet {
+                showPetProfile(pet)
             } else {
-                showPetProfile()
+                showNoPetsView()
             }
         }
     }
 
-    private func showPetProfile() -> some View {
+    private func showPetProfile(_ pet: Pet) -> some View {
         return ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                ProfileHeaderView()
+                ProfileHeaderView(title: pet.name, leftIcon: pet.typeUi.emoji, rightIcon: pet.genderUi.emoji) {
+                    print("show details")
+                }
             }
-
         }.padding()
     }
 
@@ -40,7 +45,13 @@ struct PetProfileView: View {
 }
 
 struct PetProfileView_Previews: PreviewProvider {
+    static let pet = Pet(name: "Test pet", ownerId: "OwnerId", gender: .male, dateOfBirth: Date(), type: .cat)
     static var previews: some View {
-        PetProfileView()
+        Group {
+            PetProfileView(pet: pet)
+            PetProfileView(pet: pet).preferredColorScheme(.dark)
+            PetProfileView(pet: nil)
+        }
+
     }
 }

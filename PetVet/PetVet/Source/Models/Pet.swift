@@ -87,8 +87,7 @@ class Pet: ParseObject, Identifiable {
 
     static func generateQueryWithUserId(_ userId: String) -> PFQuery<PFObject>? {
         let query = generatePFQuery()
-        guard let userPfObjectId = User.withId(userId) else { return nil }
-        query.whereKey(Object.ownerId.rawValue, equalTo: userPfObjectId)
+        query.whereKey(Object.ownerId.rawValue, equalTo: userId)
         return query
     }
 
@@ -130,6 +129,13 @@ extension Pet {
             switch self {
             case .male: return "male"
             case .female: return "female"
+            }
+        }
+
+        var emoji: String {
+            switch self {
+            case .male: return "♂"
+            case .female: return "♀"
             }
         }
 
