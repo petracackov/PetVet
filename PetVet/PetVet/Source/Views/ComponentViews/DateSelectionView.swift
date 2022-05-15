@@ -29,18 +29,12 @@ struct DateSelectionView: View {
                 .padding(EdgeInsets(top: 2, leading: 10, bottom: 2, trailing: 10))
                 .frame(minWidth: 130, minHeight: 30)
                 .background(Color.ui.backgroundGray)
-                .clipShape(Capsule())
-                .overlay(
-                    Capsule()
-                        .stroke(Color.ui.borderGray, style: StrokeStyle(lineWidth: 2))
-
-                )
+                .rounded(borderColor: Color.ui.borderGray)
             }
 
             if pickerIsShown {
                 DatePicker("Enter your birthday", selection: $selectedDate, displayedComponents: .date)
                     .datePickerStyle(GraphicalDatePickerStyle())
-                    //.frame(maxHeight: 400)
                     .labelsHidden()
                     .background(Color.ui.background)
                     .padding()

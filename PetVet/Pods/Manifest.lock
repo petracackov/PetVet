@@ -4,19 +4,27 @@ PODS:
     - Parse/Core (= 1.19.3)
   - Parse/Core (1.19.3):
     - Bolts/Tasks (= 1.9.1)
+  - R.swift (6.1.0):
+    - R.swift.Library (~> 5.3.0)
+  - R.swift.Library (5.3.0)
 
 DEPENDENCIES:
   - Parse
+  - R.swift
 
 SPEC REPOS:
   trunk:
     - Bolts
     - Parse
+    - R.swift
+    - R.swift.Library
 
 SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   Parse: 0abb63a0ff6fa34a3f64b81d595a294e2ece143a
+  R.swift: ec98ff71c4ab2f6fd01dd077e5afd15e63a4834c
+  R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
 
-PODFILE CHECKSUM: 1cd8a69fba9c12c89626bca93364a2ecc7f66ee5
+PODFILE CHECKSUM: 72205f6e028494dc675e197928a9b23e5bd059b4
 
 COCOAPODS: 1.11.2

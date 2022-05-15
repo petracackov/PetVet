@@ -23,6 +23,10 @@
 		C031E8F927E629B7000E01F5 /* UsernameAndPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C031E8F827E629B7000E01F5 /* UsernameAndPasswordView.swift */; };
 		C031E8FB27E62D32000E01F5 /* CustomNavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C031E8FA27E62D32000E01F5 /* CustomNavigationButton.swift */; };
 		C031E8FD27E63011000E01F5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C031E8FC27E63011000E01F5 /* MainView.swift */; };
+		C0327ACA28311F8F00A8E36E /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0327AC928311F8F00A8E36E /* TabBarView.swift */; };
+		C0327AD0283128DB00A8E36E /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0327ACF283128DB00A8E36E /* RoundedButton.swift */; };
+		C0327AD228314A3900A8E36E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0327AD128314A3900A8E36E /* Images.xcassets */; };
+		C0327AD528314E4A00A8E36E /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0327AD428314E4A00A8E36E /* R.generated.swift */; };
 		C040B98127E7425D0077EA04 /* ParseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B98027E7425D0077EA04 /* ParseManager.swift */; };
 		C040B98327E7457E0077EA04 /* ParseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B98227E7457E0077EA04 /* ParseObject.swift */; };
 		C040B98627E745B30077EA04 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B98527E745B30077EA04 /* User.swift */; };
@@ -72,6 +76,10 @@
 		C031E8F827E629B7000E01F5 /* UsernameAndPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameAndPasswordView.swift; sourceTree = "<group>"; };
 		C031E8FA27E62D32000E01F5 /* CustomNavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationButton.swift; sourceTree = "<group>"; };
 		C031E8FC27E63011000E01F5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		C0327AC928311F8F00A8E36E /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		C0327ACF283128DB00A8E36E /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		C0327AD128314A3900A8E36E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C0327AD428314E4A00A8E36E /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		C040B98027E7425D0077EA04 /* ParseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseManager.swift; sourceTree = "<group>"; };
 		C040B98227E7457E0077EA04 /* ParseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseObject.swift; sourceTree = "<group>"; };
 		C040B98527E745B30077EA04 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -175,16 +183,13 @@
 		C01E781927E6119100633AC0 /* ComponentViews */ = {
 			isa = PBXGroup;
 			children = (
-				C086E34827B7FEFC0050EB25 /* ProfileHeaderView.swift */,
-				C01E781A27E611E600633AC0 /* CustomTextFieldView.swift */,
-				C031E8F627E6246C000E01F5 /* CustomButtonView.swift */,
+				C0327ACE283121A700A8E36E /* TextField */,
+				C0327ACD2831218C00A8E36E /* Buttons */,
 				C086E34227B7D4580050EB25 /* BackgroundView.swift */,
-				C031E8FA27E62D32000E01F5 /* CustomNavigationButton.swift */,
 				C040B99827E76B320077EA04 /* CustomNavigationView.swift */,
 				C0022725280C5928000D13D5 /* SegmentedControlView.swift */,
 				C0022727280C6A24000D13D5 /* DateSelectionView.swift */,
 				C068267E280D7A200012E96B /* BarcodeView.swift */,
-				C0682680280D8C260012E96B /* LineTextFieldView.swift */,
 				C0682683280D9AD70012E96B /* ImagePicker.swift */,
 				C0E82FF928157556003EDD3E /* EmojiView.swift */,
 			);
@@ -218,6 +223,25 @@
 			path = UserProfileView;
 			sourceTree = "<group>";
 		};
+		C0327ACD2831218C00A8E36E /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				C031E8F627E6246C000E01F5 /* CustomButtonView.swift */,
+				C031E8FA27E62D32000E01F5 /* CustomNavigationButton.swift */,
+				C0327ACF283128DB00A8E36E /* RoundedButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		C0327ACE283121A700A8E36E /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				C0682680280D8C260012E96B /* LineTextFieldView.swift */,
+				C01E781A27E611E600633AC0 /* CustomTextFieldView.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
 		C040B97F27E742440077EA04 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +265,8 @@
 			children = (
 				C0E82FFC28157644003EDD3E /* PetTypeList */,
 				C0E82FFB28157638003EDD3E /* Menu */,
+				C0327AC928311F8F00A8E36E /* TabBarView.swift */,
+				C086E34827B7FEFC0050EB25 /* ProfileHeaderView.swift */,
 			);
 			path = SupportingViews;
 			sourceTree = "<group>";
@@ -304,6 +330,7 @@
 		C086E33A27B7D1E00050EB25 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				C0327AD428314E4A00A8E36E /* R.generated.swift */,
 				C040B99227E767AF0077EA04 /* Managers */,
 				C040B98427E745A40077EA04 /* Models */,
 				C040B97F27E742440077EA04 /* API */,
@@ -318,6 +345,7 @@
 			children = (
 				C086E33027B7D1B20050EB25 /* Assets.xcassets */,
 				C086E33C27B7D2110050EB25 /* Colors.xcassets */,
+				C0327AD128314A3900A8E36E /* Images.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -374,6 +402,7 @@
 			buildConfigurationList = C086E33727B7D1B20050EB25 /* Build configuration list for PBXNativeTarget "PetVet" */;
 			buildPhases = (
 				885F2A4FF3B32C9EF89C4A3A /* [CP] Check Pods Manifest.lock */,
+				C0327AD328314C2E00A8E36E /* ShellScript */,
 				C086E32527B7D1B10050EB25 /* Sources */,
 				C086E32627B7D1B10050EB25 /* Frameworks */,
 				C086E32727B7D1B10050EB25 /* Resources */,
@@ -427,6 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C086E33D27B7D2110050EB25 /* Colors.xcassets in Resources */,
+				C0327AD228314A3900A8E36E /* Images.xcassets in Resources */,
 				C086E33427B7D1B20050EB25 /* Preview Assets.xcassets in Resources */,
 				C086E33127B7D1B20050EB25 /* Assets.xcassets in Resources */,
 			);
@@ -474,6 +504,25 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetVet/Pods-PetVet-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C0327AD328314C2E00A8E36E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -483,6 +532,7 @@
 			files = (
 				C086E34527B7D4580050EB25 /* Appearance.swift in Sources */,
 				C0022723280C5767000D13D5 /* Modifiers.swift in Sources */,
+				C0327AD528314E4A00A8E36E /* R.generated.swift in Sources */,
 				C0E82FFA28157556003EDD3E /* EmojiView.swift in Sources */,
 				C002271F280C549B000D13D5 /* PetProfileCreationView.swift in Sources */,
 				C068267F280D7A200012E96B /* BarcodeView.swift in Sources */,
@@ -516,9 +566,11 @@
 				C040B98127E7425D0077EA04 /* ParseManager.swift in Sources */,
 				C040B98C27E751F50077EA04 /* LaunchScreen.swift in Sources */,
 				C031E8FB27E62D32000E01F5 /* CustomNavigationButton.swift in Sources */,
+				C0327ACA28311F8F00A8E36E /* TabBarView.swift in Sources */,
 				C01E781827E6116300633AC0 /* RegistrationandLoginView.swift in Sources */,
 				C086E34427B7D4580050EB25 /* BackgroundView.swift in Sources */,
 				C040B98E27E754B40077EA04 /* UsernameAndPasswordVM.swift in Sources */,
+				C0327AD0283128DB00A8E36E /* RoundedButton.swift in Sources */,
 				C086E34927B7FEFC0050EB25 /* ProfileHeaderView.swift in Sources */,
 				C086E34727B7E3DF0050EB25 /* ProfileView.swift in Sources */,
 				C040B98827E745ED0077EA04 /* Pet.swift in Sources */,

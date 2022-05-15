@@ -57,3 +57,23 @@ fileprivate struct SizeReader: ViewModifier {
 }
 
 
+// MARK: - Rounded
+
+extension View {
+    func rounded(borderColor: Color = .clear) -> some View {
+        modifier(RoundedView(borderColor: borderColor))
+    }
+}
+
+fileprivate struct RoundedView: ViewModifier {
+    var borderColor: Color
+    func body(content: Content) -> some View {
+        content
+            .clipShape(Capsule())
+            .overlay(
+                Capsule()
+                    .stroke(borderColor, style: StrokeStyle(lineWidth: 2))
+
+            )
+    }
+}

@@ -26,7 +26,7 @@ struct SegmentedControlView: View {
 
 }
 
-private struct BorderButton: View {
+struct BorderButton: View {
 
     var title: String
     var isSelected: Bool
@@ -46,12 +46,7 @@ private struct BorderButton: View {
         }
         .padding(EdgeInsets(top: 2, leading: 10, bottom: 2, trailing: 10))
         .background(backgroundColor)
-        .clipShape(Capsule())
-        .overlay(
-            Capsule()
-                .stroke(borderColor, style: StrokeStyle(lineWidth: 2))
-            
-        )
+        .rounded(borderColor: borderColor)
     }
 }
 
