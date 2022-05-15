@@ -13,41 +13,21 @@ struct ProfileHeaderView: View {
     var leftIcon: String?
     var rightIcon: String?
     var onSelection: (() -> Void)?
-    @State var circleHeight: CGFloat = .zero
-    @State var textHeight: CGFloat = .zero
+
+    @State private var screenSize: CGSize = .zero
 
     var body: some View {
-        GeometryReader { geometryReader in
 
-            VStack(alignment: .center, spacing: 20) {
-                ZStack {
-                    Circle()
-                        .frame(width: geometryReader.size.width * 0.6, height: geometryReader.size.width * 0.6, alignment: .center)
-                        .clipped()
-                        .onTapGesture {
-                            onSelection?()
-                        }
-                        .onAppear {
-                            circleHeight = geometryReader.size.width * 0.6
-                        }
-                    if let leftIcon = leftIcon {
-                        iconView(leftIcon, geometryReader: geometryReader, leftAligned: true)
-                    }
+        VStack(alignment: .center, spacing: 20) {
 
-                    if let rightIcon = rightIcon {
-                        iconView(rightIcon, geometryReader: geometryReader)
-                    }
-                }
+            circleView()
 
-
-                if let title = title {
-                    titleView(title)
-                }
+            if let title = title {
+                titleView(title)
             }
-            .position(x: geometryReader.size.width/2, y: geometryReader.size.height/2)
-        }
-        .frame(maxWidth: .infinity, minHeight: circleHeight + textHeight + 20, maxHeight: .infinity) // needed if the view is placed in scroll view
+        }.getSize($screenSize)
     }
+
 }
 
 private extension ProfileHeaderView {
@@ -59,18 +39,10 @@ private extension ProfileHeaderView {
             .foregroundColor(.ui.gray)
             .fixedSize(horizontal: false, vertical: true)
             .multilineTextAlignment(.center)
-            .background(
-                GeometryReader { textGeometryReader in
-                    Color.clear
-                        .onAppear {
-                            textHeight = textGeometryReader.size.height
-                        }
-                }
-            )
     }
 
-    func iconView(_ icon: String, geometryReader: GeometryProxy, leftAligned: Bool = false) -> some View {
-        let offset = geometryReader.size.width/2 * 0.43
+    func iconView(_ icon: String, width: CGFloat, leftAligned: Bool = false) -> some View {
+        let offset = width/2 * 0.43
         return ZStack(alignment: .center) {
             Circle()
                 .frame(width: 40, height: 40, alignment: .center)
@@ -80,6 +52,28 @@ private extension ProfileHeaderView {
                 .foregroundColor(.ui.gray)
         }
         .offset(CGSize(width: leftAligned ? -offset : offset, height: offset))
+    }
+
+    func circleView() -> some View {
+        HStack {
+            Spacer()
+            ZStack {
+                Circle()
+                    .frame(width: screenSize.width * 0.6, height: screenSize.width * 0.6, alignment: .center)
+                    .clipped()
+                    .onTapGesture {
+                        onSelection?()
+                    }
+                if let leftIcon = leftIcon {
+                    iconView(leftIcon, width: screenSize.width, leftAligned: true)
+                }
+
+                if let rightIcon = rightIcon {
+                    iconView(rightIcon, width: screenSize.width)
+                }
+            }
+            Spacer()
+        }
     }
 
 }

@@ -48,7 +48,11 @@ struct PetProfileView: View {
     }
 
     private func showNoPetsView() -> some View {
-        return ProfileHeaderView(title: "You have no pets yet").edgesIgnoringSafeArea(.all)
+        VStack {
+            Spacer()
+            ProfileHeaderView(title: "You have no pets yet").edgesIgnoringSafeArea(.all)
+            Spacer()
+        }
     }
 
 }

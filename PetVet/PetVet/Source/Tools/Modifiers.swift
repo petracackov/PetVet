@@ -7,16 +7,53 @@
 
 import SwiftUI
 
+
+// MARK: - TextTitle
+
 extension View {
     func titleStyle() -> some View {
         modifier(TitleText())
     }
 }
 
-struct TitleText: ViewModifier {
+fileprivate struct TitleText: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.ui.title)
             .foregroundColor(.ui.gray)
     }
 }
+
+// MARK: - SizeReader
+
+extension View {
+
+    func getSize(_ size: Binding<CGSize>) -> some View {
+        modifier(SizeReader(size: size))
+    }
+
+
+}
+
+fileprivate struct SizeReader: ViewModifier {
+
+    @Binding var size: CGSize
+
+    func body(content: Content) -> some View {
+        content
+            .background(
+                GeometryReader { proxy in
+                    readSize(proxy.size)
+                }
+            )
+    }
+
+    private func readSize(_ size: CGSize) -> some View {
+        DispatchQueue.main.async {
+            self.size = size
+        }
+        return Color.clear
+    }
+}
+
+
