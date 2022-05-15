@@ -14,6 +14,13 @@ struct TabBarView: View {
     enum Tab {
         case pets
         case home
+
+        var icon: UIImage? {
+            switch self {
+            case .pets: return R.image.pawTabIcon()
+            case .home: return R.image.houseTabIcon()
+            }
+        }
     }
 
     var body: some View {
@@ -23,9 +30,10 @@ struct TabBarView: View {
                     .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: -3)
                 HStack(alignment: .center) {
                     Spacer()
-//                    tabButton(image: R.image.pawTabIcon(), isSelected: selectedTab == .pets) {
-//                        selectedTab = .pets
-//                    }
+
+                    tabButton(image: Tab.home.icon, isSelected: selectedTab == .home) {
+                        selectedTab = .home
+                    }
                     Spacer()
                     RoundedButton(
                         title: "+",
@@ -38,9 +46,9 @@ struct TabBarView: View {
                         .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: -2)
                     Spacer()
 
-//                    tabButton(image: R.image.pawTabIcon(), isSelected: selectedTab == .home) {
-//                        selectedTab = .home
-//                    }
+                    tabButton(image: Tab.pets.icon, isSelected: selectedTab == .pets) {
+                        selectedTab = .pets
+                    }
 
                     Spacer()
                 }
@@ -50,14 +58,16 @@ struct TabBarView: View {
 
     }
 
-    func tabButton(image: UIImage, isSelected: Bool,  action: @escaping () -> Void) -> some View {
+    func tabButton(image: UIImage?, isSelected: Bool,  action: @escaping () -> Void) -> some View {
         Button {
             action()
         } label: {
-            Image(uiImage: image)
+            if let image = image {
+                Image(uiImage: image)
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .foregroundColor(isSelected ? .ui.purple : .ui.gray)
+        .foregroundColor(isSelected ? .ui.purple : .ui.backgroundGray)
     }
 }
 

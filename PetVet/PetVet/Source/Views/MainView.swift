@@ -11,54 +11,60 @@ struct MainView: View {
 
     @State var menuIsShown: Bool = false
     @ObservedObject var viewModel: MainVM = MainVM()
+    @State var selectedTab: TabBarView.Tab = .home
 
     var body: some View {
 
-        ZStack(alignment: .center) {
-            CustomNavigationView {
-
-                NavigationLink(
-                    destination: ProfileView(),
-                    isActive: $viewModel.showProfile
-                ) {
-                   EmptyView()
-                }
-
-                NavigationLink(
-                    destination: PetProfileCreationView(),
-                    isActive: $viewModel.showPetCreationView
-                ) {
-                   EmptyView()
-                }
-
-                if viewModel.isLoading {
-                    ProgressView("Calling your pets...")
-                } else {
-                    PetProfileView(pet: viewModel.selectedPet)
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarLeading) {
-                                Button("Menu") {
-                                    showMenu(true)
-                                }
-                            }
-                            ToolbarItem(placement: .navigationBarTrailing) {
-                                Button("Edit") {
-                                    print("Edit tapped!")
-                                }
-                            }
-                        }
-                        .onTapGesture {
-                            if menuIsShown {
-                                showMenu(false)
-                            }
-                        }
-                }
-            }
-
-            if menuIsShown {
-                menuView()
-            }
+        VStack {
+            Spacer()
+            TabBarView(selectedTab: $selectedTab)
         }
+
+//        ZStack(alignment: .center) {
+//            CustomNavigationView {
+//
+//                NavigationLink(
+//                    destination: ProfileView(),
+//                    isActive: $viewModel.showProfile
+//                ) {
+//                   EmptyView()
+//                }
+//
+//                NavigationLink(
+//                    destination: PetProfileCreationView(),
+//                    isActive: $viewModel.showPetCreationView
+//                ) {
+//                   EmptyView()
+//                }
+//
+//                if viewModel.isLoading {
+//                    ProgressView("Calling your pets...")
+//                } else {
+//                    PetProfileView(pet: viewModel.selectedPet)
+//                        .toolbar {
+//                            ToolbarItem(placement: .navigationBarLeading) {
+//                                Button("Menu") {
+//                                    showMenu(true)
+//                                }
+//                            }
+//                            ToolbarItem(placement: .navigationBarTrailing) {
+//                                Button("Edit") {
+//                                    print("Edit tapped!")
+//                                }
+//                            }
+//                        }
+//                        .onTapGesture {
+//                            if menuIsShown {
+//                                showMenu(false)
+//                            }
+//                        }
+//                }
+//            }
+//
+//            if menuIsShown {
+//                menuView()
+//            }
+//        }
 
 
     }
