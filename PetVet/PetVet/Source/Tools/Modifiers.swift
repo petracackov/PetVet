@@ -43,7 +43,7 @@ fileprivate struct SizeReader: ViewModifier {
         content
             .background(
                 GeometryReader { proxy in
-                    readSize(proxy.size)
+                    readSize(proxy.frame(in: .local).size)
                 }
             )
     }
@@ -77,3 +77,4 @@ fileprivate struct RoundedView: ViewModifier {
             )
     }
 }
+

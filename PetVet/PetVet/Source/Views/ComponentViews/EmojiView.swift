@@ -18,10 +18,10 @@ struct EmojiView: View {
             Circle()
                 .strokeBorder(border, lineWidth: 3)
                 .background(Circle().fill(background))
-                .frame(width: 60, height: 60, alignment: .center)
+
             Text(emoji)
                 .font(.system(size: 35))
-        }
+        }.frame(width: 60, height: 60, alignment: .center)
     }
 }
 

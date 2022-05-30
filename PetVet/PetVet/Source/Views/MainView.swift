@@ -9,82 +9,80 @@ import SwiftUI
 
 struct MainView: View {
 
-    @State var menuIsShown: Bool = false
+    //@State var menuIsShown: Bool = false
     @ObservedObject var viewModel: MainVM = MainVM()
     @State var selectedTab: TabBarView.Tab = .home
 
     var body: some View {
+        CustomNavigationView {
 
-        VStack {
-            Spacer()
-            TabBarView(selectedTab: $selectedTab)
+            NavigationLink(
+                destination: ProfileView(),
+                isActive: $viewModel.showProfile
+            ) {
+               EmptyView()
+            }
+
+            NavigationLink(
+                destination: PetProfileCreationView(),
+                isActive: $viewModel.showPetCreationView
+            ) {
+               EmptyView()
+            }
+
+            NavigationLink(
+                destination: ProfileView(),
+                isActive: $viewModel.showUserProfileView
+            ) {
+               EmptyView()
+            }
+
+            if viewModel.isLoading {
+                ProgressView("Calling your pets...")
+            } else {
+                VStack {
+                    switch selectedTab {
+                    case .home:
+                        Text("TODO -> vet events")
+                    case .pets:
+                        petList()
+                    }
+                    Spacer()
+                    TabBarView(selectedTab: $selectedTab) {
+                        viewModel.showPetCreationView = true
+                    }
+                }
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button("User Profile") {
+                            viewModel.showUserProfileView = true
+                        }
+                    }
+                }
+            }
         }
-
-//        ZStack(alignment: .center) {
-//            CustomNavigationView {
-//
-//                NavigationLink(
-//                    destination: ProfileView(),
-//                    isActive: $viewModel.showProfile
-//                ) {
-//                   EmptyView()
-//                }
-//
-//                NavigationLink(
-//                    destination: PetProfileCreationView(),
-//                    isActive: $viewModel.showPetCreationView
-//                ) {
-//                   EmptyView()
-//                }
-//
-//                if viewModel.isLoading {
-//                    ProgressView("Calling your pets...")
-//                } else {
-//                    PetProfileView(pet: viewModel.selectedPet)
-//                        .toolbar {
-//                            ToolbarItem(placement: .navigationBarLeading) {
-//                                Button("Menu") {
-//                                    showMenu(true)
-//                                }
-//                            }
-//                            ToolbarItem(placement: .navigationBarTrailing) {
-//                                Button("Edit") {
-//                                    print("Edit tapped!")
-//                                }
-//                            }
-//                        }
-//                        .onTapGesture {
-//                            if menuIsShown {
-//                                showMenu(false)
-//                            }
-//                        }
-//                }
-//            }
-//
-//            if menuIsShown {
-//                menuView()
-//            }
-//        }
-
 
     }
 
-    private func menuView() -> some View {
-        return HStack {
-            MenuView(pets: viewModel.pets,
-                     isLoading: viewModel.isLoading,
-                     isShown: $menuIsShown,
-                     selectedItem: $viewModel.selectedItem)
-            Spacer()
-        }
-        .transition(.move(edge: .leading))
-        .zIndex(100)
 
-    }
-
-    private func showMenu(_ shouldShow: Bool) {
-        withAnimation {
-            menuIsShown = shouldShow
+    // TODO: Temporary
+    private func petList() -> some View {
+        ScrollView {
+            VStack(alignment: .leading) {
+                ForEach(viewModel.pets) { pet in
+                    NavigationLink {
+                        PetProfileView(pet: pet)
+                    } label: {
+                        HStack {
+                            EmojiView(emoji: pet.typeUi.emoji)
+                            Text(pet.name ?? "")
+                                .font(.ui.title)
+                                .foregroundColor(.ui.gray)
+                            Spacer()
+                        }.padding(.horizontal)
+                    }
+                }
+            }
         }
     }
 

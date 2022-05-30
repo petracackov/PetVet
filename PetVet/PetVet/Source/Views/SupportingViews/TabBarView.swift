@@ -11,6 +11,8 @@ struct TabBarView: View {
 
     @Binding var selectedTab: Tab
 
+    var onActionButtonPress: (() -> Void)?
+
     enum Tab {
         case pets
         case home
@@ -32,14 +34,14 @@ struct TabBarView: View {
                     Spacer()
 
                     tabButton(image: Tab.home.icon, isSelected: selectedTab == .home) {
-                        selectedTab = .home
+                        selectTab(.home)
                     }
                     Spacer()
                     RoundedButton(
                         title: "+",
                         backgroundColor: .ui.purple,
                         titleColor: .ui.white) {
-                            print("xcv")
+                            onActionButtonPress?()
                         }
                         .frame(width: 70, height: 70)
                         .offset(CGSize(width: 0, height: -35))
@@ -47,7 +49,7 @@ struct TabBarView: View {
                     Spacer()
 
                     tabButton(image: Tab.pets.icon, isSelected: selectedTab == .pets) {
-                        selectedTab = .pets
+                        selectTab(.pets)
                     }
 
                     Spacer()
@@ -58,7 +60,7 @@ struct TabBarView: View {
 
     }
 
-    func tabButton(image: UIImage?, isSelected: Bool,  action: @escaping () -> Void) -> some View {
+    private func tabButton(image: UIImage?, isSelected: Bool,  action: @escaping () -> Void) -> some View {
         Button {
             action()
         } label: {
@@ -68,6 +70,12 @@ struct TabBarView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .foregroundColor(isSelected ? .ui.purple : .ui.backgroundGray)
+    }
+
+    private func selectTab(_ tab: Tab) {
+        withAnimation {
+            selectedTab = tab
+        }
     }
 }
 
