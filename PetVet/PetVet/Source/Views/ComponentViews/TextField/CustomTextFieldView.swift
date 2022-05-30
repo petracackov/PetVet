@@ -21,7 +21,6 @@ struct CustomTextFieldView: View {
             TextField("", text: $text)
                 .textFieldStyle(.plain)
                 .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
-                .background(Color.ui.backgroundGray)
                 .foregroundColor(.ui.gray)
                 .font(.ui.subtitle)
                 .focused($isFocused)
