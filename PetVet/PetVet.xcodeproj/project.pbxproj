@@ -25,7 +25,6 @@
 		C0327AD0283128DB00A8E36E /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0327ACF283128DB00A8E36E /* RoundedButton.swift */; };
 		C0327AD228314A3900A8E36E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0327AD128314A3900A8E36E /* Images.xcassets */; };
 		C0327AD528314E4A00A8E36E /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0327AD428314E4A00A8E36E /* R.generated.swift */; };
-		C0327AD82831528700A8E36E /* PetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0327AD72831528700A8E36E /* PetListView.swift */; };
 		C040B98127E7425D0077EA04 /* ParseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B98027E7425D0077EA04 /* ParseManager.swift */; };
 		C040B98327E7457E0077EA04 /* ParseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B98227E7457E0077EA04 /* ParseObject.swift */; };
 		C040B98627E745B30077EA04 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040B98527E745B30077EA04 /* User.swift */; };
@@ -78,7 +77,6 @@
 		C0327ACF283128DB00A8E36E /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		C0327AD128314A3900A8E36E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C0327AD428314E4A00A8E36E /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
-		C0327AD72831528700A8E36E /* PetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetListView.swift; sourceTree = "<group>"; };
 		C040B98027E7425D0077EA04 /* ParseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseManager.swift; sourceTree = "<group>"; };
 		C040B98227E7457E0077EA04 /* ParseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseObject.swift; sourceTree = "<group>"; };
 		C040B98527E745B30077EA04 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -191,6 +189,7 @@
 				C0022727280C6A24000D13D5 /* DateSelectionView.swift */,
 				C068267E280D7A200012E96B /* BarcodeView.swift */,
 				C0682683280D9AD70012E96B /* ImagePicker.swift */,
+				C0E8E3DD284221A600079808 /* CarouselView.swift */,
 				C0E82FF928157556003EDD3E /* EmojiView.swift */,
 			);
 			path = ComponentViews;
@@ -265,6 +264,7 @@
 			children = (
 				C0E82FFC28157644003EDD3E /* PetTypeList */,
 				C0327AC928311F8F00A8E36E /* TabBarView.swift */,
+				C0E8E3E0284233A900079808 /* PetCarouselView.swift */,
 				C086E34827B7FEFC0050EB25 /* ProfileHeaderView.swift */,
 			);
 			path = SupportingViews;
@@ -333,8 +333,8 @@
 				C040B99227E767AF0077EA04 /* Managers */,
 				C040B98427E745A40077EA04 /* Models */,
 				C040B97F27E742440077EA04 /* API */,
-				C086E33E27B7D39C0050EB25 /* Views */,
 				C086E34127B7D4580050EB25 /* Tools */,
+				C086E33E27B7D39C0050EB25 /* Views */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -352,7 +352,6 @@
 		C086E33E27B7D39C0050EB25 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C0E8E4002844E11B00079808 /* In progress stuff */,
 				C040B99527E768C20077EA04 /* Profile */,
 				C01E781527E6107B00633AC0 /* Main */,
 				C01E781927E6119100633AC0 /* ComponentViews */,
@@ -382,16 +381,6 @@
 				C0E82FFF281576F7003EDD3E /* PetTypeView.swift */,
 			);
 			path = PetTypeList;
-			sourceTree = "<group>";
-		};
-		C0E8E4002844E11B00079808 /* In progress stuff */ = {
-			isa = PBXGroup;
-			children = (
-				C0E8E3DD284221A600079808 /* CarouselView.swift */,
-				C0E8E3E0284233A900079808 /* PetCarouselView.swift */,
-				C0327AD72831528700A8E36E /* PetListView.swift */,
-			);
-			path = "In progress stuff";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -557,7 +546,6 @@
 				C040B99727E768E00077EA04 /* ProfileCreationView.swift in Sources */,
 				C09ED22B27E786D7002D4AFE /* PetProfileVM.swift in Sources */,
 				C040B98327E7457E0077EA04 /* ParseObject.swift in Sources */,
-				C0327AD82831528700A8E36E /* PetListView.swift in Sources */,
 				C0022719280C3F96000D13D5 /* MainVM.swift in Sources */,
 				C0E8E3DE284221A600079808 /* CarouselView.swift in Sources */,
 				C031E8F927E629B7000E01F5 /* UsernameAndPasswordView.swift in Sources */,

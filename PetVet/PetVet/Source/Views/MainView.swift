@@ -45,7 +45,7 @@ struct MainView: View {
                     case .home:
                         Text("TODO -> vet events")
                     case .pets:
-                        petList()
+                        PetCarouselView(pets: viewModel.pets)
                     }
                     Spacer()
                     TabBarView(selectedTab: $selectedTab) {
@@ -63,29 +63,6 @@ struct MainView: View {
         }
 
     }
-
-
-    // TODO: Temporary
-    private func petList() -> some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                ForEach(viewModel.pets) { pet in
-                    NavigationLink {
-                        PetProfileView(pet: pet)
-                    } label: {
-                        HStack {
-                            EmojiView(emoji: pet.typeUi.emoji)
-                            Text(pet.name ?? "")
-                                .font(.ui.title)
-                                .foregroundColor(.ui.gray)
-                            Spacer()
-                        }.padding(.horizontal)
-                    }
-                }
-            }
-        }
-    }
-
 }
 
 struct MainView_Previews: PreviewProvider {

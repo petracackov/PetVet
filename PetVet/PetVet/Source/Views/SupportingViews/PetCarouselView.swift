@@ -13,11 +13,17 @@ struct PetCarouselView: View {
 
     private let spacing: CGFloat = 20
     private let horizontalInsets: CGFloat = 40
+    private let bottomInset: CGFloat = 40
+    private let topInset: CGFloat = 5
+    @State var selectedIndex: Int = 0
 
     var body: some View {
         GeometryReader { proxy in
-            CarouselView(items: pets,
+            CarouselView(currentIndex: $selectedIndex,
+                         items: pets,
                          spacing: spacing,
+                         topInset: topInset,
+                         bottomInset: bottomInset,
                          leadingInset: horizontalInsets,
                          trailingInset: horizontalInsets) { pet in
 
@@ -26,12 +32,10 @@ struct PetCarouselView: View {
                     Text(pet.name ?? "")
                 }
                 .frame(width: proxy.size.width - horizontalInsets*2,
-                       height: proxy.size.height)
+                       height: proxy.size.height - bottomInset - topInset)
                 .cornerRadius(20)
             }
         }
-        .padding([.top, .bottom], 60)
-
     }
 }
 
