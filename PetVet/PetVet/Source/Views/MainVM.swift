@@ -7,25 +7,24 @@
 
 import Foundation
 
-class MainVM: ObservableObject {
 
-    private(set) var pets: [Pet] = []
-    @Published var showProfile: Bool = false
-    @Published var showPetCreationView: Bool = false
-    @Published var showUserProfileView: Bool = false
-    @Published private(set) var isLoading: Bool = false
+class MainVM: LoadableViewModel<[Pet], Error> {
 
-    init() {
+    override init() {
+        super.init()
         fetchPets()
     }
 
     private func fetchPets() {
-        isLoading = true
-        User.current?.fetchPets(completion: { [weak self] objects, error in
-            guard let self = self else { return }
-            self.isLoading = false
-            self.pets = objects ?? []
-        })
+        guard let user = User.current else { return } // TODO
+        Task {
+            await injectState(.loading)
+            do {
+                await injectState(.data(payload: try await user.fetchPets()))
+            } catch {
+                await injectState(.error(payload: error))
+            }
+        }
     }
 
 }

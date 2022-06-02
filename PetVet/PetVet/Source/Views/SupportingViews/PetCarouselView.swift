@@ -11,7 +11,7 @@ struct PetCarouselView: View {
 
     var pets: [Pet] = []
 
-    private let spacing: CGFloat = 20
+    private let spacing: CGFloat = 16
     private let horizontalInsets: CGFloat = 40
     private let bottomInset: CGFloat = 40
     private let topInset: CGFloat = 5
@@ -27,13 +27,9 @@ struct PetCarouselView: View {
                          leadingInset: horizontalInsets,
                          trailingInset: horizontalInsets) { pet in
 
-                ZStack {
-                    BackgroundView(color: .pink)
-                    Text(pet.name ?? "")
-                }
-                .frame(width: proxy.size.width - horizontalInsets*2,
-                       height: proxy.size.height - bottomInset - topInset)
-                .cornerRadius(20)
+                PetCardView(pet: pet)
+                    .frame(width: proxy.size.width - horizontalInsets*2,
+                           height: proxy.size.height - bottomInset - topInset)
             }
         }
     }

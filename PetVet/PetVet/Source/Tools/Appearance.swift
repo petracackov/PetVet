@@ -52,5 +52,9 @@ extension Font {
         let titleBold = Font.custom("Arial-Bold", size: 20)
         let subtitle = Font.custom("Arial", size: 18)
         let description = Font.custom("Arial", size: 11)
+
+        func arialFont(withSize size: CGFloat) -> Font {
+            return Font.custom("Arial", size: size)
+        }
     }
 }

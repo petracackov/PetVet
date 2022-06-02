@@ -70,3 +70,47 @@ class ParseObject {
         }
     }
 }
+
+extension ParseObject {
+
+    func save(completion: ((_ success: Bool, _ error: Error?) -> Void)?) async throws -> Bool {
+        return try await withUnsafeThrowingContinuation { continuation in
+            self.save { success, error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                } else {
+                    continuation.resume(returning: success)
+                }
+            }
+        }
+    }
+    func delete(completion: ((_ success: Bool, _ error: Error?) -> Void)?) async throws -> Bool {
+        return try await withUnsafeThrowingContinuation { continuation in
+            self.delete { success, error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                } else {
+                    continuation.resume(returning: success)
+                }
+            }
+        }
+    }
+}
+
+extension ParseObject {
+
+    static func findObjects<ItemType>(query: PFQuery<ItemType>) async throws -> [ItemType] {
+        return try await withUnsafeThrowingContinuation { continuation in
+            query.findObjectsInBackground { items, error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                } else if let items = items {
+                    continuation.resume(returning: items)
+                } else {
+                    continuation.resume(throwing: NSError()) // TODO: generic error
+                }
+            }
+        }
+    }
+
+}

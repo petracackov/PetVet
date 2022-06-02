@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// TODO
 enum AppError: Error {
 
     case custom

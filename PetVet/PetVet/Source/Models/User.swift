@@ -86,6 +86,11 @@ class User: ParseObject, ObservableObject {
         try? self.updateWithPFObject(user)
     }
 
+    func fetchPets() async throws -> [Pet] {
+        guard let userId = userId, let query = Pet.generateQueryWithUserId(userId) else { return [] } // TODO: throw
+        return try await ParseObject.findObjects(query: query).compactMap { Pet(pfObject: $0) }
+    }
+
     func fetchPets(completion: ((_ objects: [Pet]?, _ error: Error?) -> Void)?) {
         guard let userId = userId, let query = Pet.generateQueryWithUserId(userId) else { return }
         query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in

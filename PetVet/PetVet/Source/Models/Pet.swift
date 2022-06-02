@@ -170,6 +170,19 @@ extension Pet {
             }
         }
 
+        var image: UIImage {
+            switch self {
+            case .cat: return R.image.catImage()!
+            case .dog: return R.image.dogImage()!
+            case .fish: return R.image.fishImage()!
+            case .rodent: return R.image.rodentImage()!
+            case .bird: return R.image.birdImage()!
+            case .reptile: return R.image.reptileImage()!
+            case .insect: return R.image.insectImage()!
+            case .other: return R.image.platypusImage()!
+            }
+        }
+
         var apiString: String {
             return self.rawValue
         }

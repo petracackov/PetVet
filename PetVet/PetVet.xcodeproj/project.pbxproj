@@ -50,6 +50,8 @@
 		C086E34727B7E3DF0050EB25 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C086E34627B7E3DF0050EB25 /* ProfileView.swift */; };
 		C086E34927B7FEFC0050EB25 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C086E34827B7FEFC0050EB25 /* ProfileHeaderView.swift */; };
 		C09ED22B27E786D7002D4AFE /* PetProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09ED22A27E786D7002D4AFE /* PetProfileVM.swift */; };
+		C0A65EF72847D8F1003F2DBF /* LoadableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A65EF62847D8F1003F2DBF /* LoadableViewModel.swift */; };
+		C0A65EF928489D38003F2DBF /* PetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A65EF828489D38003F2DBF /* PetCardView.swift */; };
 		C0BF61C22820331300737B8D /* PetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BF61C12820331300737B8D /* PetDetailsView.swift */; };
 		C0E82FF82815741D003EDD3E /* PetTypeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E82FF72815741D003EDD3E /* PetTypeListView.swift */; };
 		C0E82FFA28157556003EDD3E /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E82FF928157556003EDD3E /* EmojiView.swift */; };
@@ -103,6 +105,8 @@
 		C086E34627B7E3DF0050EB25 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C086E34827B7FEFC0050EB25 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		C09ED22A27E786D7002D4AFE /* PetProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfileVM.swift; sourceTree = "<group>"; };
+		C0A65EF62847D8F1003F2DBF /* LoadableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableViewModel.swift; sourceTree = "<group>"; };
+		C0A65EF828489D38003F2DBF /* PetCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetCardView.swift; sourceTree = "<group>"; };
 		C0BF61C12820331300737B8D /* PetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailsView.swift; sourceTree = "<group>"; };
 		C0E82FF72815741D003EDD3E /* PetTypeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetTypeListView.swift; sourceTree = "<group>"; };
 		C0E82FF928157556003EDD3E /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
@@ -266,6 +270,7 @@
 				C0327AC928311F8F00A8E36E /* TabBarView.swift */,
 				C0E8E3E0284233A900079808 /* PetCarouselView.swift */,
 				C086E34827B7FEFC0050EB25 /* ProfileHeaderView.swift */,
+				C0A65EF828489D38003F2DBF /* PetCardView.swift */,
 			);
 			path = SupportingViews;
 			sourceTree = "<group>";
@@ -352,11 +357,11 @@
 		C086E33E27B7D39C0050EB25 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C01E781627E610FA00633AC0 /* RegisterAndLogin */,
 				C040B99527E768C20077EA04 /* Profile */,
 				C01E781527E6107B00633AC0 /* Main */,
 				C01E781927E6119100633AC0 /* ComponentViews */,
 				C040B98F27E75A9B0077EA04 /* SupportingViews */,
-				C01E781627E610FA00633AC0 /* RegisterAndLogin */,
 				C031E8FC27E63011000E01F5 /* MainView.swift */,
 				C0022718280C3F96000D13D5 /* MainVM.swift */,
 			);
@@ -370,6 +375,7 @@
 				C086E34327B7D4580050EB25 /* Appearance.swift */,
 				C040B99027E75E870077EA04 /* FieldValidator.swift */,
 				C0022722280C5767000D13D5 /* Modifiers.swift */,
+				C0A65EF62847D8F1003F2DBF /* LoadableViewModel.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -527,6 +533,7 @@
 				C068267F280D7A200012E96B /* BarcodeView.swift in Sources */,
 				C0022728280C6A24000D13D5 /* DateSelectionView.swift in Sources */,
 				C031E8FD27E63011000E01F5 /* MainView.swift in Sources */,
+				C0A65EF928489D38003F2DBF /* PetCardView.swift in Sources */,
 				C040B99927E76B320077EA04 /* CustomNavigationView.swift in Sources */,
 				C0E83000281576F7003EDD3E /* PetTypeView.swift in Sources */,
 				C040B98A27E74EAF0077EA04 /* AppError.swift in Sources */,
@@ -556,6 +563,7 @@
 				C031E8FB27E62D32000E01F5 /* CustomNavigationButton.swift in Sources */,
 				C0327ACA28311F8F00A8E36E /* TabBarView.swift in Sources */,
 				C01E781827E6116300633AC0 /* RegistrationandLoginView.swift in Sources */,
+				C0A65EF72847D8F1003F2DBF /* LoadableViewModel.swift in Sources */,
 				C086E34427B7D4580050EB25 /* BackgroundView.swift in Sources */,
 				C040B98E27E754B40077EA04 /* UsernameAndPasswordVM.swift in Sources */,
 				C0327AD0283128DB00A8E36E /* RoundedButton.swift in Sources */,
