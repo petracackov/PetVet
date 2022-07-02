@@ -287,9 +287,7 @@
 		C040B99527E768C20077EA04 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				C002271D280C4FC8000D13D5 /* PetProfileCreation */,
 				C030DF4727EF3FB000EFB26F /* UserProfileView */,
-				C030DF4627EF3F9F00EFB26F /* PetProfileView */,
 				C030DF4527EF3F8900EFB26F /* ProfileCteationView */,
 			);
 			path = Profile;
@@ -357,6 +355,7 @@
 		C086E33E27B7D39C0050EB25 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C0E573F5286B418F0015D8D0 /* PetProfile */,
 				C01E781627E610FA00633AC0 /* RegisterAndLogin */,
 				C040B99527E768C20077EA04 /* Profile */,
 				C01E781527E6107B00633AC0 /* Main */,
@@ -378,6 +377,15 @@
 				C0A65EF62847D8F1003F2DBF /* LoadableViewModel.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		C0E573F5286B418F0015D8D0 /* PetProfile */ = {
+			isa = PBXGroup;
+			children = (
+				C030DF4627EF3F9F00EFB26F /* PetProfileView */,
+				C002271D280C4FC8000D13D5 /* PetProfileCreation */,
+			);
+			path = PetProfile;
 			sourceTree = "<group>";
 		};
 		C0E82FFC28157644003EDD3E /* PetTypeList */ = {

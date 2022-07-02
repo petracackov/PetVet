@@ -16,28 +16,25 @@ struct PetDetailsView: View {
     }
 
     var body: some View {
-        GeometryReader { proxy in
-            ScrollView {
-                VStack(spacing: 40) {
-                    Rectangle()
-                        .frame(width: proxy.size.width, height: proxy.size.width, alignment: .center)
-                        .foregroundColor(.red)
-                    HStack {
-                        Spacer()
-                        emojiView(icon: pet.typeUi.emoji, text: pet.typeUi.string)
-                        Spacer()
-                        emojiView(icon: pet.genderUi.emoji, text: pet.genderUi.string)
-                        Spacer()
-                    }
-
-                    if let transponderCode = pet.transponderCode {
-                        transponderCodeView(transponderCode)
-                    }
+        ScrollView {
+            VStack(spacing: 40) {
+                Text("Date of birth: \(pet.dateOfBirthString)")
+                    .titleStyle()
+                HStack {
+                    Spacer()
+                    emojiView(icon: pet.typeUi.emoji, text: pet.typeUi.string)
+                    Spacer()
+                    emojiView(icon: pet.genderUi.emoji, text: pet.genderUi.string)
+                    Spacer()
                 }
-                .padding([.top, .bottom], 60)
 
-
+                if let transponderCode = pet.transponderCode {
+                    transponderCodeView(transponderCode)
+                }
             }
+            .padding([.top, .bottom], 60)
+
+
         }
     }
 

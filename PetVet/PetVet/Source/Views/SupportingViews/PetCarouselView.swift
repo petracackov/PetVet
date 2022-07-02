@@ -13,33 +13,45 @@ struct PetCarouselView: View {
 
     private let spacing: CGFloat = 16
     private let horizontalInsets: CGFloat = 40
-    private let bottomInset: CGFloat = 40
-    private let topInset: CGFloat = 5
+    private let bottomInset: CGFloat = 0
+    private let topInset: CGFloat = 0
     @State var selectedIndex: Int = 0
+    @State var isShowingDetails: Bool = true
 
     var body: some View {
         GeometryReader { proxy in
-            CarouselView(currentIndex: $selectedIndex,
-                         items: pets,
-                         spacing: spacing,
-                         topInset: topInset,
-                         bottomInset: bottomInset,
-                         leadingInset: horizontalInsets,
-                         trailingInset: horizontalInsets) { pet in
+            VStack(spacing: 0) {
+                GeometryReader { proxy in
+                    CarouselView(currentIndex: $selectedIndex,
+                                 items: pets,
+                                 spacing: spacing,
+                                 topInset: topInset,
+                                 bottomInset: bottomInset,
+                                 leadingInset: horizontalInsets,
+                                 trailingInset: horizontalInsets) { pet in
 
-                PetCardView(pet: pet)
-                    .frame(width: proxy.size.width - horizontalInsets*2,
-                           height: proxy.size.height - bottomInset - topInset)
+                        PetCardView(pet: pet, isShowingDetails: $isShowingDetails)
+                        .frame(width: proxy.size.width - horizontalInsets*2,
+                               height: proxy.size.height - bottomInset - topInset)
+                    }
+                }
+                if isShowingDetails {
+                    PetDetailsView(pet: pets[selectedIndex])
+                        .frame(height: 3*proxy.size.height/4)
+                        .transition(.move(edge: .bottom))
+
+                }
             }
+            .padding(.bottom, 40)
         }
     }
 }
 
 struct PetCarouselView_Previews: PreviewProvider {
     static private let pets: [Pet] = [
-        .init(name: "Nacho", ownerId: "nacho", gender: .male, dateOfBirth: Date(), type: .cat),
-        .init(name: "Nacho", ownerId: "nacho", gender: .male, dateOfBirth: Date(), type: .cat),
-            .init(name: "Nacho", ownerId: "nacho", gender: .male, dateOfBirth: Date(), type: .cat)]
+        .init(name: "Nacho1", ownerId: "nacho", gender: .male, dateOfBirth: Date(), type: .cat),
+        .init(name: "Nacho2", ownerId: "nacho", gender: .female, dateOfBirth: Date(), type: .cat),
+            .init(name: "Nach3o", ownerId: "nacho", gender: .male, dateOfBirth: Date(), type: .other)]
     static var previews: some View {
         PetCarouselView(pets: pets)
     }

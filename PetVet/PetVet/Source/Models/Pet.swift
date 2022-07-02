@@ -14,7 +14,7 @@ class Pet: ParseObject, Identifiable {
     var id: String?
     var ownerId: String?
     var name: String?
-    var dateOfBirth: Date?
+    private var dateOfBirth: Date?
     var transponderCode: String?
     var transponderLocation: String?
     var image: UIImage?
@@ -29,6 +29,10 @@ class Pet: ParseObject, Identifiable {
     var typeUi: PetType {
         guard let type = type else { return .other }
         return PetType.fromApiString(type) ?? .other
+    }
+
+    var dateOfBirthString: String {
+        return "\(dateOfBirth ?? Date())"
     }
 
     override class var entityName: String { return "Pet" }
