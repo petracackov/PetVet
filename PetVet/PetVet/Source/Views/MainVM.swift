@@ -15,6 +15,13 @@ class MainVM: LoadableViewModel<[Pet], Error> {
         fetchPets()
     }
 
+    convenience init(pets: [Pet]) {
+        self.init()
+        Task {
+            await injectState(.data(payload: pets))
+        }
+    }
+
     private func fetchPets() {
         guard let user = User.current else { return } // TODO
         Task {

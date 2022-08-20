@@ -42,7 +42,7 @@ struct MainView: View {
             switch viewModel.state {
             case .undetermined: EmptyView()
             case .loading: ProgressView("Calling your pets...")
-            case .error(let _): EmptyView() // TODO:
+            case .error(let _): Text("Error") // TODO:
             case .data(let payload): petsView(pets: payload)
             }
         }
@@ -53,7 +53,7 @@ struct MainView: View {
         VStack {
             switch selectedTab {
             case .home:
-                Text("TODO -> vet events")
+                EventsView()
             case .pets:
                 PetCarouselView(pets: pets)
             }
@@ -73,8 +73,14 @@ struct MainView: View {
 }
 
 struct MainView_Previews: PreviewProvider {
+    static let pets: [Pet] = [
+        Pet(name: "teat", ownerId: "dfg", gender: .female, dateOfBirth: Date(), type: .cat, transponderCode: "12345678"),
+        Pet(name: "teat", ownerId: "dfg", gender: .female, dateOfBirth: Date(), type: .cat, transponderCode: "12345678"),
+        Pet(name: "teat", ownerId: "dfg", gender: .female, dateOfBirth: Date(), type: .cat, transponderCode: "12345678"),
+        Pet(name: "teat", ownerId: "dfg", gender: .female, dateOfBirth: Date(), type: .cat, transponderCode: "12345678"),
+    ]
     static var previews: some View {
-        MainView()
+        MainView(viewModel: MainVM(pets: pets))
     }
 }
 

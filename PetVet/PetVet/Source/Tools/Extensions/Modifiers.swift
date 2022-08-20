@@ -14,12 +14,24 @@ extension View {
     func titleStyle() -> some View {
         modifier(TitleText())
     }
+
+    func descriptionStyle() -> some View {
+        modifier(DescriptionText())
+    }
 }
 
 fileprivate struct TitleText: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.ui.title)
+            .foregroundColor(.ui.gray)
+    }
+}
+
+fileprivate struct DescriptionText: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.ui.description)
             .foregroundColor(.ui.gray)
     }
 }
