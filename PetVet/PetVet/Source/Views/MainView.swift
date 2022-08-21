@@ -80,7 +80,7 @@ struct MainView_Previews: PreviewProvider {
         Pet(name: "teat", ownerId: "dfg", gender: .female, dateOfBirth: Date(), type: .cat, transponderCode: "12345678"),
     ]
     static var previews: some View {
-        MainView(viewModel: MainVM(pets: pets))
+        MainView(viewModel: MainVM(pets: pets)).preferredColorScheme(.dark)
     }
 }
 

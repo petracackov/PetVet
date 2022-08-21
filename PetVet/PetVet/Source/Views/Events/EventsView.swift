@@ -53,7 +53,7 @@ struct EventsView: View {
             .padding()
             if hasSeparator {
                 Rectangle()
-                    .frame(width: .infinity, height: 1)
+                    .frame(height: 1)
                     .foregroundColor(.ui.backgroundGray)
             }
         }
