@@ -17,10 +17,11 @@ struct CustomButtonView: View {
     var body: some View {
         RoundedButton(
             title: title,
-            backgroundColor: backgroundColor,
+            backgroundColors: Appearance.Gradient.orange.colors,
             titleColor: titleColor,
             borderColor: borderColor,
             buttonAction: buttonAction)
+        
         .frame(width: .infinity, height: 55)
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RoundedButton: View {
     var title: String = ""
-    var backgroundColor: Color = .ui.orange
+    var backgroundColors: [Color] = Appearance.Gradient.orange.colors
     var titleColor: Color = .ui.white
     var borderColor: Color = .clear
     var buttonAction: (() -> Void)?
@@ -20,12 +20,14 @@ struct RoundedButton: View {
         } label: {
             Text(title)
                 .foregroundColor(titleColor)
-                .font(.ui.title)
+                .font(.ui.titleBold)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .padding()
         .frame(maxWidth: .infinity)
-        .background(backgroundColor)
+        .background(
+            LinearGradient(colors: backgroundColors, startPoint: .top, endPoint: .bottom)
+        )
         .rounded(borderColor: borderColor)
     }
 }

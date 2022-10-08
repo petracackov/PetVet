@@ -20,30 +20,33 @@ struct UsernameAndPasswordView: View {
     }
 
     var body: some View {
-        VStack(spacing: 40) {
+        ZStack(alignment: .center) {
+            BackgroundView(gradientColors: Appearance.Gradient.purpleTransparent.colors)
+            VStack(spacing: 40) {
 
-            Spacer()
+                Spacer()
 
-            CustomTextFieldView(title: "Username", text: $username)
+                CustomTextFieldView(title: "Username", text: $username)
 
-            if viewModel.isRegistrationFlow {
-                CustomTextFieldView(title: "Email", text: $email)
+                if viewModel.isRegistrationFlow {
+                    CustomTextFieldView(title: "Email", text: $email)
+                }
+
+                CustomTextFieldView(title: "Password", text: $password)
+
+                if viewModel.isRegistrationFlow {
+                    CustomTextFieldView(title: "Confirm Password", text: $passwordConformation)
+                }
+
+                Spacer()
+
+                CustomButtonView(title: viewModel.buttonTitle) {
+                    viewModel.onButtonPress(username: username, email: email, password: password, confirmPassword: passwordConformation)
+                }
             }
-
-            CustomTextFieldView(title: "Password", text: $password)
-
-            if viewModel.isRegistrationFlow {
-                CustomTextFieldView(title: "Confirm Password", text: $passwordConformation)
-            }
-
-            Spacer()
-
-            CustomButtonView(title: viewModel.buttonTitle) {
-                viewModel.onButtonPress(username: username, email: email, password: password, confirmPassword: passwordConformation)
-            }
+            .padding()
+            .navigationTitle(viewModel.navigationTitle)
         }
-        .padding()
-        .navigationTitle(viewModel.navigationTitle)
     }
 }
 

@@ -24,7 +24,7 @@ fileprivate struct TitleText: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.ui.title)
-            .foregroundColor(.ui.gray)
+            .foregroundColor(.petVet(.gray3))
     }
 }
 

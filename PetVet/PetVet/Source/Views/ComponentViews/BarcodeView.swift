@@ -10,8 +10,8 @@ import SwiftUI
 struct BarcodeView: UIViewRepresentable {
 
     let barcode: String
-    let backgroundColor: UIColor = Appearance.Color.backgroundGray
-    let foregroundColor: UIColor = Appearance.Color.black
+    let backgroundColor: UIColor = Appearance.Color2.backgroundGray
+    let foregroundColor: UIColor = Appearance.Color2.black
 
     func makeUIView(context: Context) -> UIImageView {
         UIImageView()

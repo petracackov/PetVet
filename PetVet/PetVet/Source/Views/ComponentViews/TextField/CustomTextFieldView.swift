@@ -21,17 +21,17 @@ struct CustomTextFieldView: View {
             TextField("", text: $text)
                 .textFieldStyle(.plain)
                 .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
-                .foregroundColor(.ui.gray)
+                .foregroundColor(.petVet(.blackWhite))
                 .font(.ui.subtitle)
                 .focused($isFocused)
-                .rounded(borderColor: Color.ui.borderGray)
+                .rounded(borderColor: .petVet(.gray3))
         }
     }
 }
 
 struct CustomTextFieldView_Previews: PreviewProvider {
-    @State static var text: String = ""
+    @State static var text: String = "Hello"
     static var previews: some View {
-        CustomTextFieldView(text: $text)
+        CustomTextFieldView(title: "hello", text: $text)
     }
 }

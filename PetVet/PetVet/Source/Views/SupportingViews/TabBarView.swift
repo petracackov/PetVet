@@ -39,7 +39,7 @@ struct TabBarView: View {
                     Spacer()
                     RoundedButton(
                         title: "+",
-                        backgroundColor: .ui.purple,
+                        backgroundColors: Appearance.Gradient.purple.colors,
                         titleColor: .ui.white) {
                             onActionButtonPress?()
                         }

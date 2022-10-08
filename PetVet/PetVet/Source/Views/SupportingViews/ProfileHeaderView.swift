@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileHeaderView: View {
 
     var title: String?
+    var image: UIImage?
     var leftIcon: String?
     var rightIcon: String?
     var onSelection: (() -> Void)?
