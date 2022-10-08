@@ -31,8 +31,6 @@ struct BorderButton: View {
     var title: String
     var isSelected: Bool
     var onAction: (() -> Void)
-
-    private var backgroundColor: Color { isSelected ? .ui.purple : .clear }
     private var textColor: Color { isSelected ? .ui.white : .ui.gray }
     private var borderColor: Color { isSelected ? .clear : .ui.borderGray}
 
@@ -45,8 +43,18 @@ struct BorderButton: View {
                 .font(.ui.title)
         }
         .padding(EdgeInsets(top: 2, leading: 10, bottom: 2, trailing: 10))
-        .background(backgroundColor)
+        .background(
+            backgroundView()
+        )
         .rounded(borderColor: borderColor)
+    }
+
+    private func backgroundView() -> some View {
+        if isSelected {
+            return AnyView(LinearGradient(colors: Appearance.Gradient.purple.colors, startPoint: .top, endPoint: .bottom))
+        } else {
+            return AnyView(Color.clear)
+        }
     }
 }
 

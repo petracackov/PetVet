@@ -81,7 +81,7 @@ struct PetProfileCreationView: View {
             ZStack {
                 Image(uiImage: selectedImage ?? UIImage())
                     .resizable()
-                    .background(Color.ui.purple)
+                    .background(Color.petVet(.purple))
                     .opacity(0.5)
 
                 Button {
@@ -96,9 +96,8 @@ struct PetProfileCreationView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
-            .frame(width: 130, height: 130)
-            .contentShape(Circle())
-            .clipShape(Circle())
+            .frame(width: 130, height: 190)
+            .cornerRadius(15)
         }
     }
 
@@ -108,7 +107,7 @@ struct PetProfileCreationView: View {
                 .titleStyle()
             BarcodeView(barcode: transponderCode)
                 .frame(height: 130)
-                .border(Color.ui.borderGray, width: 2)
+                .border(Color.petVet(.gray3), width: 2)
 
             LineTextFieldView(text: $transponderCode)
 

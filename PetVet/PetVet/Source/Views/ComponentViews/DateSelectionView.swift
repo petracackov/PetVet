@@ -23,13 +23,15 @@ struct DateSelectionView: View {
                     }
                 } label: {
                     Text(selectedDate.formatted(date: .long, time: .omitted))
-                        .foregroundColor(.ui.gray)
+                        .foregroundColor(.petVet(.white))
                         .font(.ui.title)
                 }
                 .padding(EdgeInsets(top: 2, leading: 10, bottom: 2, trailing: 10))
-                .frame(minWidth: 130, minHeight: 30)
-                .background(Color.ui.backgroundGray)
-                .rounded(borderColor: Color.ui.borderGray)
+                .frame(minWidth: 130, minHeight: 18)
+                .background(
+                    LinearGradient(colors: Appearance.Gradient.purple.colors, startPoint: .top, endPoint: .bottom)
+                )
+                .rounded()
             }
 
             if pickerIsShown {

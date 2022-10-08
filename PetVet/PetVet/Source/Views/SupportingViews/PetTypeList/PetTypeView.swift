@@ -20,7 +20,7 @@ struct PetTypeView: View {
             }
         } label: {
             VStack {
-                EmojiView(emoji: pet.emoji, border: isSelected ? .ui.purple : .clear)
+                EmojiView(emoji: pet.emoji, border: isSelected ? .petVet(.gray2) : .clear)
                 if isSelected {
                     Text(pet.string)
                         .font(Font.ui.description)

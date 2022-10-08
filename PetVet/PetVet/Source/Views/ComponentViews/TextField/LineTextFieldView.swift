@@ -16,12 +16,12 @@ struct LineTextFieldView: View {
             TextField("", text: $text)
                 .textFieldStyle(.plain)
                 .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
-                .foregroundColor(.ui.text)
+                .foregroundColor(.petVet(.blackWhite))
                 .font(.ui.title)
                 .multilineTextAlignment(.center)
             Rectangle()
                 .frame(height: 2)
-                .foregroundColor(.ui.gray)
+                .foregroundColor(.petVet(.gray3))
         }
     }
 }
