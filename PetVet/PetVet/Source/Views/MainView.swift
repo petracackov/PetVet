@@ -13,7 +13,7 @@ struct MainView: View {
     @State var selectedTab: TabBarView.Tab = .home
     @State var showProfile: Bool = false
     @State var showPetCreationView: Bool = false
-    @State var showUserProfileView: Bool = false
+    @State var showSettingsView: Bool = false
 
     var body: some View {
         CustomNavigationView {
@@ -33,8 +33,8 @@ struct MainView: View {
             }
 
             NavigationLink(
-                destination: ProfileView(),
-                isActive: $showUserProfileView
+                destination: SettingsView(),
+                isActive: $showSettingsView
             ) {
                EmptyView()
             }
@@ -65,7 +65,7 @@ struct MainView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
-                    showUserProfileView = true
+                    showSettingsView = true
                 } label: {
                     Image(uiImage: R.image.settingsIcon()!)
                         .renderingMode(.template)

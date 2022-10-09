@@ -14,12 +14,10 @@ extension View {
     ///   - binding: Only navigates when this condition is `true`.
     func navigate<NewView: View>(to view: NewView, when binding: Binding<Bool>) -> some View {
         NavigationLink(
-            destination: view
-                .navigationBarTitle("")
-                .navigationBarHidden(true),
+            destination: view,
             isActive: binding
         ) {
-           EmptyView()
+           self
         }
     }
 
