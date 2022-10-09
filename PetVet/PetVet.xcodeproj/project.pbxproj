@@ -18,6 +18,9 @@
 		C01E781827E6116300633AC0 /* RegistrationandLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01E781727E6116300633AC0 /* RegistrationandLoginView.swift */; };
 		C01E781B27E611E600633AC0 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01E781A27E611E600633AC0 /* CustomTextFieldView.swift */; };
 		C021853D28B0DB0E00A998D9 /* Array+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C021853C28B0DB0E00A998D9 /* Array+extensions.swift */; };
+		C02F35DA28F2E9F700B0124E /* CustomLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02F35D928F2E9F700B0124E /* CustomLineTextField.swift */; };
+		C02F35DC28F2F17700B0124E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02F35DB28F2F17700B0124E /* SettingsView.swift */; };
+		C02F35DE28F2FE9F00B0124E /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02F35DD28F2FE9F00B0124E /* ProfileVM.swift */; };
 		C031E8F727E6246C000E01F5 /* CustomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C031E8F627E6246C000E01F5 /* CustomButtonView.swift */; };
 		C031E8F927E629B7000E01F5 /* UsernameAndPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C031E8F827E629B7000E01F5 /* UsernameAndPasswordView.swift */; };
 		C031E8FB27E62D32000E01F5 /* CustomNavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C031E8FA27E62D32000E01F5 /* CustomNavigationButton.swift */; };
@@ -78,6 +81,9 @@
 		C01E781727E6116300633AC0 /* RegistrationandLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationandLoginView.swift; sourceTree = "<group>"; };
 		C01E781A27E611E600633AC0 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
 		C021853C28B0DB0E00A998D9 /* Array+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extensions.swift"; sourceTree = "<group>"; };
+		C02F35D928F2E9F700B0124E /* CustomLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLineTextField.swift; sourceTree = "<group>"; };
+		C02F35DB28F2F17700B0124E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C02F35DD28F2FE9F00B0124E /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		C031E8F627E6246C000E01F5 /* CustomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonView.swift; sourceTree = "<group>"; };
 		C031E8F827E629B7000E01F5 /* UsernameAndPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameAndPasswordView.swift; sourceTree = "<group>"; };
 		C031E8FA27E62D32000E01F5 /* CustomNavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationButton.swift; sourceTree = "<group>"; };
@@ -236,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				C086E34627B7E3DF0050EB25 /* ProfileView.swift */,
+				C02F35DD28F2FE9F00B0124E /* ProfileVM.swift */,
 			);
 			path = UserProfileView;
 			sourceTree = "<group>";
@@ -255,6 +262,7 @@
 			children = (
 				C0682680280D8C260012E96B /* LineTextFieldView.swift */,
 				C01E781A27E611E600633AC0 /* CustomTextFieldView.swift */,
+				C02F35D928F2E9F700B0124E /* CustomLineTextField.swift */,
 			);
 			path = TextField;
 			sourceTree = "<group>";
@@ -304,6 +312,7 @@
 			children = (
 				C030DF4727EF3FB000EFB26F /* UserProfileView */,
 				C030DF4527EF3F8900EFB26F /* ProfileCteationView */,
+				C02F35DB28F2F17700B0124E /* SettingsView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -589,12 +598,15 @@
 				C049D05C287060610067ADE1 /* EventsView.swift in Sources */,
 				C040B98A27E74EAF0077EA04 /* AppError.swift in Sources */,
 				C01E781B27E611E600633AC0 /* CustomTextFieldView.swift in Sources */,
+				C02F35DA28F2E9F700B0124E /* CustomLineTextField.swift in Sources */,
 				C0682681280D8C260012E96B /* LineTextFieldView.swift in Sources */,
 				C0BF61C22820331300737B8D /* PetDetailsView.swift in Sources */,
 				C0022721280C54AE000D13D5 /* PetProfileCreationVM.swift in Sources */,
 				C0E82FF82815741D003EDD3E /* PetTypeListView.swift in Sources */,
 				C040B99B27E77A330077EA04 /* ProfileCreationVM.swift in Sources */,
+				C02F35DE28F2FE9F00B0124E /* ProfileVM.swift in Sources */,
 				C0E8E3E1284233A900079808 /* PetCarouselView.swift in Sources */,
+				C02F35DC28F2F17700B0124E /* SettingsView.swift in Sources */,
 				C040B98627E745B30077EA04 /* User.swift in Sources */,
 				C040B99127E75E870077EA04 /* FieldValidator.swift in Sources */,
 				C049D065287069130067ADE1 /* ExtrasDate+Tools.swift in Sources */,

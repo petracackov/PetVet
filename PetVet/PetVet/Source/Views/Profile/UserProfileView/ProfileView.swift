@@ -9,29 +9,40 @@ import SwiftUI
 
 struct ProfileView: View {
 
+    @ObservedObject private var viewModel = ProfileVM()
+
     var body: some View {
         ZStack {
-            BackgroundView(color: .ui.background)
-            VStack(alignment: .leading, spacing: 20) {
-                ProfileHeaderView()
-                dataView(title: "Adress", content: "Some Adress")
-                dataView(title: "Adress", content: "Some Adress")
-                dataView(title: "Adress", content: "Some Adress")
-                Spacer()
-                CustomButtonView(title: "Log out", backgroundColor: .ui.purple) {
-                    User.logOut()
-                }
+            BackgroundView(gradientColors: Appearance.Gradient.purpleTransparent.colors)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 40) {
+                    CustomLineTextField(title: "Name", textFieldIsDisabled: !viewModel.editModeEnabled, text: $viewModel.name)
+                    CustomLineTextField(title: "Adress", textFieldIsDisabled: !viewModel.editModeEnabled, text: $viewModel.address)
+                    CustomLineTextField(title: "City and country", textFieldIsDisabled: !viewModel.editModeEnabled, text: $viewModel.addressCountry)
+                    CustomLineTextField(title: "Phone number", textFieldIsDisabled: !viewModel.editModeEnabled, text: $viewModel.phoneNumber).keyboardType(.phonePad)
+                    if viewModel.editModeEnabled {
+                        CustomButtonView(title: "Save") {
+                            viewModel.saveProfile()
+                        }
+                            .padding(.vertical)
+                    }
+                }.padding()
             }
-            .padding()
         }
         .navigationTitle(Text("Profile"))
         .navigationBarTitleDisplayMode(.inline)
-    }
+        .toolbar {
+            ToolbarItem {
+                Button {
+                    viewModel.editModeEnabled.toggle()
+                    viewModel.updateValues()
+                } label: {
+                    Image(uiImage: R.image.editIcon()!)
+                        .renderingMode(.template)
+                        .tint(.petVet(viewModel.editModeEnabled ? .orange : .blackWhite))
+                }
 
-    func dataView(title: String, content: String) -> some View {
-        VStack(alignment: .leading) {
-            Text(title)
-            Text(content)
+            }
         }
     }
 }

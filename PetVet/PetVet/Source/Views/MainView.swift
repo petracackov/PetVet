@@ -42,7 +42,7 @@ struct MainView: View {
             switch viewModel.state {
             case .undetermined: EmptyView()
             case .loading: ProgressView("Calling your pets...")
-            case .error(let _): Text("Error") // TODO:
+            case .error(_): Text("Error") // TODO:
             case .data(let payload): petsView(pets: payload)
             }
         }
@@ -64,8 +64,12 @@ struct MainView: View {
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Button("User Profile") {
+                Button {
                     showUserProfileView = true
+                } label: {
+                    Image(uiImage: R.image.settingsIcon()!)
+                        .renderingMode(.template)
+                        .tint(.petVet(.blackWhite))
                 }
             }
         }
