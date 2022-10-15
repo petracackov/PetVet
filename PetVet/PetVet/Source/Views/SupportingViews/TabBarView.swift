@@ -17,10 +17,17 @@ struct TabBarView: View {
         case pets
         case home
 
-        var icon: UIImage? {
+        var imageIcon: UIImage {
             switch self {
-            case .pets: return R.image.pawTabIcon()
-            case .home: return R.image.houseTabIcon()
+            case .home: return R.image.tabBarHome()!
+            case .pets: return R.image.tabBarPaw()!
+            }
+        }
+
+        var imageSelectedIcon: UIImage {
+            switch self {
+            case .home: return R.image.tabBarHomeSelected()!
+            case .pets: return R.image.tabBarPawSelected()!
             }
         }
     }
@@ -33,22 +40,14 @@ struct TabBarView: View {
                 HStack(alignment: .center) {
                     Spacer()
 
-                    tabButton(image: Tab.home.icon, isSelected: selectedTab == .home) {
+                    tabButton(.home, isSelected: selectedTab == .home) {
                         selectTab(.home)
                     }
                     Spacer()
-                    RoundedButton(
-                        title: "+",
-                        backgroundColors: Appearance.Gradient.purple.colors,
-                        titleColor: .ui.white) {
-                            onActionButtonPress?()
-                        }
-                        .frame(width: 70, height: 70)
-                        .offset(CGSize(width: 0, height: -35))
-                        .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: -2)
+                    addMoreButton()
                     Spacer()
 
-                    tabButton(image: Tab.pets.icon, isSelected: selectedTab == .pets) {
+                    tabButton(.pets, isSelected: selectedTab == .pets) {
                         selectTab(.pets)
                     }
 
@@ -60,16 +59,40 @@ struct TabBarView: View {
 
     }
 
-    private func tabButton(image: UIImage?, isSelected: Bool,  action: @escaping () -> Void) -> some View {
+    private func tabButton(_ item: Tab, isSelected: Bool,  action: @escaping () -> Void) -> some View {
         Button {
             action()
         } label: {
-            if let image = image {
-                Image(uiImage: image)
-            }
+            Image(uiImage: isSelected ? item.imageSelectedIcon : item.imageIcon)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .foregroundColor(isSelected ? .ui.purple : .ui.backgroundGray)
+    }
+
+    private func addMoreButton() -> some View {
+        Button {
+            onActionButtonPress?()
+        } label: {
+            ZStack {
+                BackgroundView(gradientColors: Appearance.Gradient.purple.colors)
+
+                Rectangle()
+                    .foregroundColor(.petVet(.white))
+                    .rounded()
+                    .padding(.horizontal, 25)
+                    .padding(.vertical, 35)
+
+                Rectangle()
+                    .foregroundColor(.petVet(.white))
+                    .rounded()
+                    .padding(.horizontal, 35)
+                    .padding(.vertical, 25)
+
+            }
+        }
+        .frame(width: 72, height: 72)
+        .rounded()
+        .offset(CGSize(width: 0, height: -35))
+        .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: -2)
     }
 
     private func selectTab(_ tab: Tab) {
