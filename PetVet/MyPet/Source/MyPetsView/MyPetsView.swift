@@ -27,7 +27,7 @@ struct MyPetsView: View {
         }
         .frame(height: 60)
         .asButton {
-            navigation.navigationPath.append(Navigation.Path.pet(pet))
+            navigation.navigationPath.append(Navigation.MyPetsPath.pet(pet))
         }
     }
 }

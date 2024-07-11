@@ -14,10 +14,10 @@ struct MedicalRecordsView: View {
     
     var body: some View {
         List {
-            ForEach(viewModel.medicalRecords) { item in
-                Text(item.title)
+            ForEach(viewModel.medicalRecords) { medicalRecord in
+                Text(medicalRecord.title)
                     .asButton {
-                        navigation.navigationPath.append(Navigation.Path.manageMedicalRecord(medicalRecord: item, pet: viewModel.pet))
+                        navigation.navigationPath.append(Navigation.MedicalRecordsPath.editMedicalRecord(medicalRecord))
                     }
             }
             .onDelete(perform: viewModel.delete)

@@ -28,7 +28,7 @@ struct PetView: View {
                 }
                 .foregroundStyle(.appText)
                 .asButton {
-                    navigation.navigationPath.append(Navigation.Path.reminders(pet: viewModel.pet))
+                    navigation.navigationPath.append(Navigation.PetPath.reminders)
                     
                 }
                 
@@ -58,7 +58,7 @@ struct PetView: View {
                     .resizable()
                     .frame(width: 24, height: 24)
                     .asButton {
-                        navigation.navigationPath.append(Navigation.Path.managePet(viewModel.pet))
+                        navigation.navigationPath.append(Navigation.PetPath.editPet)
                     }
                     .foregroundStyle(.appText)
             }
@@ -81,7 +81,7 @@ struct PetView: View {
             }
             .foregroundStyle(.appText)
             .asButton {
-                navigation.navigationPath.append(Navigation.Path.medicalRecords(pet: viewModel.pet))
+                navigation.navigationPath.append(Navigation.PetPath.medicalRecords)
             }
             
             //First 3 events end then full separate screen

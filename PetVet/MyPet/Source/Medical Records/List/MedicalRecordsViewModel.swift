@@ -8,7 +8,7 @@
 import SwiftData
 import SwiftUI
 
-@Observable class MedicalRecordsViewModel {
+@Observable class MedicalRecordsViewModel: Cancelable {
     
     let pet: Pet
     var medicalRecords: [MedicalRecordItem] = []
@@ -38,18 +38,21 @@ import SwiftUI
         super.init(pet: pet)
         
         fetchMedicalRecords()
-        addObservers()
+        assignListeners()
     }
     
-    private func addObservers() {
-        NotificationManager.shared.addObserverFor(.medicalRecordAdded, selector: #selector(updateData))
-        NotificationManager.shared.addObserverFor(.medicalRecordDeleted, selector: #selector(updateData))
-        NotificationManager.shared.addObserverFor(.medicalRecordUpdated, selector: #selector(updateData))
+    private func assignListeners() {
+        NotificationManager.shared.publishersFor([.medicalRecordAdded, .medicalRecordUpdated])
+            .forEach { publisher in
+                publisher
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in
+                        self?.fetchMedicalRecords()
+                    }
+                    .store(in: &cancelable)
+            }
     }
-    
-    @objc func updateData() {
-        fetchMedicalRecords()
-    }
+
     
     override func fetchMedicalRecords() {
         do {

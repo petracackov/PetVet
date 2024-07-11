@@ -11,7 +11,7 @@ import SwiftData
 @Observable class DashboardViewModel {
     
     var dashboardView: DashboardItem = .home
-    var modelContext: ModelContext
+    let modelContext: ModelContext
     
     init(modelContext: ModelContext) {
         print("init", "DashboardViewModel")

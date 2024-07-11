@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-@Observable class MyPetsViewModel {
+@Observable class MyPetsViewModel: Cancelable {
     
     var pets: [Pet] = []
     var managePetSheetIsShown: Bool = false
@@ -16,13 +16,14 @@ import SwiftData
     init(pets: [Pet] = []) {
         print("init", "MyPetsViewModel")
         self.pets = pets
-        self.managePetSheetIsShown = managePetSheetIsShown
     }
     
     func fetchMyPets() {
         
     }
 }
+
+import Combine
 
 @Observable class MyPetsDataViewModel: MyPetsViewModel {
     
@@ -35,7 +36,7 @@ import SwiftData
         super.init()
         
         fetchMyPets()
-        addObservers()
+        assignListeners()
     }
         
     
@@ -48,14 +49,16 @@ import SwiftData
         }
     }
     
-    private func addObservers() {
-        NotificationManager.shared.addObserverFor(.petAdded, selector: #selector(updateData))
-        NotificationManager.shared.addObserverFor(.petDeleted, selector: #selector(updateData))
-        NotificationManager.shared.addObserverFor(.petUpdated, selector: #selector(updateData))
-    }
-    
-    @objc func updateData() {
-        fetchMyPets()
+    private func assignListeners() {
+        NotificationManager.shared.publishersFor([.petAdded, .petDeleted, .petUpdated])
+            .forEach { publisher in
+                publisher
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in
+                        self?.fetchMyPets()
+                    }
+                    .store(in: &cancelable)
+            }
     }
     
 }

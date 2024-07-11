@@ -14,12 +14,33 @@ import SwiftData
     
     var navigationPath = NavigationPath()
     
-    enum Path: Hashable {
-        case pet(Pet)
-        case medicalRecords(pet: Pet)
-        case reminders(pet: Pet)
-        case manageMedicalRecord(medicalRecord: MedicalRecordItem?, pet: Pet)
-        case managePet(Pet?)
+    
+    enum PetPath: Hashable {
+        case reminders
+        case editPet
+        case medicalRecords
     }
+    
+    enum MedicalRecordsPath: Hashable {
+        case addMedicalRecord
+        case editMedicalRecord(MedicalRecordItem)
+    }
+    
+    enum MyPetsPath: Hashable {
+        case pet(Pet)
+        case createNewPet
+    }
+    
+    enum SettingsPath {
+        case addNewPet
+    }
+    
+//    enum Path: Hashable {
+//        case pet(Pet)
+//        case medicalRecords(pet: Pet)
+//        case reminders(pet: Pet)
+//        case manageMedicalRecord(medicalRecord: MedicalRecordItem?, pet: Pet)
+//        case managePet(Pet?)
+//    }
     
 }

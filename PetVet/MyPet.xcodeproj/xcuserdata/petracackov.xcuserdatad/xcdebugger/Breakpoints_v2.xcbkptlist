@@ -23,22 +23,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5A0D28BA-3876-4FA8-AB16-E0F571CAEE64"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyPet/Source/Medical Records/List/MedicalRecordsViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "fetchMedicalRecords()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "A8795C5C-8F03-4BD1-AF97-CA21F4C6D0AB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -46,9 +30,9 @@
             filePath = "MyPet/Source/ManagePet/ManagePetViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "savePet()"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "init(modelContext:pet:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -78,8 +62,8 @@
             filePath = "MyPet/Source/NotificationManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "postNotification(_:data:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,25 +78,9 @@
             filePath = "MyPet/Source/MyPetsView/MyPetsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "init(modelContext:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "00227A9B-791A-4FB8-9AC2-D7547AD78E79"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyPet/Source/MyPetView/MyPetViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "addObservers()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -126,8 +94,8 @@
             filePath = "MyPet/Source/MyPetView/MyPetViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "init(modelContext:pet:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -135,32 +103,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1E1A0459-5018-421E-8BE2-9F70D8313DEA"
+            uuid = "CB15475F-74FA-4FB2-A30A-143949776379"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyPet/Source/MyPetView/MyPetViewModel.swift"
+            filePath = "MyPet/Source/Main/DashboardViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "init(pet:medicalRecords:)"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "init(modelContext:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "52A46B7D-E668-443E-B9E7-342C021EB8AE"
+            uuid = "6CE1BBBA-7964-44E0-98BB-BCF1877B3A2F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyPet/Source/MyPetView/MyPetViewModel.swift"
+            filePath = "MyPet/Source/Medical Records/Manage/ManageMedicalRecordViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "init(pet:)"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "init(modelContext:medicalRecord:pet:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

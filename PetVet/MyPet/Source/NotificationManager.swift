@@ -6,18 +6,29 @@
 //
 
 import Foundation
+import Combine
 
 
 class NotificationManager {
     
     static let shared = NotificationManager()
     
-    func addObserverFor(_ type: NotificationType, selector: Selector) {
-        NotificationCenter.default.addObserver(self, selector: selector, name: type.name, object: nil)
+    func publishersFor(_ types: [NotificationType]) -> [AnyPublisher<Void, Never>] {
+        types.map { publisherFor($0) }
     }
     
+    func publisherFor(_ type: NotificationType) -> AnyPublisher<Void, Never> {
+       return NotificationCenter.default.publisher(for: type.name)
+            .map { _ in () }
+            .eraseToAnyPublisher()
+    }
+    
+//    func addObserverFor(_ type: NotificationType, selector: Selector, observer: Any) {
+//        NotificationCenter.default.addObserver(observer, selector: selector, name: type.name, object: nil)
+//    }
+    
     func postNotification(_ type: NotificationType, data: [String: Any]?) {
-        NotificationCenter().post(name: type.name, object: nil, userInfo: data)
+        NotificationCenter.default.post(name: type.name, object: nil)
         
     }
     

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import Combine
 
 @Observable class MyPetViewModel {
     
@@ -36,11 +37,13 @@ import SwiftData
 @Observable class MyPetDataViewModel: MyPetViewModel {
     
     var modelContext: ModelContext
+    private var cancelable = Set<AnyCancellable>()
     
     init(modelContext: ModelContext, pet: Pet) {
         print("init", "MyPetDataViewModel")
         self.modelContext = modelContext
         super.init(pet: pet)
+        assignListeners()
     }
     
     private func fetchPet() {
@@ -72,21 +75,26 @@ import SwiftData
         }
     }
     
-    private func addObservers() {
-        NotificationManager.shared.addObserverFor(.petAdded, selector: #selector(updatePet))
-        NotificationManager.shared.addObserverFor(.petDeleted, selector: #selector(updatePet))
-        NotificationManager.shared.addObserverFor(.petUpdated, selector: #selector(updatePet))
-        NotificationManager.shared.addObserverFor(.medicalRecordAdded, selector: #selector(updateMedicalRecords))
-        NotificationManager.shared.addObserverFor(.medicalRecordDeleted, selector: #selector(updateMedicalRecords))
-        NotificationManager.shared.addObserverFor(.medicalRecordUpdated, selector: #selector(updateMedicalRecords))
-    }
-    
-    @objc func updatePet() {
-        fetchPet()
-    }
-    
-    @objc func updateMedicalRecords() {
-        fetchMyPetsMedicalRecords()
+    private func assignListeners() {
+        NotificationManager.shared.publishersFor([.petAdded, .petDeleted, .petUpdated])
+            .forEach { publisher in
+                publisher
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in
+                        self?.fetchPet()
+                    }
+                    .store(in: &cancelable)
+            }
+        
+        NotificationManager.shared.publishersFor([.medicalRecordUpdated, .medicalRecordAdded, .medicalRecordDeleted])
+            .forEach { publisher in
+                publisher
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in
+                        self?.fetchMyPetsMedicalRecords()
+                    }
+                    .store(in: &cancelable)
+            }
     }
     
 }

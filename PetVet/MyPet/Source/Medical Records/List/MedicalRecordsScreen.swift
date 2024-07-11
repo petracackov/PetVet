@@ -20,9 +20,20 @@ struct MedicalRecordsScreen: View {
                 ToolbarItem(placement: .primaryAction) {
                     Image(systemName: "plus")
                         .asButton {
-                            navigation.navigationPath.append(Navigation.Path.manageMedicalRecord(medicalRecord: nil,
-                                                                                                       pet: viewModel.pet))
+                            navigation.navigationPath.append(Navigation.MedicalRecordsPath.addMedicalRecord)
                         }
+                }
+            })
+            .navigationDestination(for: Navigation.MedicalRecordsPath.self, destination: { path in
+                switch path {
+                case .addMedicalRecord:
+                    ManageMedicalRecordScreen(viewModel: .init(modelContext: viewModel.modelContext,
+                                                               medicalRecord: nil,
+                                                               pet: viewModel.pet))
+                case .editMedicalRecord(let medicalRecord):
+                    ManageMedicalRecordScreen(viewModel: .init(modelContext: viewModel.modelContext,
+                                                               medicalRecord: medicalRecord,
+                                                               pet: viewModel.pet))
                 }
             })
     }

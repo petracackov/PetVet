@@ -47,10 +47,13 @@ import SwiftData
             medicalRecord.title = title
             medicalRecord.itemDescription = description
             medicalRecord.date = date
+            let notificationData = try? MedicalRecordNotificationId(id: medicalRecord.id, petId: medicalRecord.petId).dictionary()
+            NotificationManager.shared.postNotification(.medicalRecordUpdated, data: notificationData)
         } else if !description.isEmpty,  !title.isEmpty {
             let medicalRecord = MedicalRecordItem(title: title, itemDescription: description, petId: pet.id, date: date)
             modelContext.insert(medicalRecord)
-            
+            let notificationData = try? MedicalRecordNotificationId(id: medicalRecord.id, petId: medicalRecord.petId).dictionary()
+            NotificationManager.shared.postNotification(.medicalRecordAdded, data: notificationData)
         } else {
             // TODO: handle error
             print("No data error")

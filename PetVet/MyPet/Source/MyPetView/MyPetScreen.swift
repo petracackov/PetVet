@@ -13,6 +13,16 @@ struct MyPetScreen: View {
     
     var body: some View {
         PetView(viewModel: viewModel)
+            .navigationDestination(for: Navigation.PetPath.self) { path in
+                switch path {
+                case .editPet:
+                    ManagePetView(viewModel: ManagePetDataViewModel(modelContext: viewModel.modelContext, pet: viewModel.pet))
+                case .medicalRecords:
+                    MedicalRecordsScreen(viewModel: .init(modelContext: viewModel.modelContext, pet: viewModel.pet))
+                case .reminders:
+                    Text("Reminders")
+                }
+            }
     }
     
     

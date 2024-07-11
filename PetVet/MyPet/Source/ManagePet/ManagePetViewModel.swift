@@ -49,7 +49,6 @@ import SwiftUI
             let notificationData = PetNotificationId(id: pet.id)
             NotificationManager.shared.postNotification(.petUpdated, data: try? notificationData.dictionary())
         } else if !name.isEmpty {
-            // TODO:
             let id = UUID().uuidString
             let pet = Pet(id: id, name: name, species: species, image: UIImage())
             modelContext.insert(pet)
