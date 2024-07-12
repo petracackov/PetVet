@@ -5,7 +5,6 @@
 //  Created by Petra Cackov on 1. 7. 24.
 //
 
-import SwiftData
 import SwiftUI
 
 @Observable class ManagePetViewModel {
@@ -33,11 +32,11 @@ import SwiftUI
 
 @Observable class ManagePetDataViewModel: ManagePetViewModel {
     
-    private var modelContext: ModelContext
+    private var dataSource: DataSource
     
-    init(modelContext: ModelContext, pet: Pet?) {
+    init(dataSource: DataSource, pet: Pet?) {
         print("init", "ManagePetDataViewModel")
-        self.modelContext = modelContext
+        self.dataSource = dataSource
         super.init(pet: pet)
     }
         
@@ -51,7 +50,7 @@ import SwiftUI
         } else if !name.isEmpty {
             let id = UUID().uuidString
             let pet = Pet(id: id, name: name, species: species, image: UIImage())
-            modelContext.insert(pet)
+            dataSource.insert(pet)
             let notificationData = PetNotificationId(id: id)
             NotificationManager.shared.postNotification(.petAdded, data: try? notificationData.dictionary())
         } else {
@@ -62,7 +61,7 @@ import SwiftUI
     
     override func deletePet() {
         guard let pet else { return }
-        modelContext.delete(pet)
+        dataSource.delete(pet)
         let notificationData = PetNotificationId(id: pet.id)
         NotificationManager.shared.postNotification(.petDeleted, data: try? notificationData.dictionary())
     }

@@ -6,13 +6,10 @@
 //
 
 import SwiftUI
-import SwiftData
 
-@Observable class Navigation {
-    
-    static let shared = Navigation()
-    
-    var navigationPath = NavigationPath()
+class Navigation: ObservableObject {
+
+    @Published var navigationPath = NavigationPath()
     
     
     enum PetPath: Hashable {
@@ -34,13 +31,5 @@ import SwiftData
     enum SettingsPath {
         case addNewPet
     }
-    
-//    enum Path: Hashable {
-//        case pet(Pet)
-//        case medicalRecords(pet: Pet)
-//        case reminders(pet: Pet)
-//        case manageMedicalRecord(medicalRecord: MedicalRecordItem?, pet: Pet)
-//        case managePet(Pet?)
-//    }
     
 }

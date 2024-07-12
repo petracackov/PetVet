@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MyPetsScreen: View {
     
-    @State var navigation = Navigation.shared
+    @EnvironmentObject private var navigation: Navigation
     @State var viewModel: MyPetsDataViewModel
     
     var body: some View {
@@ -28,7 +28,7 @@ struct MyPetsScreen: View {
                 }
                 
             } else if viewModel.pets.count == 1, let pet = viewModel.pets.first  {
-                MyPetScreen(viewModel: .init(modelContext: viewModel.modelContext, pet: pet))
+                MyPetScreen(viewModel: .init(dataSource: viewModel.dataSource, pet: pet))
             } else {
                 MyPetsView(viewModel: viewModel)
             }
@@ -36,9 +36,9 @@ struct MyPetsScreen: View {
         .navigationDestination(for: Navigation.MyPetsPath.self, destination: { path in
             switch path {
             case .pet(let pet):
-                MyPetScreen(viewModel: .init(modelContext: viewModel.modelContext, pet: pet))
+                MyPetScreen(viewModel: .init(dataSource: viewModel.dataSource, pet: pet))
             case .createNewPet:
-                ManagePetView(viewModel: ManagePetDataViewModel(modelContext: viewModel.modelContext, pet: nil))
+                ManagePetView(viewModel: ManagePetDataViewModel(dataSource: viewModel.dataSource, pet: nil))
             }
             
         })

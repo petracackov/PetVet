@@ -16,7 +16,7 @@ struct SettingsScreen: View {
             .navigationDestination(for: Navigation.SettingsPath.self) { path in
                 switch path {
                 case .addNewPet:
-                    ManagePetView(viewModel: ManagePetDataViewModel(modelContext: viewModel.modelContext, pet: nil))
+                    ManagePetView(viewModel: ManagePetDataViewModel(dataSource: viewModel.dataSource, pet: nil))
                 }
             }
     }

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftData
 
 @Observable class SettingsViewModel {
     
@@ -14,10 +13,10 @@ import SwiftData
 
 @Observable class SettingsDataViewModel: SettingsViewModel {
     
-    let modelContext: ModelContext
+    let dataSource: DataSource
     
-    init(modelContext: ModelContext) {
-        self.modelContext = modelContext
+    init(dataSource: DataSource) {
+        self.dataSource = dataSource
     }
     
 }

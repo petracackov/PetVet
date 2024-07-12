@@ -6,32 +6,16 @@
 //
 
 import SwiftUI
-import SwiftData
 
 @main
 struct MyPetApp: App {
     
+    @State private var navigation = Navigation()
+    
     var body: some Scene {
         WindowGroup {
-            DashboardScreen(viewModel: .init(modelContext: ItemDataSource.shared.modelContext))
-        }
-    }
-}
-
-final class ItemDataSource {
-    let modelContainer: ModelContainer
-    let modelContext: ModelContext
-    
-    @MainActor
-    static let shared = ItemDataSource()
-    
-    @MainActor
-    private init() {
-        do {
-            self.modelContainer = try ModelContainer(for: Pet.self, MedicalRecordItem.self)
-            self.modelContext = modelContainer.mainContext
-        } catch {
-            fatalError("Failed to create ModelContainer for Movie.")
+            DashboardScreen(viewModel: .init(dataSource: DataSource()))
+                .environmentObject(navigation)
         }
     }
 }

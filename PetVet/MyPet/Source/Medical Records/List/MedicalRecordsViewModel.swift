@@ -5,7 +5,6 @@
 //  Created by Petra Cackov on 2. 7. 24.
 //
 
-import SwiftData
 import SwiftUI
 
 @Observable class MedicalRecordsViewModel: Cancelable {
@@ -30,10 +29,10 @@ import SwiftUI
 
 @Observable class MedicalRecordsDataViewModel: MedicalRecordsViewModel {
     
-    let modelContext: ModelContext
+    let dataSource: DataSource
     
-    init(modelContext: ModelContext, pet: Pet) {
-        self.modelContext = modelContext
+    init(dataSource: DataSource, pet: Pet) {
+        self.dataSource = dataSource
         print("init", "MedicalRecordsDataViewModel")
         super.init(pet: pet)
         
@@ -57,19 +56,19 @@ import SwiftUI
     override func fetchMedicalRecords() {
         do {
             let petId = pet.id
-            let medicalRecordsDescriptor = FetchDescriptor<MedicalRecordItem>(predicate: #Predicate { medicalRecord in
+            medicalRecords = try dataSource.fetch(type: MedicalRecordItem.self, predicate: #Predicate { medicalRecord in
                 medicalRecord.petId == petId
             })
-            medicalRecords = try modelContext.fetch(medicalRecordsDescriptor)
         } catch {
-            print("Fetch failed")
+            // TODO:
+            print(error)
         }
     }
     
     override func delete(at offsets: IndexSet) {
         let items = offsets.map { medicalRecords[$0] }
         items.forEach {
-            modelContext.delete($0)
+            dataSource.delete($0)
             let notificationData = try? MedicalRecordNotificationId(id: $0.id, petId: $0.petId).dictionary()
             NotificationManager.shared.postNotification(.medicalRecordDeleted, data: notificationData)
         }

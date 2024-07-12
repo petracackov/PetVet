@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @State var navigation = Navigation.shared
+    @EnvironmentObject private var navigation: Navigation
     @State var viewModel: SettingsViewModel
     
     var body: some View {
@@ -18,6 +18,15 @@ struct SettingsView: View {
                 .asButton {
                     navigation.navigationPath.append(Navigation.SettingsPath.addNewPet)
                 }
+            Text("Sync with icloud - TODO")
+                .asButton {
+                    navigation.navigationPath.append(Navigation.SettingsPath.addNewPet)
+                }
+            Text("Mh vet info - TODO")
+                .asButton {
+                    navigation.navigationPath.append(Navigation.SettingsPath.addNewPet)
+                }
+            
         }
     }
 }

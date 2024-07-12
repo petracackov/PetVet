@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftData
 
 @Observable class ManageMedicalRecordViewModel {
     
@@ -33,10 +32,10 @@ import SwiftData
 
 @Observable class ManageMedicalRecordDataViewModel: ManageMedicalRecordViewModel {
     
-    let modelContext: ModelContext
+    let dataSource: DataSource
     
-    init(modelContext: ModelContext, medicalRecord: MedicalRecordItem?, pet: Pet) {
-        self.modelContext = modelContext
+    init(dataSource: DataSource, medicalRecord: MedicalRecordItem?, pet: Pet) {
+        self.dataSource = dataSource
         
         print("init", "ManageMedicalRecordDataViewModel")
         super.init(medicalRecord: medicalRecord, pet: pet)
@@ -51,7 +50,7 @@ import SwiftData
             NotificationManager.shared.postNotification(.medicalRecordUpdated, data: notificationData)
         } else if !description.isEmpty,  !title.isEmpty {
             let medicalRecord = MedicalRecordItem(title: title, itemDescription: description, petId: pet.id, date: date)
-            modelContext.insert(medicalRecord)
+            dataSource.insert(medicalRecord)
             let notificationData = try? MedicalRecordNotificationId(id: medicalRecord.id, petId: medicalRecord.petId).dictionary()
             NotificationManager.shared.postNotification(.medicalRecordAdded, data: notificationData)
         } else {

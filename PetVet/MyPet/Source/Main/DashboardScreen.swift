@@ -12,25 +12,25 @@ struct DashboardScreen: View {
     typealias DashboardItem = DashboardViewModel.DashboardItem
     
     @State var viewModel: DashboardViewModel
-    @State var navigation = Navigation.shared
+    @EnvironmentObject var navigation: Navigation
     
     var body: some View {
         NavigationStack(path: $navigation.navigationPath) {
             ZStack(alignment: .bottom) {
                 TabView(selection: $viewModel.dashboardView) {
-                    MyPetsScreen(viewModel: .init(modelContext: viewModel.modelContext))
+                    MyPetsScreen(viewModel: .init(dataSource: viewModel.dataSource))
                         .navigationTitle("MyPets")
                         .toolbar(.hidden, for: .tabBar)
                         .tag(DashboardItem.home)
-                    SettingsScreen(viewModel: .init(modelContext: viewModel.modelContext))
+                    SettingsScreen(viewModel: .init(dataSource: viewModel.dataSource))
                         .navigationTitle("Settings")
                         .toolbar(.hidden, for: .tabBar)
                         .tag(DashboardItem.settings)
                     NoDataView()
                         .padding()
                         .navigationTitle("Reminders")
-                        .toolbar(.hidden, for: .tabBar)
                         .tag(DashboardItem.events)
+                        .toolbar(.hidden, for: .tabBar)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
@@ -39,22 +39,6 @@ struct DashboardScreen: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle(viewModel.dashboardView.title)
             
-//            .navigationDestination(for: Navigation.Path.self) { path in
-//                switch path {
-//                case .medicalRecords(let pet):
-//                    MedicalRecordsScreen(viewModel: .init(modelContext: viewModel.modelContext, pet: pet))
-//                case .reminders:
-//                    Text("Reminders")
-//                case .manageMedicalRecord(let medicalRecord, let pet):
-//                    ManageMedicalRecordScreen(viewModel: .init(modelContext: viewModel.modelContext,
-//                                                               medicalRecord: medicalRecord,
-//                                                               pet: pet))
-//                case .managePet(let pet):
-//                    ManagePetView(viewModel: ManagePetDataViewModel(modelContext: viewModel.modelContext, pet: pet))
-//                case .pet(let pet):
-//                    
-//                }
-//            }
         }
     }
     

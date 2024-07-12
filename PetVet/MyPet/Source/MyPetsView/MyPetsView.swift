@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MyPetsView: View {
     
-    @State var navigation = Navigation.shared
+    @EnvironmentObject private var navigation: Navigation
     @State var viewModel: MyPetsViewModel
     @State var selectedTab: String = ""
     

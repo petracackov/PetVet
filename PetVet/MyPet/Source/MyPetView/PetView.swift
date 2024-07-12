@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PetView: View {
     
-    @State var navigation = Navigation.shared
+    @EnvironmentObject private var navigation: Navigation
     @State var viewModel: MyPetViewModel
     
     var body: some View {

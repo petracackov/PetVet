@@ -6,16 +6,15 @@
 //
 
 import SwiftUI
-import SwiftData
 
 @Observable class DashboardViewModel {
     
     var dashboardView: DashboardItem = .home
-    let modelContext: ModelContext
+    let dataSource: DataSource
     
-    init(modelContext: ModelContext) {
+    init(dataSource: DataSource) {
         print("init", "DashboardViewModel")
-        self.modelContext = modelContext
+        self.dataSource = dataSource
     }
     
     enum DashboardItem {

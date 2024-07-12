@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftData
 
 @Observable class MyPetsViewModel: Cancelable {
     
@@ -27,10 +26,10 @@ import Combine
 
 @Observable class MyPetsDataViewModel: MyPetsViewModel {
     
-    var modelContext: ModelContext
+    var dataSource: DataSource
     
-    init(modelContext: ModelContext) {
-        self.modelContext = modelContext
+    init(dataSource: DataSource) {
+        self.dataSource = dataSource
         print("init", "MyPetsDataViewModel")
 
         super.init()
@@ -42,8 +41,7 @@ import Combine
     
     override func fetchMyPets() {
         do {
-            let descriptor = FetchDescriptor<Pet>(sortBy: [SortDescriptor(\.name)])
-            pets = try modelContext.fetch(descriptor)
+            pets = try dataSource.fetch(type: Pet.self, sortBy: [SortDescriptor(\.name)])
         } catch {
             print("Fetch failed")
         }

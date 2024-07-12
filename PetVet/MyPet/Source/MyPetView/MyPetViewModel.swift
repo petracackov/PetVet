@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 import Combine
 
 @Observable class MyPetViewModel {
@@ -36,12 +35,12 @@ import Combine
 
 @Observable class MyPetDataViewModel: MyPetViewModel {
     
-    var modelContext: ModelContext
+    var dataSource: DataSource
     private var cancelable = Set<AnyCancellable>()
     
-    init(modelContext: ModelContext, pet: Pet) {
+    init(dataSource: DataSource, pet: Pet) {
         print("init", "MyPetDataViewModel")
-        self.modelContext = modelContext
+        self.dataSource = dataSource
         super.init(pet: pet)
         assignListeners()
     }
@@ -49,10 +48,10 @@ import Combine
     private func fetchPet() {
         do {
             let petId = self.pet.id
-            let petDescriptor = FetchDescriptor<Pet>(predicate: #Predicate { pet in
+            let pets = try dataSource.fetch(type: Pet.self, predicate: #Predicate { pet in
                 pet.id == petId
             })
-            if let pet = try modelContext.fetch(petDescriptor).first {
+            if let pet = pets.first {
                 self.pet = pet
             } else {
                 throw NSError()
@@ -65,11 +64,9 @@ import Combine
     override func fetchMyPetsMedicalRecords() {
         do {
             let petId = pet.id
-            var medicalRecordsDescriptor = FetchDescriptor<MedicalRecordItem>(predicate: #Predicate { medicalRecord in
+            self.medicalRecords = try dataSource.fetch(type: MedicalRecordItem.self, fetchLimit: 3, predicate: #Predicate { medicalRecord in
                 medicalRecord.petId == petId
             })
-            medicalRecordsDescriptor.fetchLimit = 3
-            medicalRecords = try modelContext.fetch(medicalRecordsDescriptor)
         } catch {
             print("Fetch failed")
         }

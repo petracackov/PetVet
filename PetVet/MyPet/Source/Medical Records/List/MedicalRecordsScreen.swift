@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MedicalRecordsScreen: View {
     
-    @State var navigation = Navigation.shared
+    @EnvironmentObject private var navigation: Navigation
     @State var viewModel: MedicalRecordsDataViewModel
     
     var body: some View {
@@ -27,11 +27,11 @@ struct MedicalRecordsScreen: View {
             .navigationDestination(for: Navigation.MedicalRecordsPath.self, destination: { path in
                 switch path {
                 case .addMedicalRecord:
-                    ManageMedicalRecordScreen(viewModel: .init(modelContext: viewModel.modelContext,
+                    ManageMedicalRecordScreen(viewModel: .init(dataSource: viewModel.dataSource,
                                                                medicalRecord: nil,
                                                                pet: viewModel.pet))
                 case .editMedicalRecord(let medicalRecord):
-                    ManageMedicalRecordScreen(viewModel: .init(modelContext: viewModel.modelContext,
+                    ManageMedicalRecordScreen(viewModel: .init(dataSource: viewModel.dataSource,
                                                                medicalRecord: medicalRecord,
                                                                pet: viewModel.pet))
                 }

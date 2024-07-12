@@ -16,9 +16,9 @@ struct MyPetScreen: View {
             .navigationDestination(for: Navigation.PetPath.self) { path in
                 switch path {
                 case .editPet:
-                    ManagePetView(viewModel: ManagePetDataViewModel(modelContext: viewModel.modelContext, pet: viewModel.pet))
+                    ManagePetView(viewModel: ManagePetDataViewModel(dataSource: viewModel.dataSource, pet: viewModel.pet))
                 case .medicalRecords:
-                    MedicalRecordsScreen(viewModel: .init(modelContext: viewModel.modelContext, pet: viewModel.pet))
+                    MedicalRecordsScreen(viewModel: .init(dataSource: viewModel.dataSource, pet: viewModel.pet))
                 case .reminders:
                     Text("Reminders")
                 }
