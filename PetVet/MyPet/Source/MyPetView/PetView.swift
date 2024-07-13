@@ -24,7 +24,7 @@ struct PetView: View {
                     Text("Events")
                         .font(.largeTitle)
                     Spacer()
-                    Image(systemName: "chevron.right")
+                    Image.systemIconChevronRight
                 }
                 .foregroundStyle(.appText)
                 .asButton {
@@ -54,7 +54,7 @@ struct PetView: View {
                 Spacer()
                 
                 
-                Image(systemName: "square.and.pencil")
+                Image.systemIconEdit
                     .resizable()
                     .frame(width: 24, height: 24)
                     .asButton {
@@ -77,7 +77,7 @@ struct PetView: View {
                 Text("Medical records")
                     .font(.largeTitle)
                 Spacer()
-                Image(systemName: "chevron.right")
+                Image.systemIconChevronRight
             }
             .foregroundStyle(.appText)
             .asButton {

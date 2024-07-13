@@ -18,7 +18,7 @@ struct MedicalRecordsScreen: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItem(placement: .primaryAction) {
-                    Image(systemName: "plus")
+                    Image.systemIconPlus
                         .asButton {
                             navigation.navigationPath.append(Navigation.MedicalRecordsPath.addMedicalRecord)
                         }

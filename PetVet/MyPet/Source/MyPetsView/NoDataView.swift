@@ -10,7 +10,7 @@ import SwiftUI
 struct NoDataView: View {
     var body: some View {
         VStack {
-            Image(systemName: "tortoise.fill")
+            Image.systemIconTortoiseFill
                 .resizable()
                 .scaledToFit()
                 .foregroundStyle(.appPurpleLight)

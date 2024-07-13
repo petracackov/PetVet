@@ -16,7 +16,7 @@ struct ManagePetView: View {
             if viewModel.pet != nil {
                 HStack {
                     Spacer()
-                    Image(systemName: "trash")
+                    Image.systemIconTrash
                         .resizable()
                         .frame(width: 24, height: 24)
                         .asButton {

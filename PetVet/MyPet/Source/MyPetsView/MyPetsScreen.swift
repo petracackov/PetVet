@@ -17,7 +17,7 @@ struct MyPetsScreen: View {
             if viewModel.pets.isEmpty {
                 VStack {
                     NoDataView()
-                    Image(systemName: "plus")
+                    Image.systemIconPlus
                         .resizable()
                         .frame(width: 40, height: 40)
                         .scaledToFit()
