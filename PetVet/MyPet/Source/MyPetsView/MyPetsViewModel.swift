@@ -9,37 +9,27 @@ import Foundation
 
 @Observable class MyPetsViewModel: Cancelable {
     
-    var pets: [Pet] = []
-    var managePetSheetIsShown: Bool = false
+    let dataSource: DataSource
+    private(set) var pets: [Pet] = []
     
-    init(pets: [Pet] = []) {
+    /// For preview
+    init(pets: [Pet], dataSource: DataSource) {
         print("init", "MyPetsViewModel")
         self.pets = pets
-    }
-    
-    func fetchMyPets() {
-        
-    }
-}
-
-import Combine
-
-@Observable class MyPetsDataViewModel: MyPetsViewModel {
-    
-    var dataSource: DataSource
-    
-    init(dataSource: DataSource) {
         self.dataSource = dataSource
-        print("init", "MyPetsDataViewModel")
-
         super.init()
+    }
+    
+    /// Fetches the data and assigns listeners
+    convenience init(dataSource: DataSource) {
+        print("init", "MyPetsViewModel")
+        self.init(pets: [], dataSource: dataSource)
         
         fetchMyPets()
         assignListeners()
     }
-        
     
-    override func fetchMyPets() {
+    func fetchMyPets() {
         do {
             pets = try dataSource.fetch(type: Pet.self, sortBy: [SortDescriptor(\.name)])
         } catch {
@@ -58,5 +48,4 @@ import Combine
                     .store(in: &cancelable)
             }
     }
-    
 }

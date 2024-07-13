@@ -23,10 +23,6 @@ class NotificationManager {
             .eraseToAnyPublisher()
     }
     
-//    func addObserverFor(_ type: NotificationType, selector: Selector, observer: Any) {
-//        NotificationCenter.default.addObserver(observer, selector: selector, name: type.name, object: nil)
-//    }
-    
     func postNotification(_ type: NotificationType, data: [String: Any]?) {
         NotificationCenter.default.post(name: type.name, object: nil)
         

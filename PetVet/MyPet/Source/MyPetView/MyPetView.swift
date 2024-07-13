@@ -1,5 +1,5 @@
 //
-//  PetView.swift
+//  MyPetView.swift
 //  MyPet
 //
 //  Created by Petra Cackov on 27. 6. 24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PetView: View {
+struct MyPetView: View {
     
     @EnvironmentObject private var navigation: Navigation
     @State var viewModel: MyPetViewModel
@@ -37,11 +37,21 @@ struct PetView: View {
             .padding(.top, 20)
             .padding(.bottom, 125)
         }
+        .navigationDestination(for: Navigation.PetPath.self) { path in
+            switch path {
+            case .editPet:
+                ManagePetView(viewModel: ManagePetViewModel(dataSource: viewModel.dataSource, pet: viewModel.pet))
+            case .medicalRecords:
+                MedicalRecordsView(viewModel: .init(dataSource: viewModel.dataSource, pet: viewModel.pet))
+            case .reminders:
+                Text("Reminders")
+            }
+        }
     }
     
     private func generalInfo() -> some View {
         Group {
-            Image(.nacho)
+            Image(uiImage: viewModel.pet.image ?? UIImage())
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(height: 200)
@@ -130,6 +140,8 @@ struct PetView: View {
 }
 
 #Preview {
-    PetView(viewModel: .init(pet: MockedData.pets.first!,
+    let dataSource = DataSource()
+    return MyPetView(viewModel: .init(dataSource: dataSource,
+                             pet: MockedData.pets.first!,
                              medicalRecords: Array(MockedData.medicalRecords.prefix(3))))
 }

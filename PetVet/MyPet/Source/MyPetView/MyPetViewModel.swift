@@ -8,41 +8,28 @@
 import SwiftUI
 import Combine
 
-@Observable class MyPetViewModel {
+@Observable class MyPetViewModel: Cancelable {
     
-    fileprivate(set) var pet: Pet
-    fileprivate(set) var medicalRecords: [MedicalRecordItem] = []
+    let dataSource: DataSource
+    private(set) var pet: Pet
+    private(set) var medicalRecords: [MedicalRecordItem] = []
     
-    init(pet: Pet, medicalRecords: [MedicalRecordItem]) {
+    /// For preview
+    init(dataSource: DataSource, pet: Pet, medicalRecords: [MedicalRecordItem]) {
         print("init", "MyPetViewModel")
+        self.dataSource = dataSource
         self.medicalRecords = medicalRecords
         self.pet = pet
+        super.init()
+        
     }
     
-    init(pet: Pet) {
-        self.pet = pet
+    /// Fetches the data and assigns listeners
+    convenience init(dataSource: DataSource, pet: Pet) {
         print("init", "MyPetViewModel")
-        fetchMyPetsMedicalRecords()
-    }
-    
-    func fetchMyPetsMedicalRecords() {
-        Task {
-            medicalRecords = Array(await MockedData.getMedicalRecords().prefix(3))
-        }
-    }
-    
-}
-
-@Observable class MyPetDataViewModel: MyPetViewModel {
-    
-    var dataSource: DataSource
-    private var cancelable = Set<AnyCancellable>()
-    
-    init(dataSource: DataSource, pet: Pet) {
-        print("init", "MyPetDataViewModel")
-        self.dataSource = dataSource
-        super.init(pet: pet)
-        assignListeners()
+        self.init(dataSource: dataSource, pet: pet, medicalRecords: [])
+        self.assignListeners()
+        self.fetchMyPetsMedicalRecords()
     }
     
     private func fetchPet() {
@@ -61,7 +48,7 @@ import Combine
         }
     }
     
-    override func fetchMyPetsMedicalRecords() {
+    private func fetchMyPetsMedicalRecords() {
         do {
             let petId = pet.id
             self.medicalRecords = try dataSource.fetch(type: MedicalRecordItem.self, fetchLimit: 3, predicate: #Predicate { medicalRecord in
@@ -95,4 +82,3 @@ import Combine
     }
     
 }
-

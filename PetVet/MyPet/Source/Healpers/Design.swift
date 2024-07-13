@@ -23,6 +23,7 @@ extension Image {
     static var systemIconTortoiseFill: Image { .init(systemName: "tortoise.fill") }
     static var systemIconChevronRight: Image { .init(systemName: "chevron.right") }
     static var systemIconEdit: Image { .init(systemName: "square.and.pencil") }
+    static var systemIconCamera: Image { .init(systemName: "camera") }
     
     
 }

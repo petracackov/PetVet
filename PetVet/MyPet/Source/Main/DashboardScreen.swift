@@ -18,27 +18,30 @@ struct DashboardScreen: View {
         NavigationStack(path: $navigation.navigationPath) {
             ZStack(alignment: .bottom) {
                 TabView(selection: $viewModel.dashboardView) {
-                    MyPetsScreen(viewModel: .init(dataSource: viewModel.dataSource))
+                    NoDataView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(.red)
+                        .navigationTitle("Reminders")
+                        .toolbar(.hidden, for: .tabBar)
+                        .tag(DashboardItem.events)
+                    HomeView(viewModel: .init(dataSource: viewModel.dataSource))
                         .navigationTitle("MyPets")
                         .toolbar(.hidden, for: .tabBar)
+                        .ignoresSafeArea(edges: .bottom)
                         .tag(DashboardItem.home)
-                    SettingsScreen(viewModel: .init(dataSource: viewModel.dataSource))
+                    SettingsView(viewModel: .init(dataSource: viewModel.dataSource))
                         .navigationTitle("Settings")
                         .toolbar(.hidden, for: .tabBar)
                         .tag(DashboardItem.settings)
-                    NoDataView()
-                        .padding()
-                        .navigationTitle("Reminders")
-                        .tag(DashboardItem.events)
-                        .toolbar(.hidden, for: .tabBar)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
+                .tabViewStyle(.page(indexDisplayMode: .never))
+    
                 menu()
             }
+            .ignoresSafeArea(edges: .bottom)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle(viewModel.dashboardView.title)
-            
         }
     }
     

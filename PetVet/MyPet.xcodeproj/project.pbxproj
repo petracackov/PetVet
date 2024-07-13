@@ -8,18 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		C0009F2E2C3FC36E00A950D1 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0009F2D2C3FC36E00A950D1 /* SettingsViewModel.swift */; };
-		C0009F302C3FC3BB00A950D1 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0009F2F2C3FC3BB00A950D1 /* SettingsScreen.swift */; };
 		C0009F322C3FC41D00A950D1 /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0009F312C3FC41D00A950D1 /* Cancelable.swift */; };
 		C0009F342C41117600A950D1 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0009F332C41117600A950D1 /* DataSource.swift */; };
+		C00A54C32C427158008B91F9 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A54C22C427158008B91F9 /* CameraView.swift */; };
+		C00A54C72C42723D008B91F9 /* ImageTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A54C62C42723D008B91F9 /* ImageTools.swift */; };
 		C00CA2032C37C77A00383CEB /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00CA2022C37C77A00383CEB /* Navigation.swift */; };
 		C00CA2072C37CBDB00383CEB /* ManageMedicalRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00CA2062C37CBDB00383CEB /* ManageMedicalRecordView.swift */; };
-		C00CA2092C37D20F00383CEB /* ManageMedicalRecordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00CA2082C37D20F00383CEB /* ManageMedicalRecordScreen.swift */; };
 		C00CA20B2C37D26E00383CEB /* ManageMedicalRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00CA20A2C37D26E00383CEB /* ManageMedicalRecordViewModel.swift */; };
 		C00CA20D2C37EC7400383CEB /* DashboardScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00CA20C2C37EC7400383CEB /* DashboardScreen.swift */; };
 		C00CA2102C37FF4500383CEB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00CA20F2C37FF4500383CEB /* SettingsView.swift */; };
 		C00CA2122C37FF9C00383CEB /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00CA2112C37FF9C00383CEB /* DashboardViewModel.swift */; };
 		C00CA2202C3AF86500383CEB /* NoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00CA21F2C3AF86500383CEB /* NoDataView.swift */; };
-		C00CA2222C3AFCE700383CEB /* MyPetsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00CA2212C3AFCE700383CEB /* MyPetsScreen.swift */; };
+		C00CA2222C3AFCE700383CEB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00CA2212C3AFCE700383CEB /* HomeView.swift */; };
 		C00CA2252C3BC61400383CEB /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00CA2242C3BC61400383CEB /* Design.swift */; };
 		C00CA2272C3D263300383CEB /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00CA2262C3D263300383CEB /* NotificationManager.swift */; };
 		C0375E362C2D503600167ADF /* MyPetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E352C2D503600167ADF /* MyPetApp.swift */; };
@@ -31,33 +31,31 @@
 		C0375E4E2C2D5A3A00167ADF /* MockedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E4D2C2D5A3A00167ADF /* MockedData.swift */; };
 		C0375E502C2D5A6C00167ADF /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E4F2C2D5A6C00167ADF /* Pet.swift */; };
 		C0375E522C2D5D5400167ADF /* MyPetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E512C2D5D5400167ADF /* MyPetsViewModel.swift */; };
-		C0375E542C2D973C00167ADF /* PetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E532C2D973C00167ADF /* PetView.swift */; };
+		C0375E542C2D973C00167ADF /* MyPetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E532C2D973C00167ADF /* MyPetView.swift */; };
 		C0375E592C2EA96800167ADF /* MedicalRecordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E582C2EA96800167ADF /* MedicalRecordItem.swift */; };
 		C0375E5B2C2EAB4600167ADF /* MyPetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E5A2C2EAB4600167ADF /* MyPetViewModel.swift */; };
 		C0375E5D2C2EB52A00167ADF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E5C2C2EB52A00167ADF /* Extensions.swift */; };
-		C0375E712C3298F500167ADF /* Medifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E702C3298F500167ADF /* Medifiers.swift */; };
+		C0375E712C3298F500167ADF /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E702C3298F500167ADF /* Modifiers.swift */; };
 		C0375E742C3299DE00167ADF /* ManagePetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E732C3299DE00167ADF /* ManagePetView.swift */; };
 		C0375E762C3299FE00167ADF /* ManagePetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E752C3299FE00167ADF /* ManagePetViewModel.swift */; };
-		C0375E7A2C32A82100167ADF /* MyPetScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E792C32A82100167ADF /* MyPetScreen.swift */; };
 		C0375E7D2C33E67400167ADF /* MedicalRecordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E7C2C33E67400167ADF /* MedicalRecordsView.swift */; };
 		C0375E7F2C33E69700167ADF /* MedicalRecordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E7E2C33E69700167ADF /* MedicalRecordsViewModel.swift */; };
-		C0375E812C33EE8300167ADF /* MedicalRecordsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E802C33EE8300167ADF /* MedicalRecordsScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C0009F2D2C3FC36E00A950D1 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		C0009F2F2C3FC3BB00A950D1 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		C0009F312C3FC41D00A950D1 /* Cancelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancelable.swift; sourceTree = "<group>"; };
 		C0009F332C41117600A950D1 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		C00A54C22C427158008B91F9 /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraView.swift; path = MyPet/Source/Components/CameraView.swift; sourceTree = SOURCE_ROOT; };
+		C00A54C62C42723D008B91F9 /* ImageTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTools.swift; sourceTree = "<group>"; };
 		C00CA2022C37C77A00383CEB /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		C00CA2062C37CBDB00383CEB /* ManageMedicalRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageMedicalRecordView.swift; sourceTree = "<group>"; };
-		C00CA2082C37D20F00383CEB /* ManageMedicalRecordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageMedicalRecordScreen.swift; sourceTree = "<group>"; };
 		C00CA20A2C37D26E00383CEB /* ManageMedicalRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageMedicalRecordViewModel.swift; sourceTree = "<group>"; };
 		C00CA20C2C37EC7400383CEB /* DashboardScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardScreen.swift; sourceTree = "<group>"; };
 		C00CA20F2C37FF4500383CEB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C00CA2112C37FF9C00383CEB /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		C00CA21F2C3AF86500383CEB /* NoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
-		C00CA2212C3AFCE700383CEB /* MyPetsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPetsScreen.swift; sourceTree = "<group>"; };
+		C00CA2212C3AFCE700383CEB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C00CA2242C3BC61400383CEB /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		C00CA2262C3D263300383CEB /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		C0375E322C2D503600167ADF /* MyPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,17 +68,15 @@
 		C0375E4D2C2D5A3A00167ADF /* MockedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedData.swift; sourceTree = "<group>"; };
 		C0375E4F2C2D5A6C00167ADF /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
 		C0375E512C2D5D5400167ADF /* MyPetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPetsViewModel.swift; sourceTree = "<group>"; };
-		C0375E532C2D973C00167ADF /* PetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetView.swift; sourceTree = "<group>"; };
+		C0375E532C2D973C00167ADF /* MyPetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPetView.swift; sourceTree = "<group>"; };
 		C0375E582C2EA96800167ADF /* MedicalRecordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalRecordItem.swift; sourceTree = "<group>"; };
 		C0375E5A2C2EAB4600167ADF /* MyPetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPetViewModel.swift; sourceTree = "<group>"; };
 		C0375E5C2C2EB52A00167ADF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		C0375E702C3298F500167ADF /* Medifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medifiers.swift; sourceTree = "<group>"; };
+		C0375E702C3298F500167ADF /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		C0375E732C3299DE00167ADF /* ManagePetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagePetView.swift; sourceTree = "<group>"; };
 		C0375E752C3299FE00167ADF /* ManagePetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagePetViewModel.swift; sourceTree = "<group>"; };
-		C0375E792C32A82100167ADF /* MyPetScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPetScreen.swift; sourceTree = "<group>"; };
 		C0375E7C2C33E67400167ADF /* MedicalRecordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalRecordsView.swift; sourceTree = "<group>"; };
 		C0375E7E2C33E69700167ADF /* MedicalRecordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalRecordsViewModel.swift; sourceTree = "<group>"; };
-		C0375E802C33EE8300167ADF /* MedicalRecordsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalRecordsScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,12 +90,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C00A54C42C427166008B91F9 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C00CA21F2C3AF86500383CEB /* NoDataView.swift */,
+				C00A54C22C427158008B91F9 /* CameraView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		C00CA2042C37CBC400383CEB /* List */ = {
 			isa = PBXGroup;
 			children = (
 				C0375E7C2C33E67400167ADF /* MedicalRecordsView.swift */,
 				C0375E7E2C33E69700167ADF /* MedicalRecordsViewModel.swift */,
-				C0375E802C33EE8300167ADF /* MedicalRecordsScreen.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -108,7 +112,6 @@
 			isa = PBXGroup;
 			children = (
 				C00CA2062C37CBDB00383CEB /* ManageMedicalRecordView.swift */,
-				C00CA2082C37D20F00383CEB /* ManageMedicalRecordScreen.swift */,
 				C00CA20A2C37D26E00383CEB /* ManageMedicalRecordViewModel.swift */,
 			);
 			path = Manage;
@@ -119,7 +122,6 @@
 			children = (
 				C00CA20F2C37FF4500383CEB /* SettingsView.swift */,
 				C0009F2D2C3FC36E00A950D1 /* SettingsViewModel.swift */,
-				C0009F2F2C3FC3BB00A950D1 /* SettingsScreen.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -171,16 +173,15 @@
 		C0375E482C2D527300167ADF /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				C00CA2242C3BC61400383CEB /* Design.swift */,
 				C0375E4C2C2D5A2A00167ADF /* Data */,
 				C0375E6F2C3298E400167ADF /* Healpers */,
+				C00A54C42C427166008B91F9 /* Components */,
 				C0375E492C2D528000167ADF /* Main */,
+				C00CA20E2C37FF2C00383CEB /* Settings */,
+				C0375E6D2C3292D100167ADF /* MyPetsView */,
 				C0375E7B2C33E66000167ADF /* Medical Records */,
 				C0375E722C3299D000167ADF /* ManagePet */,
-				C0375E6D2C3292D100167ADF /* MyPetsView */,
 				C0375E6E2C3292DC00167ADF /* MyPetView */,
-				C00CA20E2C37FF2C00383CEB /* Settings */,
-				C00CA2262C3D263300383CEB /* NotificationManager.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -211,8 +212,7 @@
 			children = (
 				C0375E4A2C2D530500167ADF /* MyPetsView.swift */,
 				C0375E512C2D5D5400167ADF /* MyPetsViewModel.swift */,
-				C00CA21F2C3AF86500383CEB /* NoDataView.swift */,
-				C00CA2212C3AFCE700383CEB /* MyPetsScreen.swift */,
+				C00CA2212C3AFCE700383CEB /* HomeView.swift */,
 			);
 			path = MyPetsView;
 			sourceTree = "<group>";
@@ -220,9 +220,8 @@
 		C0375E6E2C3292DC00167ADF /* MyPetView */ = {
 			isa = PBXGroup;
 			children = (
-				C0375E532C2D973C00167ADF /* PetView.swift */,
+				C0375E532C2D973C00167ADF /* MyPetView.swift */,
 				C0375E5A2C2EAB4600167ADF /* MyPetViewModel.swift */,
-				C0375E792C32A82100167ADF /* MyPetScreen.swift */,
 			);
 			path = MyPetView;
 			sourceTree = "<group>";
@@ -230,10 +229,13 @@
 		C0375E6F2C3298E400167ADF /* Healpers */ = {
 			isa = PBXGroup;
 			children = (
+				C00CA2242C3BC61400383CEB /* Design.swift */,
+				C00CA2262C3D263300383CEB /* NotificationManager.swift */,
+				C0009F312C3FC41D00A950D1 /* Cancelable.swift */,
 				C00CA2022C37C77A00383CEB /* Navigation.swift */,
 				C0375E5C2C2EB52A00167ADF /* Extensions.swift */,
-				C0375E702C3298F500167ADF /* Medifiers.swift */,
-				C0009F312C3FC41D00A950D1 /* Cancelable.swift */,
+				C0375E702C3298F500167ADF /* Modifiers.swift */,
+				C00A54C62C42723D008B91F9 /* ImageTools.swift */,
 			);
 			path = Healpers;
 			sourceTree = "<group>";
@@ -328,14 +330,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0375E712C3298F500167ADF /* Medifiers.swift in Sources */,
+				C0375E712C3298F500167ADF /* Modifiers.swift in Sources */,
 				C0375E502C2D5A6C00167ADF /* Pet.swift in Sources */,
 				C0375E4E2C2D5A3A00167ADF /* MockedData.swift in Sources */,
 				C0375E7D2C33E67400167ADF /* MedicalRecordsView.swift in Sources */,
-				C00CA2092C37D20F00383CEB /* ManageMedicalRecordScreen.swift in Sources */,
 				C0375E362C2D503600167ADF /* MyPetApp.swift in Sources */,
 				C0375E522C2D5D5400167ADF /* MyPetsViewModel.swift in Sources */,
-				C0375E812C33EE8300167ADF /* MedicalRecordsScreen.swift in Sources */,
 				C0375E742C3299DE00167ADF /* ManagePetView.swift in Sources */,
 				C0009F342C41117600A950D1 /* DataSource.swift in Sources */,
 				C00CA2032C37C77A00383CEB /* Navigation.swift in Sources */,
@@ -343,18 +343,18 @@
 				C0375E5D2C2EB52A00167ADF /* Extensions.swift in Sources */,
 				C00CA2272C3D263300383CEB /* NotificationManager.swift in Sources */,
 				C0009F322C3FC41D00A950D1 /* Cancelable.swift in Sources */,
-				C0375E7A2C32A82100167ADF /* MyPetScreen.swift in Sources */,
+				C00A54C32C427158008B91F9 /* CameraView.swift in Sources */,
 				C00CA2202C3AF86500383CEB /* NoDataView.swift in Sources */,
-				C00CA2222C3AFCE700383CEB /* MyPetsScreen.swift in Sources */,
+				C00CA2222C3AFCE700383CEB /* HomeView.swift in Sources */,
 				C0375E4B2C2D530500167ADF /* MyPetsView.swift in Sources */,
-				C0009F302C3FC3BB00A950D1 /* SettingsScreen.swift in Sources */,
 				C00CA2072C37CBDB00383CEB /* ManageMedicalRecordView.swift in Sources */,
 				C00CA2122C37FF9C00383CEB /* DashboardViewModel.swift in Sources */,
 				C0375E5B2C2EAB4600167ADF /* MyPetViewModel.swift in Sources */,
 				C0375E762C3299FE00167ADF /* ManagePetViewModel.swift in Sources */,
 				C00CA20B2C37D26E00383CEB /* ManageMedicalRecordViewModel.swift in Sources */,
-				C0375E542C2D973C00167ADF /* PetView.swift in Sources */,
+				C0375E542C2D973C00167ADF /* MyPetView.swift in Sources */,
 				C0375E592C2EA96800167ADF /* MedicalRecordItem.swift in Sources */,
+				C00A54C72C42723D008B91F9 /* ImageTools.swift in Sources */,
 				C00CA2252C3BC61400383CEB /* Design.swift in Sources */,
 				C0375E7F2C33E69700167ADF /* MedicalRecordsViewModel.swift in Sources */,
 				C00CA2102C37FF4500383CEB /* SettingsView.swift in Sources */,

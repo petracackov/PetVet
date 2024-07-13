@@ -9,14 +9,16 @@ import Foundation
 
 @Observable class ManageMedicalRecordViewModel {
     
-    var medicalRecord: MedicalRecordItem?
-    private(set) var pet: Pet
+    private let dataSource: DataSource
+    private let medicalRecord: MedicalRecordItem?
+    private let pet: Pet
     var title: String
     var description: String
     var date: Date
     
-    init(medicalRecord: MedicalRecordItem?, pet: Pet) {
+    init(dataSource: DataSource, medicalRecord: MedicalRecordItem?, pet: Pet) {
         print("init", "ManageMedicalRecordViewModel")
+        self.dataSource = dataSource
         self.medicalRecord = medicalRecord
         self.pet = pet
         self.title = medicalRecord?.title ?? ""
@@ -25,30 +27,13 @@ import Foundation
     }
     
     func save() {
-        
-    }
-    
-}
-
-@Observable class ManageMedicalRecordDataViewModel: ManageMedicalRecordViewModel {
-    
-    let dataSource: DataSource
-    
-    init(dataSource: DataSource, medicalRecord: MedicalRecordItem?, pet: Pet) {
-        self.dataSource = dataSource
-        
-        print("init", "ManageMedicalRecordDataViewModel")
-        super.init(medicalRecord: medicalRecord, pet: pet)
-    }
-    
-    override func save() {
         if let medicalRecord {
             medicalRecord.title = title
             medicalRecord.itemDescription = description
             medicalRecord.date = date
             let notificationData = try? MedicalRecordNotificationId(id: medicalRecord.id, petId: medicalRecord.petId).dictionary()
             NotificationManager.shared.postNotification(.medicalRecordUpdated, data: notificationData)
-        } else if !description.isEmpty,  !title.isEmpty {
+        } else if !description.isEmpty, !title.isEmpty {
             let medicalRecord = MedicalRecordItem(title: title, itemDescription: description, petId: pet.id, date: date)
             dataSource.insert(medicalRecord)
             let notificationData = try? MedicalRecordNotificationId(id: medicalRecord.id, petId: medicalRecord.petId).dictionary()
@@ -60,4 +45,3 @@ import Foundation
     }
     
 }
-

@@ -36,5 +36,8 @@ struct ManageMedicalRecordView: View {
 }
 
 #Preview {
-    ManageMedicalRecordView(viewModel: .init(medicalRecord: nil, pet: MockedData.pets.first!))
+    let dataSource = DataSource()
+    return ManageMedicalRecordView(viewModel: .init(dataSource: dataSource,
+                                             medicalRecord: nil,
+                                             pet: MockedData.pets.first!))
 }

@@ -34,5 +34,6 @@ struct MyPetsView: View {
 
 
 #Preview {
-    MyPetsView(viewModel: .init(pets: MockedData.pets))
+    let dataSource = DataSource()
+    return MyPetsView(viewModel: .init(pets: MockedData.pets, dataSource: dataSource))
 }

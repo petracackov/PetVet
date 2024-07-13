@@ -13,12 +13,17 @@ class Pet: Identifiable, Hashable {
     
     @Attribute(.unique) let id: String
     var name: String
-    @Attribute(.externalStorage, .allowsCloudEncryption) var imageData: Data?
+    @Attribute(.externalStorage, .allowsCloudEncryption) private var imageData: Data?
     private var speciesRaw: String
     
-    var image: UIImage {
-        guard let imageData else { return .nacho }
-        return UIImage(data: imageData) ?? .nacho
+    var image: UIImage? {
+        get {
+            guard let imageData else { return UIImage(resource: species.image) }
+            return UIImage(data: imageData) ?? UIImage(resource: species.image)
+        } set {
+            imageData = try? ImageTools.convertImageToData(uiImage: newValue)
+        }
+        
     }
     var species: Species {
         get {
@@ -29,11 +34,11 @@ class Pet: Identifiable, Hashable {
         }
     }
     
-    init(id: String, name: String, species: Species, image: UIImage) {
+    init(id: String, name: String, species: Species, image: UIImage?) {
         self.id = id
         self.name = name
         self.speciesRaw = species.rawValue
-        self.imageData = try? ImageTools.convertImageToData(uiImage: image)
+        self.image = image
     }
     
     enum Species: String, CaseIterable, Identifiable {
@@ -60,17 +65,25 @@ class Pet: Identifiable, Hashable {
     
 }
 
-class ImageTools {
-    
-    static func convertImageToData(uiImage: UIImage?) throws -> Data {
-        guard let image = uiImage else {
-            // TODO
-            throw NSError()
-        }
-        guard let pngData = image.pngData() else {
-            throw NSError()
-        }
-        return pngData
-    }
-    
-}
+//struct PetUiModel {
+//    
+//    let id: String
+//    let name: String
+//    var image: UIImage?
+//    var species: Pet.Species
+//    
+//    init(pet: Pet) {
+//        id = pet.id
+//        name = pet.name
+//        image = pet.image
+//        species = pet.species
+//    }
+//    
+//    init(id: String, name: String, image: UIImage? = nil, species: Pet.Species) {
+//        self.id = id
+//        self.name = name
+//        self.image = image
+//        self.species = species
+//    }
+//    
+//}

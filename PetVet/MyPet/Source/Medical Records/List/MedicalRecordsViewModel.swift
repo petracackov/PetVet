@@ -9,35 +9,26 @@ import SwiftUI
 
 @Observable class MedicalRecordsViewModel: Cancelable {
     
+    let dataSource: DataSource
     let pet: Pet
     var medicalRecords: [MedicalRecordItem] = []
     
-    init(medicalRecords: [MedicalRecordItem] = [], pet: Pet) {
+    /// For preview
+    init(dataSource: DataSource, medicalRecords: [MedicalRecordItem], pet: Pet) {
         print("init", "MedicalRecordsViewModel")
+        self.dataSource = dataSource
         self.medicalRecords = medicalRecords
         self.pet = pet
-    }
-    
-    func fetchMedicalRecords() {
-    }
-    
-    func delete(at offsets: IndexSet) {
-        // delete the objects here
-    }
-    
-}
-
-@Observable class MedicalRecordsDataViewModel: MedicalRecordsViewModel {
-    
-    let dataSource: DataSource
-    
-    init(dataSource: DataSource, pet: Pet) {
-        self.dataSource = dataSource
-        print("init", "MedicalRecordsDataViewModel")
-        super.init(pet: pet)
         
-        fetchMedicalRecords()
+        super.init()
+    }
+    
+    /// Fetches the data and assigns listeners
+    convenience init(dataSource: DataSource, pet: Pet) {
+        self.init(dataSource: dataSource, medicalRecords: [], pet: pet)
+        
         assignListeners()
+        fetchMedicalRecords()
     }
     
     private func assignListeners() {
@@ -53,7 +44,7 @@ import SwiftUI
     }
 
     
-    override func fetchMedicalRecords() {
+    private func fetchMedicalRecords() {
         do {
             let petId = pet.id
             medicalRecords = try dataSource.fetch(type: MedicalRecordItem.self, predicate: #Predicate { medicalRecord in
@@ -65,7 +56,7 @@ import SwiftUI
         }
     }
     
-    override func delete(at offsets: IndexSet) {
+    func delete(at offsets: IndexSet) {
         let items = offsets.map { medicalRecords[$0] }
         items.forEach {
             dataSource.delete($0)
@@ -76,4 +67,5 @@ import SwiftUI
     }
     
 }
+
 
