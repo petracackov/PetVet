@@ -14,8 +14,10 @@ import _PhotosUI_SwiftUI
     private let pet: Pet?
     var name: String
     var species: Pet.Species
+    var gender: Pet.Gender
     var image: UIImage?
     var photoPickerItem: PhotosPickerItem?
+    var date: Date
     
     var isEditMode: Bool {
         pet != nil
@@ -28,6 +30,8 @@ import _PhotosUI_SwiftUI
         name = pet?.name ?? ""
         species = pet?.species ?? .unknown
         image = pet?.image
+        gender = pet?.gender ?? .unknown
+        date = Date()
     }
         
     func savePet() {
@@ -35,11 +39,12 @@ import _PhotosUI_SwiftUI
             pet.name = name
             pet.species = species
             pet.image = image
+            pet.birthDate = date
             let notificationData = PetNotificationId(id: pet.id)
             NotificationManager.shared.postNotification(.petUpdated, data: try? notificationData.dictionary())
         } else if !name.isEmpty {
             let id = UUID().uuidString
-            let pet = Pet(id: id, name: name, species: species, image: image)
+            let pet = Pet(id: id, name: name, species: species, image: image, gender: gender, birthDate: date)
             dataSource.insert(pet)
             let notificationData = PetNotificationId(id: id)
             NotificationManager.shared.postNotification(.petAdded, data: try? notificationData.dictionary())

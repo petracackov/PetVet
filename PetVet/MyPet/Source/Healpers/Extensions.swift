@@ -8,8 +8,12 @@
 import Foundation
 
 extension Array where Element : Equatable {
-    func isLast(element: Element) -> Bool {
+    func isLast(_ element: Element) -> Bool {
         last == element
+    }
+    
+    func isFirst(_ element: Element) -> Bool {
+        first == element
     }
 }
 

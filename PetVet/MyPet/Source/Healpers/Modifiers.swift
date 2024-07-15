@@ -30,3 +30,27 @@ extension View {
     }
     
 }
+
+extension View {
+    
+    @ViewBuilder
+    func globalElementId(_ id: String, namespace: Namespace.ID?) -> some View {
+        if let namespace {
+            self.matchedGeometryEffect(id: id, in: namespace)
+        } else {
+            self
+        }
+    }
+    
+}
+
+extension View {
+    
+    func plainList() -> some View {
+        self
+            .listRowSeparator(.hidden)
+            .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+            .listRowBackground(Color.clear)
+    }
+    
+}

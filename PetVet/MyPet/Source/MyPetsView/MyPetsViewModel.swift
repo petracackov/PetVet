@@ -11,6 +11,7 @@ import Foundation
     
     let dataSource: DataSource
     private(set) var pets: [Pet] = []
+    var selectedPet: Pet?
     
     /// For preview
     init(pets: [Pet], dataSource: DataSource) {

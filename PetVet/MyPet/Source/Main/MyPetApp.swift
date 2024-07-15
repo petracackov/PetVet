@@ -14,7 +14,7 @@ struct MyPetApp: App {
     
     var body: some Scene {
         WindowGroup {
-            DashboardScreen(viewModel: .init(dataSource: DataSource()))
+            DashboardScreen(viewModel: .init(dataSource: DataSource.shared))
                 .environmentObject(navigation)
         }
     }

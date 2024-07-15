@@ -12,6 +12,9 @@
 		C0009F342C41117600A950D1 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0009F332C41117600A950D1 /* DataSource.swift */; };
 		C00A54C32C427158008B91F9 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A54C22C427158008B91F9 /* CameraView.swift */; };
 		C00A54C72C42723D008B91F9 /* ImageTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A54C62C42723D008B91F9 /* ImageTools.swift */; };
+		C00A54C92C42C908008B91F9 /* AppButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A54C82C42C908008B91F9 /* AppButton.swift */; };
+		C00A54CB2C42CBC4008B91F9 /* AppTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A54CA2C42CBC4008B91F9 /* AppTextField.swift */; };
+		C00A54CD2C4407C5008B91F9 /* MedicalRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A54CC2C4407C5008B91F9 /* MedicalRecordCell.swift */; };
 		C00CA2032C37C77A00383CEB /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00CA2022C37C77A00383CEB /* Navigation.swift */; };
 		C00CA2072C37CBDB00383CEB /* ManageMedicalRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00CA2062C37CBDB00383CEB /* ManageMedicalRecordView.swift */; };
 		C00CA20B2C37D26E00383CEB /* ManageMedicalRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00CA20A2C37D26E00383CEB /* ManageMedicalRecordViewModel.swift */; };
@@ -48,6 +51,9 @@
 		C0009F332C41117600A950D1 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		C00A54C22C427158008B91F9 /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraView.swift; path = MyPet/Source/Components/CameraView.swift; sourceTree = SOURCE_ROOT; };
 		C00A54C62C42723D008B91F9 /* ImageTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTools.swift; sourceTree = "<group>"; };
+		C00A54C82C42C908008B91F9 /* AppButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
+		C00A54CA2C42CBC4008B91F9 /* AppTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextField.swift; sourceTree = "<group>"; };
+		C00A54CC2C4407C5008B91F9 /* MedicalRecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalRecordCell.swift; sourceTree = "<group>"; };
 		C00CA2022C37C77A00383CEB /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		C00CA2062C37CBDB00383CEB /* ManageMedicalRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageMedicalRecordView.swift; sourceTree = "<group>"; };
 		C00CA20A2C37D26E00383CEB /* ManageMedicalRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageMedicalRecordViewModel.swift; sourceTree = "<group>"; };
@@ -95,6 +101,9 @@
 			children = (
 				C00CA21F2C3AF86500383CEB /* NoDataView.swift */,
 				C00A54C22C427158008B91F9 /* CameraView.swift */,
+				C00A54C82C42C908008B91F9 /* AppButton.swift */,
+				C00A54CA2C42CBC4008B91F9 /* AppTextField.swift */,
+				C00A54CC2C4407C5008B91F9 /* MedicalRecordCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -330,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C00A54CD2C4407C5008B91F9 /* MedicalRecordCell.swift in Sources */,
 				C0375E712C3298F500167ADF /* Modifiers.swift in Sources */,
 				C0375E502C2D5A6C00167ADF /* Pet.swift in Sources */,
 				C0375E4E2C2D5A3A00167ADF /* MockedData.swift in Sources */,
@@ -339,6 +349,7 @@
 				C0375E742C3299DE00167ADF /* ManagePetView.swift in Sources */,
 				C0009F342C41117600A950D1 /* DataSource.swift in Sources */,
 				C00CA2032C37C77A00383CEB /* Navigation.swift in Sources */,
+				C00A54C92C42C908008B91F9 /* AppButton.swift in Sources */,
 				C00CA20D2C37EC7400383CEB /* DashboardScreen.swift in Sources */,
 				C0375E5D2C2EB52A00167ADF /* Extensions.swift in Sources */,
 				C00CA2272C3D263300383CEB /* NotificationManager.swift in Sources */,
@@ -347,6 +358,7 @@
 				C00CA2202C3AF86500383CEB /* NoDataView.swift in Sources */,
 				C00CA2222C3AFCE700383CEB /* HomeView.swift in Sources */,
 				C0375E4B2C2D530500167ADF /* MyPetsView.swift in Sources */,
+				C00A54CB2C42CBC4008B91F9 /* AppTextField.swift in Sources */,
 				C00CA2072C37CBDB00383CEB /* ManageMedicalRecordView.swift in Sources */,
 				C00CA2122C37FF9C00383CEB /* DashboardViewModel.swift in Sources */,
 				C0375E5B2C2EAB4600167ADF /* MyPetViewModel.swift in Sources */,

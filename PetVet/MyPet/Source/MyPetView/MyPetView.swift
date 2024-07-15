@@ -11,26 +11,17 @@ struct MyPetView: View {
     
     @EnvironmentObject private var navigation: Navigation
     @State var viewModel: MyPetViewModel
+    var pet: Pet { viewModel.pet }
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(spacing: 20) {
                 
                 generalInfo()
                 
                 medicalRecords()
                 
-                HStack(alignment: .center) {
-                    Text("Events")
-                        .font(.largeTitle)
-                    Spacer()
-                    Image.systemIconChevronRight
-                }
-                .foregroundStyle(.appText)
-                .asButton {
-                    navigation.navigationPath.append(Navigation.PetPath.reminders)
-                    
-                }
+                events()
                 
             }
             .padding(.horizontal, 20)
@@ -39,10 +30,13 @@ struct MyPetView: View {
         }
         .navigationDestination(for: Navigation.PetPath.self) { path in
             switch path {
+            case .addMedicalRecord:
+                ManageMedicalRecordView(viewModel: .init(dataSource: viewModel.dataSource,
+                                                         pet: viewModel.pet))
             case .editPet:
-                ManagePetView(viewModel: ManagePetViewModel(dataSource: viewModel.dataSource, pet: viewModel.pet))
+                ManagePetView(viewModel: ManagePetViewModel(dataSource: viewModel.dataSource, pet: pet))
             case .medicalRecords:
-                MedicalRecordsView(viewModel: .init(dataSource: viewModel.dataSource, pet: viewModel.pet))
+                MedicalRecordsView(viewModel: .init(dataSource: viewModel.dataSource, pet: pet))
             case .reminders:
                 Text("Reminders")
             }
@@ -51,14 +45,14 @@ struct MyPetView: View {
     
     private func generalInfo() -> some View {
         Group {
-            Image(uiImage: viewModel.pet.image ?? UIImage())
+            Image(uiImage: pet.image ?? UIImage())
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(height: 200)
                 .clipShape(.rect(cornerRadius: 10))
             
             HStack {
-                Text(viewModel.pet.name)
+                Text(pet.name)
                     .font(.largeTitle)
                 
                 Spacer()
@@ -74,9 +68,9 @@ struct MyPetView: View {
             }
             
             VStack(spacing: 10) {
-                infoRow(title: "Date of birth", value: "19.2.1994")
-                infoRow(title: "Gender", value: "male")
-                infoRow(title: "Species", value: viewModel.pet.species.rawValue)
+                infoRow(title: "Date of birth", value: pet.birthDate.string)
+                infoRow(title: "Gender", value: pet.gender.rawValue)
+                infoRow(title: "Species", value: pet.species.rawValue)
             }
         }
     }
@@ -87,44 +81,45 @@ struct MyPetView: View {
                 Text("Medical records")
                     .font(.largeTitle)
                 Spacer()
-                Image.systemIconChevronRight
+                if viewModel.medicalRecords.isEmpty {
+                    Image.systemIconPlus
+                } else {
+                    Image.systemIconChevronRight
+                }
             }
             .foregroundStyle(.appText)
             .asButton {
-                navigation.navigationPath.append(Navigation.PetPath.medicalRecords)
+                if viewModel.medicalRecords.isEmpty {
+                    navigation.navigationPath.append(Navigation.PetPath.addMedicalRecord)
+                } else {
+                    navigation.navigationPath.append(Navigation.PetPath.medicalRecords)
+                }
             }
             
-            //First 3 events end then full separate screen
-            VStack(spacing: 20) {
-                ForEach(viewModel.medicalRecords) { item in
-                    VStack(alignment: .leading, spacing: 20) {
-                        Group {
-                            HStack {
-                                Text(item.title)
-                                    .font(.title2)
-                                    .foregroundStyle(.appBlackWhite)
-                                Spacer()
-                                Text(item.date.string)
-                                    .font(.body)
-                                    .foregroundStyle(.appBlackWhite)
-                            }
-                            Text(item.itemDescription)
-                                .font(.subheadline)
-                                .foregroundStyle(.appBlackWhite)
-                        }
-                        .padding(.horizontal, 10)
+            if viewModel.medicalRecords.isEmpty {
+                HStack {
+
+                    NoDataView(image: Image(systemName: "syringe.fill"), color: .appOrangeLight)
+                    NoDataView(image: Image(systemName: "stethoscope"), color: .appOrangeLight)
+                    NoDataView(image: Image(systemName: "pills.fill"), color: .appOrangeLight)
+
+                }
+                .frame(height: 120)
+            } else {
+                
+                //First 3 events end then full separate screen
+                VStack(spacing: 0) {
+                    ForEach(viewModel.medicalRecords) { item in
+                        MedicalRecordCell(title: item.title,
+                                          date: item.date.string,
+                                          description: item.itemDescription,
+                                          isFirst: viewModel.isFirst(item),
+                                          isLast: viewModel.isLast(item))
                         
-                        if !viewModel.medicalRecords.isLast(element: item) {
-                            Rectangle()
-                                .frame(height: 1)
-                                .foregroundStyle(.appBlackWhite)
-                        }
                     }
                 }
             }
-            .padding(20)
-            .background(.appGray3.opacity(0.2))
-            .clipShape(.rect(cornerRadius: 15))
+            
         }
     }
     
@@ -137,6 +132,32 @@ struct MyPetView: View {
                 .font(.body)
         }
     }
+    
+    private func events() -> some View {
+        Group {
+            HStack(alignment: .center) {
+                Text("Events")
+                    .font(.largeTitle)
+                Spacer()
+                Image.systemIconChevronRight
+            }
+            .foregroundStyle(.appText)
+            .asButton {
+                navigation.navigationPath.append(Navigation.PetPath.reminders)
+            }
+            
+            HStack {
+
+                NoDataView(image: Image(systemName: "bell.fill"))
+                NoDataView(image: Image(systemName: "calendar"))
+                NoDataView(image: Image(systemName: "clock.fill"))
+                
+
+            }
+            .frame(height: 120)
+            
+        }
+    }
 }
 
 #Preview {
@@ -144,4 +165,11 @@ struct MyPetView: View {
     return MyPetView(viewModel: .init(dataSource: dataSource,
                              pet: MockedData.pets.first!,
                              medicalRecords: Array(MockedData.medicalRecords.prefix(3))))
+}
+
+#Preview {
+    let dataSource = DataSource()
+    return MyPetView(viewModel: .init(dataSource: dataSource,
+                             pet: MockedData.pets.first!,
+                             medicalRecords: []))
 }

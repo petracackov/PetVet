@@ -16,73 +16,46 @@ struct ManagePetView: View {
     @State var photoPickerIsShown = false
     
     var body: some View {
-        VStack(alignment: .center) {
-            if viewModel.isEditMode {
-                HStack {
-                    Spacer()
-                    Image.systemIconTrash
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                        .asButton {
-                             viewModel.deletePet()
-                        }
-                        .foregroundStyle(.appText)
-                }
-            }
+        VStack(alignment: .center, spacing: 20) {
+//            if viewModel.isEditMode {
+//                HStack {
+//                    Spacer()
+//                    Image.systemIconTrash
+//                        .resizable()
+//                        .frame(width: 24, height: 24)
+//                        .asButton {
+//                             viewModel.deletePet()
+//                        }
+//                        .foregroundStyle(.appText)
+//                }
+//            }
             
+            AppTextField(text: $viewModel.name, title: "Name")
+            
+            speciesPicker()
+            
+            genderPicker()
+            
+            datePicker()
+            
+            imageSelector()
+       
             Spacer()
             
-            HStack {
-                Text("Name:")
-                TextField("Name", text: $viewModel.name)
-                    .textFieldStyle(.roundedBorder)
-            }
-            
-            HStack {
-                Text("Species:")
-                Picker("Species", selection: $viewModel.species) {
-                    ForEach(Pet.Species.allCases) { species in
-                        Text(species.rawValue)
-                            .tag(species)
-                    }
-                }
-                .pickerStyle(.menu)
-                Spacer()
-            }
-            
-            ZStack {
-                if let petImage = viewModel.image {
-                    Image(uiImage: petImage)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(height: 200)
-                }
-                Rectangle()
-                    .foregroundStyle(.appPurpleLightDark.opacity(0.7))
-                Image.systemIconCamera
-                    .resizable()
-                    .scaledToFit()
-                    .scaleEffect(CGSize(width: 0.6, height: 0.6))
-                    .foregroundStyle(.appWhite)
-            }
-            .frame(height: 200)
-            .clipShape(.rect(cornerRadius: 20))
-            .asButton {
-                isPresented = true
-            }
-            
-            Spacer()
-            
-            Text("Save")
-                .multilineTextAlignment(.center)
-                .frame(height: 60)
-                .frame(maxWidth: .infinity)
-                .background(.red)
-                .asButton {
-                    viewModel.savePet()
-                }
+            AppButton(title: "Save", action: viewModel.savePet)
         }
         .padding()
+        .toolbar(content: {
+            if viewModel.isEditMode {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Image.systemIconTrash
+                        .foregroundStyle(.appPurple)
+                        .asButton {
+                            viewModel.deletePet()
+                        }
+                }
+            }
+        })
         .confirmationDialog("", isPresented: $isPresented, actions: {
             Text("Camera")
                 .asButton {
@@ -104,6 +77,78 @@ struct ManagePetView: View {
             viewModel.onImageSelected(newValue)
         }
 
+    }
+    
+    private func datePicker() -> some View {
+        HStack {
+            Text("Birth date:")
+                .font(.body)
+                .foregroundStyle(.appGray1)
+            DatePicker(selection: $viewModel.date, displayedComponents: .date) {
+                Text("")
+            }
+            Spacer()
+        }
+    }
+    
+    private func genderPicker() -> some View {
+        HStack {
+            Text("Gender:")
+                .font(.body)
+                .foregroundStyle(.appGray1)
+            Picker("Gender", selection: $viewModel.gender) {
+                ForEach(Pet.Gender.allCases) { gender in
+                    Text(gender.rawValue)
+                        .tag(gender)
+                }
+            }
+            .pickerStyle(.segmented)
+            .foregroundStyle(.red)
+            .colorMultiply(.appPurpleLight)
+            
+            Spacer()
+        }
+
+    }
+    
+    private func imageSelector() -> some View {
+        ZStack {
+            if let petImage = viewModel.image {
+                Image(uiImage: petImage)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 200)
+            }
+            Rectangle()
+                .foregroundStyle(.appPurpleLightDark.opacity(0.7))
+            Image.systemIconCamera
+                .resizable()
+                .scaledToFit()
+                .scaleEffect(CGSize(width: 0.6, height: 0.6))
+                .foregroundStyle(.appWhite)
+        }
+        .frame(height: 200)
+        .clipShape(.rect(cornerRadius: 20))
+        .asButton {
+            isPresented = true
+        }
+    }
+    
+    private func speciesPicker() -> some View {
+        HStack {
+            Text("Species:")
+                .font(.body)
+                .foregroundStyle(.appGray1)
+            Picker("Species", selection: $viewModel.species) {
+                ForEach(Pet.Species.allCases) { species in
+                    Text(species.rawValue)
+                        .tag(species)
+                }
+            }
+            .pickerStyle(.menu)
+            .tint(.appPurple)
+            Spacer()
+        }
     }
     
 }

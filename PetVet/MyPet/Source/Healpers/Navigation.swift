@@ -16,6 +16,7 @@ class Navigation: ObservableObject {
         case reminders
         case editPet
         case medicalRecords
+        case addMedicalRecord
     }
     
     enum MedicalRecordsPath: Hashable {

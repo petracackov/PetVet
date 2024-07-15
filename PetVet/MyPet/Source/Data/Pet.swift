@@ -12,9 +12,11 @@ import SwiftUI
 class Pet: Identifiable, Hashable {
     
     @Attribute(.unique) let id: String
-    var name: String
     @Attribute(.externalStorage, .allowsCloudEncryption) private var imageData: Data?
+    var name: String
+    var birthDate: Date
     private var speciesRaw: String
+    private var genderRaw: String
     
     var image: UIImage? {
         get {
@@ -25,6 +27,16 @@ class Pet: Identifiable, Hashable {
         }
         
     }
+    
+    var gender: Gender {
+        get {
+            Gender(rawValue: genderRaw) ?? .unknown
+        }
+        set {
+            genderRaw = newValue.rawValue
+        }
+    }
+    
     var species: Species {
         get {
             Species(rawValue: speciesRaw) ?? .unknown
@@ -34,11 +46,22 @@ class Pet: Identifiable, Hashable {
         }
     }
     
-    init(id: String, name: String, species: Species, image: UIImage?) {
+    init(id: String, name: String, species: Species, image: UIImage?, gender: Gender, birthDate: Date) {
         self.id = id
         self.name = name
         self.speciesRaw = species.rawValue
+        self.genderRaw = gender.rawValue
+        self.birthDate = birthDate
         self.image = image
+    }
+    
+    enum Gender: String, CaseIterable, Identifiable {
+        
+        var id: Self { self }
+        
+        case male
+        case female
+        case unknown
     }
     
     enum Species: String, CaseIterable, Identifiable {

@@ -8,16 +8,21 @@
 import SwiftUI
 
 struct NoDataView: View {
+    
+    var image: Image = Image.systemIconTortoiseFill
+    var title: String = ""
+    var color: Color = .appPurpleLightDark
+    
     var body: some View {
         VStack {
-            Image.systemIconTortoiseFill
+           image
                 .resizable()
                 .scaledToFit()
-                .foregroundStyle(.appPurpleLight)
+                .foregroundStyle(color)
                 .padding()
-            Text("No data")
+            Text(title)
                 .font(.largeTitle)
-                .foregroundStyle(.appPurple)
+                .foregroundStyle(color)
         }
     }
 }

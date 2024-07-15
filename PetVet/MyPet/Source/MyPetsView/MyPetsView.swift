@@ -14,18 +14,36 @@ struct MyPetsView: View {
     @State var selectedTab: String = ""
     
     var body: some View {
-        VStack {
-            ForEach(viewModel.pets, content: petCell)
-            Spacer()
-        }
+        ZStack {
+            LinearGradient(colors: [.appPurpleGradient, .clear], startPoint: .top, endPoint: .bottom)
+            ScrollView {
+                VStack(spacing: 20) {
+                    ForEach(viewModel.pets, content: petCell)
+                }
+                .padding()
+            }
+        }.ignoresSafeArea(edges: .bottom)
     }
     
     private func petCell(_ pet: Pet) -> some View {
-        HStack {
+        ZStack(alignment: .bottomTrailing) {
+            if let image = pet.image {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 200)
+            } else {
+                Image(pet.species.image)
+            }
+            LinearGradient(colors: [.clear, .black.opacity(0.7)], startPoint: .top, endPoint: .bottom)
+            
             Text(pet.name)
-            Spacer()
+                .foregroundStyle(.white)
+                .font(.title)
+                .padding()
         }
-        .frame(height: 60)
+        .frame(height: 200)
+        .clipShape(.rect(cornerRadius: 20))
         .asButton {
             navigation.navigationPath.append(Navigation.MyPetsPath.pet(pet))
         }

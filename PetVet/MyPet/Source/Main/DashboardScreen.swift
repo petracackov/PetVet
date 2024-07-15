@@ -21,16 +21,13 @@ struct DashboardScreen: View {
                     NoDataView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(.red)
-                        .navigationTitle("Reminders")
                         .toolbar(.hidden, for: .tabBar)
                         .tag(DashboardItem.events)
                     HomeView(viewModel: .init(dataSource: viewModel.dataSource))
-                        .navigationTitle("MyPets")
                         .toolbar(.hidden, for: .tabBar)
                         .ignoresSafeArea(edges: .bottom)
                         .tag(DashboardItem.home)
                     SettingsView(viewModel: .init(dataSource: viewModel.dataSource))
-                        .navigationTitle("Settings")
                         .toolbar(.hidden, for: .tabBar)
                         .tag(DashboardItem.settings)
                 }
@@ -41,8 +38,13 @@ struct DashboardScreen: View {
             }
             .ignoresSafeArea(edges: .bottom)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.appPurpleGradient, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
             .navigationTitle(viewModel.dashboardView.title)
+
+            
         }
+        .accentColor(.appPurple)
     }
     
     private func menu() -> some View {

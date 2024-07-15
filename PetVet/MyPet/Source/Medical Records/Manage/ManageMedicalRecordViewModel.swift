@@ -16,7 +16,7 @@ import Foundation
     var description: String
     var date: Date
     
-    init(dataSource: DataSource, medicalRecord: MedicalRecordItem?, pet: Pet) {
+    init(dataSource: DataSource, medicalRecord: MedicalRecordItem? = nil, pet: Pet) {
         print("init", "ManageMedicalRecordViewModel")
         self.dataSource = dataSource
         self.medicalRecord = medicalRecord

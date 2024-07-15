@@ -32,6 +32,14 @@ import Combine
         self.fetchMyPetsMedicalRecords()
     }
     
+    func isLast(_ item: MedicalRecordItem) -> Bool {
+        medicalRecords.isLast(item)
+    }
+    
+    func isFirst(_ item: MedicalRecordItem) -> Bool {
+        medicalRecords.isFirst(item)
+    }
+    
     private func fetchPet() {
         do {
             let petId = self.pet.id

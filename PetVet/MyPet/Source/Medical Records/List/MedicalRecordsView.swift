@@ -13,17 +13,25 @@ struct MedicalRecordsView: View {
     @State var viewModel: MedicalRecordsViewModel
     
     var body: some View {
-        ZStack {
-            List {
-                ForEach(viewModel.medicalRecords) { medicalRecord in
-                    Text(medicalRecord.title)
-                        .asButton {
-                            navigation.navigationPath.append(Navigation.MedicalRecordsPath.editMedicalRecord(medicalRecord))
-                        }
+        List {
+            ForEach(viewModel.medicalRecords) { item in
+                MedicalRecordCell(title: item.title,
+                                  date: item.date.string,
+                                  description: item.itemDescription,
+                                  isFirst: viewModel.medicalRecords.isFirst(item),
+                                  isLast: viewModel.medicalRecords.isLast(item))
+                .asButton {
+                    navigation.navigationPath.append(Navigation.MedicalRecordsPath.editMedicalRecord(item))
                 }
-                .onDelete(perform: viewModel.delete)
             }
+            .onDelete(perform: viewModel.delete)
+            .plainList()
+            .padding(.horizontal, 20)
         }
+        .listStyle(.plain)
+        .background(.appBackground)
+        
+        
         .navigationTitle("Medical record")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar(content: {
@@ -38,7 +46,6 @@ struct MedicalRecordsView: View {
             switch path {
             case .addMedicalRecord:
                 ManageMedicalRecordView(viewModel: .init(dataSource: viewModel.dataSource,
-                                                           medicalRecord: nil,
                                                            pet: viewModel.pet))
             case .editMedicalRecord(let medicalRecord):
                 ManageMedicalRecordView(viewModel: .init(dataSource: viewModel.dataSource,

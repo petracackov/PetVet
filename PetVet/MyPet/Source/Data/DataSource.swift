@@ -9,11 +9,11 @@ import Foundation
 import SwiftData
 
 final class DataSource {
-    private let modelContainer: ModelContainer
-    private let modelContext: ModelContext
+    let modelContainer: ModelContainer
+    let modelContext: ModelContext
     
-//    @MainActor
-//    static let shared = DataSource()
+    @MainActor
+    static let shared = DataSource()
     
     @MainActor
     init() {
@@ -21,7 +21,7 @@ final class DataSource {
             self.modelContainer = try ModelContainer(for: Pet.self, MedicalRecordItem.self)
             self.modelContext = modelContainer.mainContext
         } catch {
-            fatalError("Failed to create ModelContainer for Movie.")
+            fatalError("Failed to create ModelContainer.")
         }
     }
     
