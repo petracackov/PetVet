@@ -32,7 +32,7 @@ import SwiftUI
     }
     
     private func assignListeners() {
-        NotificationManager.shared.publishersFor([.medicalRecordAdded, .medicalRecordUpdated])
+        NotificationManager.shared.publishersFor([.medicalRecordAdded, .medicalRecordUpdated, .medicalRecordDeleted])
             .forEach { publisher in
                 publisher
                     .receive(on: DispatchQueue.main)

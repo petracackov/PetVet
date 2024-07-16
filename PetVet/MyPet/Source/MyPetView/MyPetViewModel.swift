@@ -13,13 +13,15 @@ import Combine
     let dataSource: DataSource
     private(set) var pet: Pet
     private(set) var medicalRecords: [MedicalRecordItem] = []
+    private(set) var events: [PetEvent] = []
     
     /// For preview
-    init(dataSource: DataSource, pet: Pet, medicalRecords: [MedicalRecordItem]) {
+    init(dataSource: DataSource, pet: Pet, medicalRecords: [MedicalRecordItem], events: [PetEvent]) {
         print("init", "MyPetViewModel")
         self.dataSource = dataSource
         self.medicalRecords = medicalRecords
         self.pet = pet
+        self.events = events
         super.init()
         
     }
@@ -27,9 +29,10 @@ import Combine
     /// Fetches the data and assigns listeners
     convenience init(dataSource: DataSource, pet: Pet) {
         print("init", "MyPetViewModel")
-        self.init(dataSource: dataSource, pet: pet, medicalRecords: [])
+        self.init(dataSource: dataSource, pet: pet, medicalRecords: [], events: [])
         self.assignListeners()
         self.fetchMyPetsMedicalRecords()
+        self.fetchMyPetsEvents()
     }
     
     func isLast(_ item: MedicalRecordItem) -> Bool {
@@ -51,6 +54,17 @@ import Combine
             } else {
                 throw NSError()
             }
+        } catch {
+            print("Fetch failed")
+        }
+    }
+    
+    private func fetchMyPetsEvents() {
+        do {
+            let petId = pet.id
+            self.events = try dataSource.fetch(type: PetEvent.self, fetchLimit: 3, predicate: #Predicate { event in
+                event.petId == petId
+            }, sortBy: [SortDescriptor(\.date)])
         } catch {
             print("Fetch failed")
         }
@@ -84,6 +98,16 @@ import Combine
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] in
                         self?.fetchMyPetsMedicalRecords()
+                    }
+                    .store(in: &cancelable)
+            }
+        
+        NotificationManager.shared.publishersFor([.eventAdded, .eventDeleted, .eventUpdated])
+            .forEach { publisher in
+                publisher
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in
+                        self?.fetchMyPetsEvents()
                     }
                     .store(in: &cancelable)
             }

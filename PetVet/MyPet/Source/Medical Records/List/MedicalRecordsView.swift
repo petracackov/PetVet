@@ -28,19 +28,20 @@ struct MedicalRecordsView: View {
             .plainList()
             .padding(.horizontal, 20)
         }
+        .overlay {
+            if viewModel.medicalRecords.isEmpty {
+                NoDataView(.medicalRecords)
+                    .padding(20)
+            }
+        }
         .listStyle(.plain)
         .background(.appBackground)
-        
+//        .appGradient()
         
         .navigationTitle("Medical record")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar(content: {
-            ToolbarItem(placement: .primaryAction) {
-                Image.systemIconPlus
-                    .asButton {
-                        navigation.navigationPath.append(Navigation.MedicalRecordsPath.addMedicalRecord)
-                    }
-            }
+        .toolbarItem(.systemIconPlus, action: {
+            navigation.navigationPath.append(Navigation.MedicalRecordsPath.addMedicalRecord)
         })
         .navigationDestination(for: Navigation.MedicalRecordsPath.self, destination: { path in
             switch path {
@@ -61,5 +62,12 @@ struct MedicalRecordsView: View {
     let dataSource = DataSource()
     return MedicalRecordsView(viewModel: .init(dataSource: dataSource,
                                                medicalRecords: MockedData.medicalRecords,
+                                               pet: MockedData.pets.first!))
+}
+
+#Preview {
+    let dataSource = DataSource()
+    return MedicalRecordsView(viewModel: .init(dataSource: dataSource,
+                                               medicalRecords: [],
                                                pet: MockedData.pets.first!))
 }

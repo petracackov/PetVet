@@ -20,8 +20,8 @@ class Pet: Identifiable, Hashable {
     
     var image: UIImage? {
         get {
-            guard let imageData else { return UIImage(resource: species.image) }
-            return UIImage(data: imageData) ?? UIImage(resource: species.image)
+            guard let imageData else { return nil }
+            return UIImage(data: imageData)
         } set {
             imageData = try? ImageTools.convertImageToData(uiImage: newValue)
         }

@@ -16,6 +16,10 @@ import Foundation
     var description: String
     var date: Date
     
+    var isEditing: Bool {
+        medicalRecord != nil
+    }
+    
     init(dataSource: DataSource, medicalRecord: MedicalRecordItem? = nil, pet: Pet) {
         print("init", "ManageMedicalRecordViewModel")
         self.dataSource = dataSource
@@ -42,6 +46,14 @@ import Foundation
             // TODO: handle error
             print("No data error")
         }
+    }
+    
+    func deleteMedicalRecord() {
+        guard let medicalRecord else { return }
+        let notificationData = try? MedicalRecordNotificationId(id: medicalRecord.id, petId: medicalRecord.petId).dictionary()
+        
+        dataSource.delete(medicalRecord)
+        NotificationManager.shared.postNotification(.medicalRecordDeleted, data: notificationData)
     }
     
 }

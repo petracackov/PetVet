@@ -11,13 +11,9 @@ class MockedData {
     
     static let pets = [
         Pet(id: UUID().uuidString, name: "Cat", species: .cat, image: .nacho, gender: .female, birthDate: Date().addingTimeInterval(-12345)),
-        Pet(id: UUID().uuidString, name: "Dog", species: .dog, image: .nacho, gender: .male, birthDate: Date()),
+        Pet(id: UUID().uuidString, name: "Dog", species: .dog, image: nil, gender: .male, birthDate: Date()),
         Pet(id: UUID().uuidString, name: "Unknown", species: .unknown, image: .nacho, gender: .unknown, birthDate: Date().addingTimeInterval(-6543)),
     ]
-    
-    static func getMyPets() async -> [Pet] {
-        return pets
-    }
     
     static let medicalRecords = [
         MedicalRecordItem(id: UUID().uuidString, 
@@ -47,8 +43,12 @@ class MockedData {
                           date: Date())
     ]
     
-    static func getMedicalRecords() async -> [MedicalRecordItem] {
-        return medicalRecords
-    }
+    static let events: [PetEvent] = [
+        PetEvent(id: UUID().uuidString, title: "Event1", eventDescription: "Event1", date: Date(), petId: "1", completed: true),
+        PetEvent(id: UUID().uuidString, title: "Event2", eventDescription: "Event2, Event2, Event2\n Event2", date: Date().addingTimeInterval(-1234567), petId: "2", completed: true),
+        PetEvent(id: UUID().uuidString, title: "Event3", eventDescription: "Event3", date: Date().addingTimeInterval(-12345), petId: "4", completed: false),
+        PetEvent(id: UUID().uuidString, title: "Event4", eventDescription: "Event4", date: Date().addingTimeInterval(12345), petId: "4", completed: true),
+        PetEvent(id: UUID().uuidString, title: "Event5", eventDescription: "Event5", date: Date().addingTimeInterval(34567), petId: "4", completed: false)
+    ]
     
 }

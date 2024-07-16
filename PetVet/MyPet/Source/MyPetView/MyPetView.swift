@@ -30,6 +30,8 @@ struct MyPetView: View {
         }
         .navigationDestination(for: Navigation.PetPath.self) { path in
             switch path {
+            case .addReminder:
+                ManageEventsView(viewModel: .init(dataSource: viewModel.dataSource, pet: viewModel.pet))
             case .addMedicalRecord:
                 ManageMedicalRecordView(viewModel: .init(dataSource: viewModel.dataSource,
                                                          pet: viewModel.pet))
@@ -38,7 +40,7 @@ struct MyPetView: View {
             case .medicalRecords:
                 MedicalRecordsView(viewModel: .init(dataSource: viewModel.dataSource, pet: pet))
             case .reminders:
-                Text("Reminders")
+                EventsView(viewModel: .init(dataSource: viewModel.dataSource, pet: viewModel.pet))
             }
         }
     }
@@ -97,13 +99,7 @@ struct MyPetView: View {
             }
             
             if viewModel.medicalRecords.isEmpty {
-                HStack {
-
-                    NoDataView(image: Image(systemName: "syringe.fill"), color: .appOrangeLight)
-                    NoDataView(image: Image(systemName: "stethoscope"), color: .appOrangeLight)
-                    NoDataView(image: Image(systemName: "pills.fill"), color: .appOrangeLight)
-
-                }
+                NoDataView(.medicalRecords)
                 .frame(height: 120)
             } else {
                 
@@ -139,22 +135,34 @@ struct MyPetView: View {
                 Text("Events")
                     .font(.largeTitle)
                 Spacer()
-                Image.systemIconChevronRight
+                
+                if viewModel.events.isEmpty {
+                    Image.systemIconPlus
+                } else {
+                    Image.systemIconChevronRight
+                }
             }
             .foregroundStyle(.appText)
             .asButton {
-                navigation.navigationPath.append(Navigation.PetPath.reminders)
+                if viewModel.events.isEmpty {
+                    navigation.navigationPath.append(Navigation.PetPath.addReminder)
+                } else {
+                    navigation.navigationPath.append(Navigation.PetPath.reminders)
+                }
             }
             
-            HStack {
-
-                NoDataView(image: Image(systemName: "bell.fill"))
-                NoDataView(image: Image(systemName: "calendar"))
-                NoDataView(image: Image(systemName: "clock.fill"))
-                
-
+            if viewModel.events.isEmpty {
+                NoDataView(.events)
+                    .frame(height: 120)
+            } else {
+                VStack(spacing: 0) {
+                    ForEach(viewModel.events) { event in
+                        EventCell(event: event,
+                                  isLast: viewModel.events.isLast(event),
+                                  isFirst: viewModel.events.isFirst(event))
+                    }
+                }
             }
-            .frame(height: 120)
             
         }
     }
@@ -164,12 +172,14 @@ struct MyPetView: View {
     let dataSource = DataSource()
     return MyPetView(viewModel: .init(dataSource: dataSource,
                              pet: MockedData.pets.first!,
-                             medicalRecords: Array(MockedData.medicalRecords.prefix(3))))
+                                      medicalRecords: Array(MockedData.medicalRecords.prefix(3)), 
+                                      events: Array(MockedData.events.prefix(3))))
 }
 
 #Preview {
     let dataSource = DataSource()
     return MyPetView(viewModel: .init(dataSource: dataSource,
                              pet: MockedData.pets.first!,
-                             medicalRecords: []))
+                                      medicalRecords: [], 
+                                      events: []))
 }

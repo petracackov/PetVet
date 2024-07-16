@@ -20,7 +20,7 @@ struct AppTextField: View {
                     .foregroundStyle(.clear)
                 if !text.isEmpty {
                     styledTitle()
-                        .foregroundStyle(.appGray1)
+                        .foregroundStyle(.appGray3)
                         .matchedGeometryEffect(id: "label", in: internalNamespace)
                 }
             }
@@ -41,7 +41,7 @@ struct AppTextField: View {
             .clipShape(.capsule)
             .overlay {
                     Capsule()
-                    .strokeBorder(.appGray1, lineWidth: 1)
+                    .strokeBorder(.appGray3, lineWidth: 1)
                 }
             
             

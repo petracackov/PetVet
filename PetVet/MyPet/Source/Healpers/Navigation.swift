@@ -17,11 +17,17 @@ class Navigation: ObservableObject {
         case editPet
         case medicalRecords
         case addMedicalRecord
+        case addReminder
     }
     
     enum MedicalRecordsPath: Hashable {
         case addMedicalRecord
         case editMedicalRecord(MedicalRecordItem)
+    }
+    
+    enum EventsPath: Hashable {
+        case addEvent(Pet)
+        case manageEvent(PetEvent)
     }
     
     enum MyPetsPath: Hashable {

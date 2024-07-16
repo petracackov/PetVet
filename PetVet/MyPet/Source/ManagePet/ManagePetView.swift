@@ -17,18 +17,6 @@ struct ManagePetView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
-//            if viewModel.isEditMode {
-//                HStack {
-//                    Spacer()
-//                    Image.systemIconTrash
-//                        .resizable()
-//                        .frame(width: 24, height: 24)
-//                        .asButton {
-//                             viewModel.deletePet()
-//                        }
-//                        .foregroundStyle(.appText)
-//                }
-//            }
             
             AppTextField(text: $viewModel.name, title: "Name")
             
@@ -45,16 +33,8 @@ struct ManagePetView: View {
             AppButton(title: "Save", action: viewModel.savePet)
         }
         .padding()
-        .toolbar(content: {
-            if viewModel.isEditMode {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Image.systemIconTrash
-                        .foregroundStyle(.appPurple)
-                        .asButton {
-                            viewModel.deletePet()
-                        }
-                }
-            }
+        .toolbarItem(.systemIconTrash, isVisible: viewModel.isEditMode, action: {
+            viewModel.deletePet()
         })
         .confirmationDialog("", isPresented: $isPresented, actions: {
             Text("Camera")

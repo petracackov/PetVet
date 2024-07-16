@@ -15,7 +15,9 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             if viewModel.pets.isEmpty {
-                noDataView()
+                NoDataView(.generic) {
+                    navigation.navigationPath.append(Navigation.MyPetsPath.createNewPet)
+                }
             } else if viewModel.pets.count == 1, let pet = viewModel.pets.first  {
                 MyPetView(viewModel: .init(dataSource: viewModel.dataSource, pet: pet))
             } else {
@@ -34,17 +36,4 @@ struct HomeView: View {
         
     }
     
-    private func noDataView() -> some View {
-        VStack {
-            NoDataView()
-            Image.systemIconPlus
-                .resizable()
-                .frame(width: 40, height: 40)
-                .scaledToFit()
-                .foregroundStyle(.appPurple)
-        }
-        .asButton {
-            navigation.navigationPath.append(Navigation.MyPetsPath.createNewPet)
-        }
-    }
 }

@@ -54,3 +54,44 @@ extension View {
     }
     
 }
+
+extension View {
+    
+    
+    func appGradient() -> some View {
+        
+        self.background(LinearGradient(colors: [.appPurpleGradient, .appBackground], startPoint: .bottom, endPoint: .top))
+        
+    }
+    
+}
+
+fileprivate struct ToolbarItemModifier: ViewModifier {
+    
+    let icon: Image
+    let isVisible: Bool
+    let action: () -> Void
+    
+    func body(content: Content) -> some View {
+        content
+            .toolbar {
+                if isVisible {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        icon.asButton {
+                            action()
+                        }
+                    }
+                }
+            }
+    }
+    
+}
+
+extension View {
+    
+    func toolbarItem(_ icon: Image, isVisible: Bool = true, action: @escaping () -> Void) -> some View {
+        modifier(ToolbarItemModifier(icon: icon, isVisible: isVisible, action: action))
+    }
+    
+}
+

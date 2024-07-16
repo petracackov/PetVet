@@ -18,14 +18,11 @@ struct DashboardScreen: View {
         NavigationStack(path: $navigation.navigationPath) {
             ZStack(alignment: .bottom) {
                 TabView(selection: $viewModel.dashboardView) {
-                    NoDataView()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(.red)
+                    EventsView(viewModel: .init(dataSource: viewModel.dataSource))
                         .toolbar(.hidden, for: .tabBar)
                         .tag(DashboardItem.events)
                     HomeView(viewModel: .init(dataSource: viewModel.dataSource))
-                        .toolbar(.hidden, for: .tabBar)
-                        .ignoresSafeArea(edges: .bottom)
+                        .toolbar(.hidden, for: .navigationBar, .bottomBar, .tabBar)
                         .tag(DashboardItem.home)
                     SettingsView(viewModel: .init(dataSource: viewModel.dataSource))
                         .toolbar(.hidden, for: .tabBar)
@@ -38,10 +35,7 @@ struct DashboardScreen: View {
             }
             .ignoresSafeArea(edges: .bottom)
             .navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(.appPurpleGradient, for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
             .navigationTitle(viewModel.dashboardView.title)
-
             
         }
         .accentColor(.appPurple)

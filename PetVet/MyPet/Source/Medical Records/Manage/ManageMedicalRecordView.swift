@@ -12,26 +12,24 @@ struct ManageMedicalRecordView: View {
     @State var viewModel: ManageMedicalRecordViewModel
     
     var body: some View {
-        VStack {
+        VStack(spacing: 10) {
+            AppTextField(text: $viewModel.title, title: "Title")
+            AppTextField(text: $viewModel.description, title: "Description")
+            
+            AppDatePicker(date: $viewModel.date, title: "Date:", components: .date)
+                .padding(.top, 20)
             Spacer()
             
-            TextField("Title", text: $viewModel.title)
-                .textFieldStyle(.roundedBorder)
-            TextField("Description", text: $viewModel.description)
-                .textFieldStyle(.roundedBorder)
-            DatePicker("Date", selection: $viewModel.date, displayedComponents: [.date])
-                .datePickerStyle(.compact)
-            Spacer()
-            
-            Text("Save")
-                .frame(maxWidth: .infinity)
-                .frame(height: 60)
-                .background(.red)
-                .asButton {
-                    viewModel.save()
-                }
+            AppButton(title: "Save") {
+                viewModel.save()
+            }
+
         }
         .padding()
+        .appGradient()
+        .toolbarItem(.systemIconTrash, isVisible: viewModel.isEditing) {
+            viewModel.deleteMedicalRecord()
+        }
     }
 }
 

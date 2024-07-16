@@ -36,6 +36,9 @@ class NotificationManager {
         case medicalRecordAdded
         case medicalRecordUpdated
         case medicalRecordDeleted
+        case eventAdded
+        case eventUpdated
+        case eventDeleted
         
         var name: Notification.Name {
             switch self {
@@ -45,10 +48,18 @@ class NotificationManager {
             case .medicalRecordAdded: Notification.Name("medicalRecordAdded")
             case .medicalRecordUpdated: Notification.Name("medicalRecordUpdated")
             case .medicalRecordDeleted: Notification.Name("medicalRecordDeleted")
+            case .eventAdded: Notification.Name("eventAdded")
+            case .eventUpdated: Notification.Name("eventUpdated")
+            case .eventDeleted: Notification.Name("eventDeleted")
             }
         }
     }
     
+}
+
+struct EventNotificationId: CodableDataModel {
+    let id: String
+    let petId: String
 }
 
 struct MedicalRecordNotificationId: CodableDataModel {

@@ -15,18 +15,20 @@ struct MyPetsView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(colors: [.appPurpleGradient, .clear], startPoint: .top, endPoint: .bottom)
             ScrollView {
                 VStack(spacing: 20) {
                     ForEach(viewModel.pets, content: petCell)
                 }
                 .padding()
             }
-        }.ignoresSafeArea(edges: .bottom)
+        }
+        .ignoresSafeArea(edges: .bottom)
+        .appGradient()
     }
     
     private func petCell(_ pet: Pet) -> some View {
         ZStack(alignment: .bottomTrailing) {
+            
             if let image = pet.image {
                 Image(uiImage: image)
                     .resizable()
@@ -34,7 +36,11 @@ struct MyPetsView: View {
                     .frame(height: 200)
             } else {
                 Image(pet.species.image)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 200)
             }
+            
             LinearGradient(colors: [.clear, .black.opacity(0.7)], startPoint: .top, endPoint: .bottom)
             
             Text(pet.name)
