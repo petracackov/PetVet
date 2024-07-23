@@ -11,7 +11,6 @@ struct MyPetsView: View {
     
     @EnvironmentObject private var navigation: Navigation
     @State var viewModel: MyPetsViewModel
-    @State var selectedTab: String = ""
     
     var body: some View {
         ZStack {
@@ -28,18 +27,10 @@ struct MyPetsView: View {
     
     private func petCell(_ pet: Pet) -> some View {
         ZStack(alignment: .bottomTrailing) {
-            
-            if let image = pet.image {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 200)
-            } else {
-                Image(pet.species.image)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 200)
-            }
+            Image(uiImage: pet.image ?? UIImage(resource: pet.species.image))
+                .resizable()
+                .scaledToFill()
+                .frame(height: 200)
             
             LinearGradient(colors: [.clear, .black.opacity(0.7)], startPoint: .top, endPoint: .bottom)
             
@@ -51,7 +42,8 @@ struct MyPetsView: View {
         .frame(height: 200)
         .clipShape(.rect(cornerRadius: 20))
         .asButton {
-            navigation.navigationPath.append(Navigation.MyPetsPath.pet(pet))
+            //navigation.navigationPath.append(Navigation.MyPetsPath.pet(pet))
+            viewModel.selectedPet = pet
         }
     }
 }

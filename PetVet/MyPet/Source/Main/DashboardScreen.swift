@@ -21,13 +21,16 @@ struct DashboardScreen: View {
                 content()
     
                 menu()
+                
             }
             .ignoresSafeArea(edges: .bottom)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle(viewModel.dashboardItem.title)
             
+            
         }
         .accentColor(.appPurple)
+
     }
     
     private func content() -> some View {

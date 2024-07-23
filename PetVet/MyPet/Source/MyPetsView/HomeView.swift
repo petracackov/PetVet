@@ -23,6 +23,14 @@ struct HomeView: View {
             } else {
                 MyPetsView(viewModel: viewModel)
             }
+            
+            if let selectedPet = viewModel.selectedPet {
+                MyPetView(viewModel: .init(dataService: viewModel.dataService, pet: selectedPet))
+                    .navigationTitle("")
+                    .toolbarItem(.systemIconChevronLeft, placement: .navigation) {
+                        viewModel.selectedPet = nil
+                    }
+            }
         }
         .navigationDestination(for: Navigation.MyPetsPath.self, destination: { path in
             switch path {

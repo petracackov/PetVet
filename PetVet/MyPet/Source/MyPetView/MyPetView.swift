@@ -28,6 +28,7 @@ struct MyPetView: View {
             .padding(.top, 20)
             .padding(.bottom, 125)
         }
+        .background(.appBackground)
         .navigationDestination(for: Navigation.PetPath.self) { path in
             switch path {
             case .addReminder:

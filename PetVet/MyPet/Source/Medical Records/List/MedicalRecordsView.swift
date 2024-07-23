@@ -36,13 +36,14 @@ struct MedicalRecordsView: View {
         }
         .listStyle(.plain)
         .background(.appBackground)
-//        .appGradient()
-        
         .navigationTitle("Medical record")
         .navigationBarTitleDisplayMode(.inline)
         .toolbarItem(.systemIconPlus, action: {
             navigation.navigationPath.append(Navigation.MedicalRecordsPath.addMedicalRecord)
         })
+        .toolbarItem(.systemIconChevronLeft, placement: .navigation) {
+            navigation.navigationPath.removeLast()
+        }
         .navigationDestination(for: Navigation.MedicalRecordsPath.self, destination: { path in
             switch path {
             case .addMedicalRecord:

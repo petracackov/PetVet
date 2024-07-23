@@ -11,7 +11,6 @@ class Navigation: ObservableObject {
 
     @Published var navigationPath = NavigationPath()
     
-    
     enum PetPath: Hashable {
         case reminders
         case editPet

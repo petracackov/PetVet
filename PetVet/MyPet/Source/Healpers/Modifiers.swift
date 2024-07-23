@@ -69,17 +69,24 @@ extension View {
 fileprivate struct ToolbarItemModifier: ViewModifier {
     
     let icon: Image
+    var placement: ToolbarItemPlacement
     let isVisible: Bool
     let action: () -> Void
     
     func body(content: Content) -> some View {
         content
+            .navigationBarBackButtonHidden()
             .toolbar {
                 if isVisible {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        icon.asButton {
-                            action()
-                        }
+                    ToolbarItem(placement: placement) {
+                        icon
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 20)
+                            .asButton {
+                                action()
+                            }
+//                            .offset(x: -16)
                     }
                 }
             }
@@ -89,8 +96,8 @@ fileprivate struct ToolbarItemModifier: ViewModifier {
 
 extension View {
     
-    func toolbarItem(_ icon: Image, isVisible: Bool = true, action: @escaping () -> Void) -> some View {
-        modifier(ToolbarItemModifier(icon: icon, isVisible: isVisible, action: action))
+    func toolbarItem(_ icon: Image, placement: ToolbarItemPlacement = .topBarTrailing, isVisible: Bool = true, action: @escaping () -> Void) -> some View {
+        modifier(ToolbarItemModifier(icon: icon, placement: placement, isVisible: isVisible, action: action))
     }
     
 }

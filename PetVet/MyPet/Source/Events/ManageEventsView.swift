@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ManageEventsView: View {
     
+    @EnvironmentObject private var navigation: Navigation
     @State var viewModel: ManageEventsViewModel
     
     var body: some View {
@@ -34,8 +35,13 @@ struct ManageEventsView: View {
         .appGradient()
         .animation(.easeInOut, value: viewModel.addReminder)
         .animation(.easeInOut, value: viewModel.eventReminderTime)
+        .navigationTitle(viewModel.isEditingMode ? "Edit event" : "Create event")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbarItem(.systemIconTrash, isVisible: viewModel.isEditingMode) {
             viewModel.delete()
+        }
+        .toolbarItem(.systemIconChevronLeft, placement: .navigation) {
+            navigation.navigationPath.removeLast()
         }
     }
     

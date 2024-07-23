@@ -10,6 +10,7 @@ import SwiftData
 
 struct ManagePetView: View {
     
+    @EnvironmentObject private var navigation: Navigation
     @State var viewModel: ManagePetViewModel
     @State var isPresented = false
     @State var cameraSheetIsPresented = false
@@ -33,9 +34,14 @@ struct ManagePetView: View {
             AppButton(title: "Save", action: viewModel.savePet)
         }
         .padding()
+        .navigationTitle(viewModel.isEditMode ? "Edit your pet" : "Create your pet")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbarItem(.systemIconTrash, isVisible: viewModel.isEditMode, action: {
             viewModel.deletePet()
         })
+        .toolbarItem(.systemIconChevronLeft, placement: .navigation) {
+            navigation.navigationPath.removeLast()
+        }
         .confirmationDialog("", isPresented: $isPresented, actions: {
             Text("Camera")
                 .asButton {

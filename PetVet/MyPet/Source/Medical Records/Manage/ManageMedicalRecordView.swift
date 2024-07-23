@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ManageMedicalRecordView: View {
     
+    @EnvironmentObject private var navigation: Navigation
     @State var viewModel: ManageMedicalRecordViewModel
     
     var body: some View {
@@ -27,8 +28,13 @@ struct ManageMedicalRecordView: View {
         }
         .padding()
         .appGradient()
+        .navigationTitle(viewModel.isEditing ? "Edit medical record" : "Create medical record")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbarItem(.systemIconTrash, isVisible: viewModel.isEditing) {
             viewModel.deleteMedicalRecord()
+        }
+        .toolbarItem(.systemIconChevronLeft, placement: .navigation) {
+            navigation.navigationPath.removeLast()
         }
     }
 }

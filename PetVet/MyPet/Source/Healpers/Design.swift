@@ -22,6 +22,7 @@ extension Image {
     static var systemIconTrash: Image { UIImage.systemIconTrash.image }
     static var systemIconTortoiseFill: Image {  UIImage.systemIconTortoiseFill.image }
     static var systemIconChevronRight: Image {  UIImage.systemIconChevronRight.image }
+    static var systemIconChevronLeft: Image {  UIImage.systemIconChevronLeft.image }
     static var systemIconEdit: Image {  UIImage.systemIconEdit.image }
     static var systemIconCamera: Image {  UIImage.systemIconCamera.image }
     static var systemIconSyringe: Image { UIImage.systemIconSyringe.image }
@@ -42,6 +43,7 @@ extension UIImage {
     static var systemIconTrash: UIImage { .init(systemName: "trash")! }
     static var systemIconTortoiseFill: UIImage { .init(systemName: "tortoise.fill")! }
     static var systemIconChevronRight: UIImage { .init(systemName: "chevron.right")! }
+    static var systemIconChevronLeft: UIImage { .init(systemName: "chevron.left")! }
     static var systemIconEdit: UIImage { .init(systemName: "square.and.pencil")! }
     static var systemIconCamera: UIImage { .init(systemName: "camera")! }
     static var systemIconSyringe: UIImage { .init(systemName: "syringe.fill")! }

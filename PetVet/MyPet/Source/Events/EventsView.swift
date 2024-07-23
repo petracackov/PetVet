@@ -33,6 +33,9 @@ struct EventsView: View {
             guard let pet = viewModel.pet else { return }
             navigation.navigationPath.append(Navigation.EventsPath.addEvent(pet))
         })
+        .toolbarItem(.systemIconChevronLeft, placement: .navigation, isVisible: viewModel.isPetView) {
+            navigation.navigationPath.removeLast()
+        }
         .overlay {
             if viewModel.events.isEmpty {
                 NoDataView(.events, title: "You have no upcoming events")
