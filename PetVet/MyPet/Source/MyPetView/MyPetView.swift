@@ -31,7 +31,7 @@ struct MyPetView: View {
         .navigationDestination(for: Navigation.PetPath.self) { path in
             switch path {
             case .addReminder:
-                ManageEventsView(viewModel: .init(dataService: viewModel.dataService, pet: viewModel.pet))
+                ManageEventsView(viewModel: .init(dataService: viewModel.dataService, petInfo: .init(pet: viewModel.pet)))
             case .addMedicalRecord:
                 ManageMedicalRecordView(viewModel: .init(dataService: viewModel.dataService,
                                                          pet: viewModel.pet))

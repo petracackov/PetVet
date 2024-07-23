@@ -10,7 +10,6 @@ import Foundation
  IMPROVEMENTS:
  
  - improve animations in lists when adding removing item (manually remove item don't just reload whole view)
- - erro handling
  - tab navigation redesign -> some strange paddings to safe area are there
  - animation transition from pets list to view -> the images and names should animate into each other
 
@@ -22,6 +21,8 @@ import Foundation
  - my vet info section
  - sync with iCloud
  - notifications
+ - error handling
+ - alerts
  
  */
 

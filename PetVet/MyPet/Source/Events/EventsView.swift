@@ -20,7 +20,6 @@ struct EventsView: View {
                           isFirst: viewModel.events.isFirst(event), 
                           showPet: !viewModel.isPetView)
                 .asButton {
-                    guard let pet = viewModel.pet else { return }
                     navigation.navigationPath.append(Navigation.EventsPath.manageEvent(event))
                 }
             }
@@ -43,13 +42,11 @@ struct EventsView: View {
         .navigationDestination(for: Navigation.EventsPath.self) { path in
             switch path {
             case .addEvent(let pet):
-                ManageEventsView(viewModel: .init(dataService: viewModel.dataService, pet: pet))
+                ManageEventsView(viewModel: .init(dataService: viewModel.dataService, petInfo: .init(pet: pet)))
             case .manageEvent(let event):
-                Text("Manage events")
-                //                    ManageEventsView(viewModel: .init(dataSource: viewModel.dataSource, pet: <#T##Pet#>, event: <#T##PetEvent?#>))
+                ManageEventsView(viewModel: .init(dataService: viewModel.dataService, petInfo: event.pet, event: event))
             }
         }
-//        .animation(.easeInOut, value: viewModel.events)
         
     }
     

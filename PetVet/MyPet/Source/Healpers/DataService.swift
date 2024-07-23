@@ -44,9 +44,9 @@ class DataService {
         NotificationManager.shared.postNotification(.eventUpdated, data: try? notificationData.dictionary())
     }
     
-    func createEvent(for pet: Pet, title: String, description: String, date: Date, completed: Bool) {
+    func createEvent(for pet: PetEvent.PetInfo, title: String, description: String, date: Date, completed: Bool) {
         let id = UUID().uuidString
-        let event = PetEvent(id: id, title: title, eventDescription: description, date: date, pet: .init(pet: pet), completed: completed)
+        let event = PetEvent(id: id, title: title, eventDescription: description, date: date, pet: pet, completed: completed)
         dataSource.insert(event)
         let notificationData = PetNotificationId(id: id)
         NotificationManager.shared.postNotification(.eventAdded, data: try? notificationData.dictionary())

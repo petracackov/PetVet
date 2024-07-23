@@ -10,7 +10,7 @@ import Foundation
 @Observable class ManageEventsViewModel {
     
     private let dataService: DataService
-    private let pet: Pet
+    private let petInfo: PetEvent.PetInfo
     private let event: PetEvent?
     
     var isEditingMode: Bool {
@@ -33,9 +33,9 @@ import Foundation
         case custom = "Custom"
     }
     
-    init(dataService: DataService, pet: Pet, event: PetEvent? = nil) {
+    init(dataService: DataService, petInfo: PetEvent.PetInfo, event: PetEvent? = nil) {
         self.dataService = dataService
-        self.pet = pet
+        self.petInfo = petInfo
         self.event = event
         self.title = event?.title ?? ""
         self.description = event?.eventDescription ?? ""
@@ -47,7 +47,7 @@ import Foundation
         if let event {
             dataService.updateEvent(event, title: title, description: description, date: date, completed: completed)
         } else if !title.isEmpty {
-            dataService.createEvent(for: pet, title: title, description: description, date: date, completed: completed)
+            dataService.createEvent(for: petInfo, title: title, description: description, date: date, completed: completed)
         } else {
             AppError.handle(NSError())
         }
