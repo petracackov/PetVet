@@ -33,13 +33,13 @@ struct SettingsView: View {
         .navigationDestination(for: Navigation.SettingsPath.self) { path in
             switch path {
             case .addNewPet:
-                ManagePetView(viewModel: ManagePetViewModel(dataSource: viewModel.dataSource, pet: nil))
+                ManagePetView(viewModel: ManagePetViewModel(dataService: viewModel.dataService, pet: nil))
             }
         }
     }
 }
 
 #Preview {
-    let dataSource = DataSource()
-    return SettingsView(viewModel: .init(dataSource: dataSource))
+    let dataService = DataService(dataSource: DataSource.shared)
+    return SettingsView(viewModel: .init(dataService: dataService))
 }

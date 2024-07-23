@@ -74,9 +74,11 @@ struct ManageEventsView: View {
 }
 
 #Preview {
-    ManageEventsView(viewModel: .init(dataSource: DataSource(), pet: MockedData.pets.first!))
+    let dataService = DataService(dataSource: DataSource.shared)
+    return ManageEventsView(viewModel: .init(dataService: dataService, pet: MockedData.pets.first!))
 }
 
 #Preview {
-    ManageEventsView(viewModel: .init(dataSource: DataSource(), pet: MockedData.pets.first!, event: MockedData.events.first!))
+    let dataService = DataService(dataSource: DataSource.shared)
+    return ManageEventsView(viewModel: .init(dataService: dataService, pet: MockedData.pets.first!, event: MockedData.events.first!))
 }

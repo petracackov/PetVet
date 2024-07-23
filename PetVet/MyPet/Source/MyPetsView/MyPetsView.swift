@@ -58,6 +58,6 @@ struct MyPetsView: View {
 
 
 #Preview {
-    let dataSource = DataSource()
-    return MyPetsView(viewModel: .init(pets: MockedData.pets, dataSource: dataSource))
+    let dataService = DataService(dataSource: DataSource.shared)
+    return MyPetsView(viewModel: .init(pets: MockedData.pets, dataService: dataService))
 }

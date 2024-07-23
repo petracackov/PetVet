@@ -46,10 +46,10 @@ struct MedicalRecordsView: View {
         .navigationDestination(for: Navigation.MedicalRecordsPath.self, destination: { path in
             switch path {
             case .addMedicalRecord:
-                ManageMedicalRecordView(viewModel: .init(dataSource: viewModel.dataSource,
+                ManageMedicalRecordView(viewModel: .init(dataService: viewModel.dataService,
                                                            pet: viewModel.pet))
             case .editMedicalRecord(let medicalRecord):
-                ManageMedicalRecordView(viewModel: .init(dataSource: viewModel.dataSource,
+                ManageMedicalRecordView(viewModel: .init(dataService: viewModel.dataService,
                                                            medicalRecord: medicalRecord,
                                                            pet: viewModel.pet))
             }
@@ -59,15 +59,15 @@ struct MedicalRecordsView: View {
 }
 
 #Preview {
-    let dataSource = DataSource()
-    return MedicalRecordsView(viewModel: .init(dataSource: dataSource,
+    let dataService = DataService(dataSource: DataSource.shared)
+    return MedicalRecordsView(viewModel: .init(dataService: dataService,
                                                medicalRecords: MockedData.medicalRecords,
                                                pet: MockedData.pets.first!))
 }
 
 #Preview {
-    let dataSource = DataSource()
-    return MedicalRecordsView(viewModel: .init(dataSource: dataSource,
+    let dataService = DataService(dataSource: DataSource.shared)
+    return MedicalRecordsView(viewModel: .init(dataService: dataService,
                                                medicalRecords: [],
                                                pet: MockedData.pets.first!))
 }

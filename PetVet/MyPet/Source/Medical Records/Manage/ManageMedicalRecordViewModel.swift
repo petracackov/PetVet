@@ -9,7 +9,7 @@ import Foundation
 
 @Observable class ManageMedicalRecordViewModel {
     
-    private let dataSource: DataSource
+    private let dataService: DataService
     private let medicalRecord: MedicalRecordItem?
     private let pet: Pet
     var title: String
@@ -20,9 +20,9 @@ import Foundation
         medicalRecord != nil
     }
     
-    init(dataSource: DataSource, medicalRecord: MedicalRecordItem? = nil, pet: Pet) {
+    init(dataService: DataService, medicalRecord: MedicalRecordItem? = nil, pet: Pet) {
         print("init", "ManageMedicalRecordViewModel")
-        self.dataSource = dataSource
+        self.dataService = dataService
         self.medicalRecord = medicalRecord
         self.pet = pet
         self.title = medicalRecord?.title ?? ""
@@ -32,28 +32,17 @@ import Foundation
     
     func save() {
         if let medicalRecord {
-            medicalRecord.title = title
-            medicalRecord.itemDescription = description
-            medicalRecord.date = date
-            let notificationData = try? MedicalRecordNotificationId(id: medicalRecord.id, petId: medicalRecord.petId).dictionary()
-            NotificationManager.shared.postNotification(.medicalRecordUpdated, data: notificationData)
+            dataService.updateMedicalRecord(medicalRecord, title: title, description: description, date: date)
         } else if !description.isEmpty, !title.isEmpty {
-            let medicalRecord = MedicalRecordItem(title: title, itemDescription: description, petId: pet.id, date: date)
-            dataSource.insert(medicalRecord)
-            let notificationData = try? MedicalRecordNotificationId(id: medicalRecord.id, petId: medicalRecord.petId).dictionary()
-            NotificationManager.shared.postNotification(.medicalRecordAdded, data: notificationData)
+            dataService.createMedicalRecord(for: pet, title: title, description: description, date: date)
         } else {
-            // TODO: handle error
-            print("No data error")
+            AppError.handle(NSError())
         }
     }
     
     func deleteMedicalRecord() {
         guard let medicalRecord else { return }
-        let notificationData = try? MedicalRecordNotificationId(id: medicalRecord.id, petId: medicalRecord.petId).dictionary()
-        
-        dataSource.delete(medicalRecord)
-        NotificationManager.shared.postNotification(.medicalRecordDeleted, data: notificationData)
+        dataService.deleteMedicalRecord(medicalRecord)
     }
     
 }

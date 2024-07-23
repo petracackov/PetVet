@@ -10,7 +10,7 @@ import _PhotosUI_SwiftUI
 
 @Observable class ManagePetViewModel {
     
-    private var dataSource: DataSource
+    private let dataService: DataService
     private let pet: Pet?
     var name: String
     var species: Pet.Species
@@ -23,10 +23,10 @@ import _PhotosUI_SwiftUI
         pet != nil
     }
     
-    init(dataSource: DataSource, pet: Pet?) {
+    init(dataService: DataService, pet: Pet?) {
         print("init", "ManagePetViewModel")
         self.pet = pet
-        self.dataSource = dataSource
+        self.dataService = dataService
         name = pet?.name ?? ""
         species = pet?.species ?? .unknown
         image = pet?.image
@@ -36,29 +36,17 @@ import _PhotosUI_SwiftUI
         
     func savePet() {
         if let pet {
-            pet.name = name
-            pet.species = species
-            pet.image = image
-            pet.birthDate = date
-            let notificationData = PetNotificationId(id: pet.id)
-            NotificationManager.shared.postNotification(.petUpdated, data: try? notificationData.dictionary())
+            dataService.updatePet(pet, name: name, species: species, image: image, birthDate: date)
         } else if !name.isEmpty {
-            let id = UUID().uuidString
-            let pet = Pet(id: id, name: name, species: species, image: image, gender: gender, birthDate: date)
-            dataSource.insert(pet)
-            let notificationData = PetNotificationId(id: id)
-            NotificationManager.shared.postNotification(.petAdded, data: try? notificationData.dictionary())
+            dataService.createPet(name: name, species: species, image: image, gender: gender, birthDate: date)
         } else {
-            // TODO: handle error
-            print("No data error")
+            AppError.handle(NSError())
         }
     }
     
     func deletePet() {
         guard let pet else { return }
-        dataSource.delete(pet)
-        let notificationData = PetNotificationId(id: pet.id)
-        NotificationManager.shared.postNotification(.petDeleted, data: try? notificationData.dictionary())
+        dataService.deletePet(pet)
     }
     
     func onImageSelected(_ imageItem: PhotosPickerItem) {
@@ -72,8 +60,7 @@ import _PhotosUI_SwiftUI
                     throw NSError()
                 }
             } catch {
-                // TODO: handle error
-                print("error")
+                AppError.handle(error)
             }
         }
     }

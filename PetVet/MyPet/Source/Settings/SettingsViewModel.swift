@@ -9,11 +9,11 @@ import Foundation
 
 @Observable class SettingsViewModel {
     
-    let dataSource: DataSource
+    let dataService: DataService
     
-    init(dataSource: DataSource) {
+    init(dataService: DataService) {
         print("init", "SettingsViewModel")
-        self.dataSource = dataSource
+        self.dataService = dataService
     }
     
 }

@@ -31,28 +31,31 @@ struct MyPetView: View {
         .navigationDestination(for: Navigation.PetPath.self) { path in
             switch path {
             case .addReminder:
-                ManageEventsView(viewModel: .init(dataSource: viewModel.dataSource, pet: viewModel.pet))
+                ManageEventsView(viewModel: .init(dataService: viewModel.dataService, pet: viewModel.pet))
             case .addMedicalRecord:
-                ManageMedicalRecordView(viewModel: .init(dataSource: viewModel.dataSource,
+                ManageMedicalRecordView(viewModel: .init(dataService: viewModel.dataService,
                                                          pet: viewModel.pet))
             case .editPet:
-                ManagePetView(viewModel: ManagePetViewModel(dataSource: viewModel.dataSource, pet: pet))
+                ManagePetView(viewModel: ManagePetViewModel(dataService: viewModel.dataService, pet: pet))
             case .medicalRecords:
-                MedicalRecordsView(viewModel: .init(dataSource: viewModel.dataSource, pet: pet))
+                MedicalRecordsView(viewModel: .init(dataService: viewModel.dataService, pet: pet))
             case .reminders:
-                EventsView(viewModel: .init(dataSource: viewModel.dataSource, pet: viewModel.pet))
+                EventsView(viewModel: .init(dataService: viewModel.dataService, pet: viewModel.pet))
             }
         }
     }
     
     private func generalInfo() -> some View {
         Group {
-            Image(uiImage: pet.image ?? UIImage())
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(height: 200)
-                .clipShape(.rect(cornerRadius: 10))
-            
+            ZStack {
+                Rectangle().foregroundStyle(.appGray3.opacity(0.2))
+                Image(uiImage: pet.image ?? UIImage(resource: pet.species.image))
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(height: 200)
+                    
+            }
+            .clipShape(.rect(cornerRadius: 10))
             HStack {
                 Text(pet.name)
                     .font(.largeTitle)
@@ -159,7 +162,8 @@ struct MyPetView: View {
                     ForEach(viewModel.events) { event in
                         EventCell(event: event,
                                   isLast: viewModel.events.isLast(event),
-                                  isFirst: viewModel.events.isFirst(event))
+                                  isFirst: viewModel.events.isFirst(event),
+                                  showPet: false)
                     }
                 }
             }
@@ -169,16 +173,16 @@ struct MyPetView: View {
 }
 
 #Preview {
-    let dataSource = DataSource()
-    return MyPetView(viewModel: .init(dataSource: dataSource,
-                             pet: MockedData.pets.first!,
-                                      medicalRecords: Array(MockedData.medicalRecords.prefix(3)), 
+    let dataService = DataService(dataSource: DataSource.shared)
+    return MyPetView(viewModel: .init(dataService: dataService,
+                             pet: MockedData.pets[1],
+                                      medicalRecords: Array(MockedData.medicalRecords.prefix(3)),
                                       events: Array(MockedData.events.prefix(3))))
 }
 
 #Preview {
-    let dataSource = DataSource()
-    return MyPetView(viewModel: .init(dataSource: dataSource,
+    let dataService = DataService(dataSource: DataSource.shared)
+    return MyPetView(viewModel: .init(dataService: dataService,
                              pet: MockedData.pets.first!,
                                       medicalRecords: [], 
                                       events: []))

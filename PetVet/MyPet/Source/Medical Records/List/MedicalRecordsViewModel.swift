@@ -9,14 +9,14 @@ import SwiftUI
 
 @Observable class MedicalRecordsViewModel: Cancelable {
     
-    let dataSource: DataSource
+    let dataService: DataService
     let pet: Pet
     var medicalRecords: [MedicalRecordItem] = []
     
     /// For preview
-    init(dataSource: DataSource, medicalRecords: [MedicalRecordItem], pet: Pet) {
+    init(dataService: DataService, medicalRecords: [MedicalRecordItem], pet: Pet) {
         print("init", "MedicalRecordsViewModel")
-        self.dataSource = dataSource
+        self.dataService = dataService
         self.medicalRecords = medicalRecords
         self.pet = pet
         
@@ -24,8 +24,8 @@ import SwiftUI
     }
     
     /// Fetches the data and assigns listeners
-    convenience init(dataSource: DataSource, pet: Pet) {
-        self.init(dataSource: dataSource, medicalRecords: [], pet: pet)
+    convenience init(dataService: DataService, pet: Pet) {
+        self.init(dataService: dataService, medicalRecords: [], pet: pet)
         
         assignListeners()
         fetchMedicalRecords()
@@ -46,22 +46,16 @@ import SwiftUI
     
     private func fetchMedicalRecords() {
         do {
-            let petId = pet.id
-            medicalRecords = try dataSource.fetch(type: MedicalRecordItem.self, predicate: #Predicate { medicalRecord in
-                medicalRecord.petId == petId
-            })
+            medicalRecords = try dataService.fetchMedicalRecords(for: pet)
         } catch {
-            // TODO:
-            print(error)
+            AppError.handle(error)
         }
     }
     
     func delete(at offsets: IndexSet) {
         let items = offsets.map { medicalRecords[$0] }
         items.forEach {
-            dataSource.delete($0)
-            let notificationData = try? MedicalRecordNotificationId(id: $0.id, petId: $0.petId).dictionary()
-            NotificationManager.shared.postNotification(.medicalRecordDeleted, data: notificationData)
+            dataService.deleteMedicalRecord($0)
         }
         
     }

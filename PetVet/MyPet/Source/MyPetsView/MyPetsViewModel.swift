@@ -9,22 +9,22 @@ import Foundation
 
 @Observable class MyPetsViewModel: Cancelable {
     
-    let dataSource: DataSource
+    let dataService: DataService
     private(set) var pets: [Pet] = []
     var selectedPet: Pet?
     
     /// For preview
-    init(pets: [Pet], dataSource: DataSource) {
+    init(pets: [Pet], dataService: DataService) {
         print("init", "MyPetsViewModel")
         self.pets = pets
-        self.dataSource = dataSource
+        self.dataService = dataService
         super.init()
     }
     
     /// Fetches the data and assigns listeners
-    convenience init(dataSource: DataSource) {
+    convenience init(dataService: DataService) {
         print("init", "MyPetsViewModel")
-        self.init(pets: [], dataSource: dataSource)
+        self.init(pets: [], dataService: dataService)
         
         fetchMyPets()
         assignListeners()
@@ -32,9 +32,9 @@ import Foundation
     
     func fetchMyPets() {
         do {
-            pets = try dataSource.fetch(type: Pet.self, sortBy: [SortDescriptor(\.name)])
+            self.pets = try dataService.fetchMyPets()
         } catch {
-            print("Fetch failed")
+            AppError.handle(error)
         }
     }
     

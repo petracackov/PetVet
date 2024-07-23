@@ -134,11 +134,11 @@ struct ManagePetView: View {
 }
 
 #Preview {
-    let dataSource = DataSource()
-    return ManagePetView(viewModel: .init(dataSource: dataSource, pet: nil))
+    let dataService = DataService(dataSource: DataSource.shared)
+    return ManagePetView(viewModel: .init(dataService: dataService, pet: nil))
 }
 
 #Preview {
-    let data = DataSource()
-    return ManagePetView(viewModel: ManagePetViewModel(dataSource: data, pet: MockedData.pets.first!))
+    let dataService = DataService(dataSource: DataSource.shared)
+    return ManagePetView(viewModel: ManagePetViewModel(dataService: dataService, pet: MockedData.pets.first!))
 }

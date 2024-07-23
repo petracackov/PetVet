@@ -52,6 +52,8 @@
 		C0375E762C3299FE00167ADF /* ManagePetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E752C3299FE00167ADF /* ManagePetViewModel.swift */; };
 		C0375E7D2C33E67400167ADF /* MedicalRecordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E7C2C33E67400167ADF /* MedicalRecordsView.swift */; };
 		C0375E7F2C33E69700167ADF /* MedicalRecordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E7E2C33E69700167ADF /* MedicalRecordsViewModel.swift */; };
+		C04AA5852C4FBB7A00748AED /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04AA5842C4FBB7A00748AED /* DataService.swift */; };
+		C04AA5872C4FC62F00748AED /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04AA5862C4FC62F00748AED /* Error.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +103,8 @@
 		C0375E752C3299FE00167ADF /* ManagePetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagePetViewModel.swift; sourceTree = "<group>"; };
 		C0375E7C2C33E67400167ADF /* MedicalRecordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalRecordsView.swift; sourceTree = "<group>"; };
 		C0375E7E2C33E69700167ADF /* MedicalRecordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalRecordsViewModel.swift; sourceTree = "<group>"; };
+		C04AA5842C4FBB7A00748AED /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		C04AA5862C4FC62F00748AED /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +284,8 @@
 				C00CA2022C37C77A00383CEB /* Navigation.swift */,
 				C0375E5C2C2EB52A00167ADF /* Extensions.swift */,
 				C0375E702C3298F500167ADF /* Modifiers.swift */,
+				C04AA5842C4FBB7A00748AED /* DataService.swift */,
+				C04AA5862C4FC62F00748AED /* Error.swift */,
 			);
 			path = Healpers;
 			sourceTree = "<group>";
@@ -383,12 +389,14 @@
 				C0375E522C2D5D5400167ADF /* MyPetsViewModel.swift in Sources */,
 				C0375E742C3299DE00167ADF /* ManagePetView.swift in Sources */,
 				C0009F342C41117600A950D1 /* DataSource.swift in Sources */,
+				C04AA5872C4FC62F00748AED /* Error.swift in Sources */,
 				C00CA2032C37C77A00383CEB /* Navigation.swift in Sources */,
 				C00A54C92C42C908008B91F9 /* AppButton.swift in Sources */,
 				C00CA20D2C37EC7400383CEB /* DashboardScreen.swift in Sources */,
 				C0375E5D2C2EB52A00167ADF /* Extensions.swift in Sources */,
 				C00CA2272C3D263300383CEB /* NotificationManager.swift in Sources */,
 				C0009F322C3FC41D00A950D1 /* Cancelable.swift in Sources */,
+				C04AA5852C4FBB7A00748AED /* DataService.swift in Sources */,
 				C00A54C32C427158008B91F9 /* CameraView.swift in Sources */,
 				C00A54DF2C466CCD008B91F9 /* AppDatePicker.swift in Sources */,
 				C00CA2202C3AF86500383CEB /* NoDataView.swift in Sources */,

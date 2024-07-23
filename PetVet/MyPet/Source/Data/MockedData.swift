@@ -44,11 +44,19 @@ class MockedData {
     ]
     
     static let events: [PetEvent] = [
-        PetEvent(id: UUID().uuidString, title: "Event1", eventDescription: "Event1", date: Date(), petId: "1", completed: true),
-        PetEvent(id: UUID().uuidString, title: "Event2", eventDescription: "Event2, Event2, Event2\n Event2", date: Date().addingTimeInterval(-1234567), petId: "2", completed: true),
-        PetEvent(id: UUID().uuidString, title: "Event3", eventDescription: "Event3", date: Date().addingTimeInterval(-12345), petId: "4", completed: false),
-        PetEvent(id: UUID().uuidString, title: "Event4", eventDescription: "Event4", date: Date().addingTimeInterval(12345), petId: "4", completed: true),
-        PetEvent(id: UUID().uuidString, title: "Event5", eventDescription: "Event5", date: Date().addingTimeInterval(34567), petId: "4", completed: false)
+        PetEvent(id: UUID().uuidString, title: "Event1", eventDescription: "Event1", date: Date(), pet: eventPets[0], completed: true),
+        PetEvent(id: UUID().uuidString, title: "Event2", eventDescription: "Event2, Event2, Event2\n Event2", date: Date().addingTimeInterval(-1234567), pet: eventPets[1], completed: true),
+        PetEvent(id: UUID().uuidString, title: "Event3", eventDescription: "Event3", date: Date().addingTimeInterval(-12345), pet: eventPets[2], completed: false),
+        PetEvent(id: UUID().uuidString, title: "Event4", eventDescription: "Event4", date: Date().addingTimeInterval(12345), pet: eventPets[3], completed: true),
+        PetEvent(id: UUID().uuidString, title: "Event5", eventDescription: "Event5", date: Date().addingTimeInterval(34567), pet: eventPets[4], completed: false)
+    ]
+    
+    static let eventPets: [PetEvent.PetInfo] = [
+        .init(id: UUID().uuidString, name: "pet"),
+        .init(id: UUID().uuidString, name: "pet long name"),
+        .init(id: UUID().uuidString, name: "pe"),
+        .init(id: UUID().uuidString, name: "pet really long name"),
+        .init(id: UUID().uuidString, name: "pet"),
     ]
     
 }

@@ -13,7 +13,6 @@ class Strings {
     
 }
 
-// TODO: Put all system icons here
 extension Image {
     
     static var systemIconBell: Image { UIImage.systemIconBell.image }

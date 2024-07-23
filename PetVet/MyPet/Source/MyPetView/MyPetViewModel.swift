@@ -10,15 +10,15 @@ import Combine
 
 @Observable class MyPetViewModel: Cancelable {
     
-    let dataSource: DataSource
+    let dataService: DataService
     private(set) var pet: Pet
     private(set) var medicalRecords: [MedicalRecordItem] = []
     private(set) var events: [PetEvent] = []
     
     /// For preview
-    init(dataSource: DataSource, pet: Pet, medicalRecords: [MedicalRecordItem], events: [PetEvent]) {
+    init(dataService: DataService, pet: Pet, medicalRecords: [MedicalRecordItem], events: [PetEvent]) {
         print("init", "MyPetViewModel")
-        self.dataSource = dataSource
+        self.dataService = dataService
         self.medicalRecords = medicalRecords
         self.pet = pet
         self.events = events
@@ -27,9 +27,9 @@ import Combine
     }
     
     /// Fetches the data and assigns listeners
-    convenience init(dataSource: DataSource, pet: Pet) {
+    convenience init(dataService: DataService, pet: Pet) {
         print("init", "MyPetViewModel")
-        self.init(dataSource: dataSource, pet: pet, medicalRecords: [], events: [])
+        self.init(dataService: dataService, pet: pet, medicalRecords: [], events: [])
         self.assignListeners()
         self.fetchMyPetsMedicalRecords()
         self.fetchMyPetsEvents()
@@ -45,39 +45,25 @@ import Combine
     
     private func fetchPet() {
         do {
-            let petId = self.pet.id
-            let pets = try dataSource.fetch(type: Pet.self, predicate: #Predicate { pet in
-                pet.id == petId
-            })
-            if let pet = pets.first {
-                self.pet = pet
-            } else {
-                throw NSError()
-            }
+            pet = try dataService.fetchPet(id: pet.id)
         } catch {
-            print("Fetch failed")
+            AppError.handle(error)
         }
     }
     
     private func fetchMyPetsEvents() {
         do {
-            let petId = pet.id
-            self.events = try dataSource.fetch(type: PetEvent.self, fetchLimit: 3, predicate: #Predicate { event in
-                event.petId == petId
-            }, sortBy: [SortDescriptor(\.date)])
+            events = try dataService.fetchEvents(for: pet, fetchLimit: 3)
         } catch {
-            print("Fetch failed")
+            AppError.handle(error)
         }
     }
     
     private func fetchMyPetsMedicalRecords() {
         do {
-            let petId = pet.id
-            self.medicalRecords = try dataSource.fetch(type: MedicalRecordItem.self, fetchLimit: 3, predicate: #Predicate { medicalRecord in
-                medicalRecord.petId == petId
-            })
+            medicalRecords = try dataService.fetchMedicalRecords(for: pet, fetchLimit: 3)
         } catch {
-            print("Fetch failed")
+            AppError.handle(error)
         }
     }
     

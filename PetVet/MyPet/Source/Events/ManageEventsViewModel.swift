@@ -9,7 +9,7 @@ import Foundation
 
 @Observable class ManageEventsViewModel {
     
-    private let dataSource: DataSource
+    private let dataService: DataService
     private let pet: Pet
     private let event: PetEvent?
     
@@ -33,8 +33,8 @@ import Foundation
         case custom = "Custom"
     }
     
-    init(dataSource: DataSource, pet: Pet, event: PetEvent? = nil) {
-        self.dataSource = dataSource
+    init(dataService: DataService, pet: Pet, event: PetEvent? = nil) {
+        self.dataService = dataService
         self.pet = pet
         self.event = event
         self.title = event?.title ?? ""
@@ -45,28 +45,17 @@ import Foundation
     
     func save() {
         if let event {
-            event.title = title
-            event.eventDescription = description
-            event.date = date
-            let notificationData = EventNotificationId(id: event.id, petId: event.petId)
-            NotificationManager.shared.postNotification(.eventUpdated, data: try? notificationData.dictionary())
+            dataService.updateEvent(event, title: title, description: description, date: date, completed: completed)
         } else if !title.isEmpty {
-            let id = UUID().uuidString
-            let event = PetEvent(id: id, title: title, eventDescription: description, date: date, petId: pet.id, completed: completed)
-            dataSource.insert(event)
-            let notificationData = PetNotificationId(id: id)
-            NotificationManager.shared.postNotification(.eventAdded, data: try? notificationData.dictionary())
+            dataService.createEvent(for: pet, title: title, description: description, date: date, completed: completed)
         } else {
-            // TODO: handle error
-            print("No data error")
+            AppError.handle(NSError())
         }
     }
     
     func delete() {
         guard let event else { return }
-        dataSource.delete(event)
-        let notificationData = try? EventNotificationId(id: event.id, petId: event.petId).dictionary()
-        NotificationManager.shared.postNotification(.eventDeleted, data: notificationData)
+        dataService.deleteEvent(event)
     }
     
 }

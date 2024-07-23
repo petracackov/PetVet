@@ -10,11 +10,11 @@ import SwiftUI
 @Observable class DashboardViewModel {
     
     var dashboardView: DashboardItem = .home
-    let dataSource: DataSource
+    let dataService: DataService
     
-    init(dataSource: DataSource) {
+    init(dataService: DataService) {
         print("init", "DashboardViewModel")
-        self.dataSource = dataSource
+        self.dataService = dataService
     }
     
     enum DashboardItem {

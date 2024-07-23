@@ -19,7 +19,7 @@ struct HomeView: View {
                     navigation.navigationPath.append(Navigation.MyPetsPath.createNewPet)
                 }
             } else if viewModel.pets.count == 1, let pet = viewModel.pets.first  {
-                MyPetView(viewModel: .init(dataSource: viewModel.dataSource, pet: pet))
+                MyPetView(viewModel: .init(dataService: viewModel.dataService, pet: pet))
             } else {
                 MyPetsView(viewModel: viewModel)
             }
@@ -27,9 +27,9 @@ struct HomeView: View {
         .navigationDestination(for: Navigation.MyPetsPath.self, destination: { path in
             switch path {
             case .pet(let pet):
-                MyPetView(viewModel: .init(dataSource: viewModel.dataSource, pet: pet))
+                MyPetView(viewModel: .init(dataService: viewModel.dataService, pet: pet))
             case .createNewPet:
-                ManagePetView(viewModel: ManagePetViewModel(dataSource: viewModel.dataSource, pet: nil))
+                ManagePetView(viewModel: ManagePetViewModel(dataService: viewModel.dataService, pet: nil))
             }
             
         })

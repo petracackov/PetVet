@@ -9,7 +9,7 @@ import SwiftUI
 
 @Observable class EventsViewModel: Cancelable {
     
-    let dataSource: DataSource
+    let dataService: DataService
     /// If pet is provided only events for that pet will be fetched
     let pet: Pet?
     var events: [PetEvent] = []
@@ -19,16 +19,16 @@ import SwiftUI
     }
     
     /// For preview
-    init(dataSource: DataSource, pet: Pet?, events: [PetEvent]) {
+    init(dataService: DataService, pet: Pet?, events: [PetEvent]) {
         self.pet = pet
         self.events = events
-        self.dataSource = dataSource
+        self.dataService = dataService
         super.init()
     }
     
     /// Fetches the data and assigns listeners
-    convenience init(dataSource: DataSource, pet: Pet? = nil) {
-        self.init(dataSource: dataSource, pet: pet, events: [])
+    convenience init(dataService: DataService, pet: Pet? = nil) {
+        self.init(dataService: dataService, pet: pet, events: [])
         
         fetchEvents()
         assignListeners()
@@ -36,17 +36,9 @@ import SwiftUI
     
     func fetchEvents() {
         do {
-            if let pet {
-                let petId = pet.id
-                self.events = try dataSource.fetch(type: PetEvent.self,
-                                                   predicate: #Predicate { event in event.petId == petId },
-                                                   sortBy: [SortDescriptor(\.date)])
-            } else {
-                self.events = try dataSource.fetch(type: PetEvent.self,
-                                                   sortBy: [SortDescriptor(\.date)])
-            }
+            self.events = try dataService.fetchEvents(for: pet)
         } catch {
-            // TODO Handele rror
+            AppError.handle(error)
         }
     }
     
@@ -65,11 +57,8 @@ import SwiftUI
     func delete(at offsets: IndexSet) {
         let items = offsets.map { events[$0] }
         items.forEach {
-            dataSource.delete($0)
-            let notificationData = try? EventNotificationId(id: $0.id, petId: $0.petId).dictionary()
-            NotificationManager.shared.postNotification(.eventDeleted, data: notificationData)
+            dataService.deleteEvent($0)
         }
-        
     }
     
 }

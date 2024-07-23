@@ -18,13 +18,13 @@ struct DashboardScreen: View {
         NavigationStack(path: $navigation.navigationPath) {
             ZStack(alignment: .bottom) {
                 TabView(selection: $viewModel.dashboardView) {
-                    EventsView(viewModel: .init(dataSource: viewModel.dataSource))
+                    EventsView(viewModel: .init(dataService: viewModel.dataService))
                         .toolbar(.hidden, for: .tabBar)
                         .tag(DashboardItem.events)
-                    HomeView(viewModel: .init(dataSource: viewModel.dataSource))
+                    HomeView(viewModel: .init(dataService: viewModel.dataService))
                         .toolbar(.hidden, for: .navigationBar, .bottomBar, .tabBar)
                         .tag(DashboardItem.home)
-                    SettingsView(viewModel: .init(dataSource: viewModel.dataSource))
+                    SettingsView(viewModel: .init(dataService: viewModel.dataService))
                         .toolbar(.hidden, for: .tabBar)
                         .tag(DashboardItem.settings)
                 }

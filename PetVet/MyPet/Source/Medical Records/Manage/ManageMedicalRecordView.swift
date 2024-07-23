@@ -34,8 +34,8 @@ struct ManageMedicalRecordView: View {
 }
 
 #Preview {
-    let dataSource = DataSource()
-    return ManageMedicalRecordView(viewModel: .init(dataSource: dataSource,
+    let dataService = DataService(dataSource: DataSource.shared)
+    return ManageMedicalRecordView(viewModel: .init(dataService: dataService,
                                              medicalRecord: nil,
                                              pet: MockedData.pets.first!))
 }

@@ -17,7 +17,8 @@ struct EventsView: View {
             ForEach(viewModel.events) { event in
                 EventCell(event: event,
                           isLast: viewModel.events.isLast(event),
-                          isFirst: viewModel.events.isFirst(event))
+                          isFirst: viewModel.events.isFirst(event), 
+                          showPet: !viewModel.isPetView)
                 .asButton {
                     guard let pet = viewModel.pet else { return }
                     navigation.navigationPath.append(Navigation.EventsPath.manageEvent(event))
@@ -42,8 +43,9 @@ struct EventsView: View {
         .navigationDestination(for: Navigation.EventsPath.self) { path in
             switch path {
             case .addEvent(let pet):
-                ManageEventsView(viewModel: .init(dataSource: viewModel.dataSource, pet: pet))
+                ManageEventsView(viewModel: .init(dataService: viewModel.dataService, pet: pet))
             case .manageEvent(let event):
+                Text("Manage events")
                 //                    ManageEventsView(viewModel: .init(dataSource: viewModel.dataSource, pet: <#T##Pet#>, event: <#T##PetEvent?#>))
             }
         }
@@ -54,22 +56,22 @@ struct EventsView: View {
 }
 
 #Preview {
-    let dataSource = DataSource()
-    return EventsView(viewModel: .init(dataSource: dataSource,
+    let dataService = DataService(dataSource: DataSource.shared)
+    return EventsView(viewModel: .init(dataService: dataService,
                                 pet: MockedData.pets.first!,
                                 events: MockedData.events))
 }
 
 #Preview {
-    let dataSource = DataSource()
-    return EventsView(viewModel: .init(dataSource: dataSource,
+    let dataService = DataService(dataSource: DataSource.shared)
+    return EventsView(viewModel: .init(dataService: dataService,
                                 pet: nil,
                                 events: MockedData.events))
 }
 
 #Preview {
-    let dataSource = DataSource()
-    return EventsView(viewModel: .init(dataSource: dataSource,
+    let dataService = DataService(dataSource: DataSource.shared)
+    return EventsView(viewModel: .init(dataService: dataService,
                                 pet: MockedData.pets.first!,
                                 events: []))
 }
