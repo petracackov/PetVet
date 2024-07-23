@@ -38,6 +38,7 @@ final class DataSource {
     
     func delete(_ model: any PersistentModel) {
         modelContext.delete(model)
+        try? modelContext.save()
     }
     
     func insert(_ model: any PersistentModel) {

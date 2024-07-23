@@ -22,6 +22,8 @@ import Foundation
  - my vet info section
  - sync with iCloud
  - notifications
+ - mark completed event
+ - event sections (completed/not completed, current/past)
  
  */
 

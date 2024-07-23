@@ -158,6 +158,7 @@ struct MyPetView: View {
                 VStack(spacing: 0) {
                     ForEach(viewModel.events) { event in
                         EventCell(event: event,
+                                  showPet: false,
                                   isLast: viewModel.events.isLast(event),
                                   isFirst: viewModel.events.isFirst(event))
                     }

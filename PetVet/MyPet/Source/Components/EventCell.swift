@@ -10,14 +10,14 @@ import SwiftUI
 struct EventCell: View {
     
     let event: PetEvent
-    var pet: Pet?
+    let showPet: Bool
     let isLast: Bool
     let isFirst: Bool
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(pet?.name ?? "")
+                Text(showPet ? event.pet.name : "")
                     .font(.caption2)
                     .foregroundStyle(.appBlackWhite)
                     .padding(.top, 10)
@@ -69,8 +69,8 @@ struct EventCell: View {
 #Preview {
     let modelContext = DataSource.shared.modelContext
     return VStack(spacing: 0) {
-        EventCell(event: MockedData.events.first!, pet: MockedData.pets[1], isLast: false, isFirst: true)
-        EventCell(event: MockedData.events[2], pet: MockedData.pets.first!, isLast: true, isFirst: false)
+        EventCell(event: MockedData.events.first!, showPet: true, isLast: false, isFirst: true)
+        EventCell(event: MockedData.events[2], showPet: true, isLast: true, isFirst: false)
     }
     .modelContext(modelContext)
 
@@ -78,9 +78,12 @@ struct EventCell: View {
 
 #Preview {
     let modelContext = DataSource.shared.modelContext
+    var mockedData = [MockedData.events[1], MockedData.events.first!]
+    mockedData.forEach { modelContext.insert($0) }
+    
     return VStack(spacing: 0) {
-        EventCell(event: MockedData.events[1], pet: nil, isLast: false, isFirst: true)
-        EventCell(event: MockedData.events.first!, pet: nil, isLast: true, isFirst: false)
+        EventCell(event: mockedData[0], showPet: true, isLast: false, isFirst: true)
+        EventCell(event: mockedData[1], showPet: true, isLast: true, isFirst: false)
     }
     .modelContext(modelContext)
 

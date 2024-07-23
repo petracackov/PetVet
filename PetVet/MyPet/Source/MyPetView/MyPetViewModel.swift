@@ -13,7 +13,7 @@ import Combine
     let dataSource: DataSource
     private(set) var pet: Pet
     private(set) var medicalRecords: [MedicalRecordItem] = []
-    private(set) var events: [PetEvent] = []
+     var events: [PetEvent] { pet.events }
     
     /// For preview
     init(dataSource: DataSource, pet: Pet, medicalRecords: [MedicalRecordItem], events: [PetEvent]) {
@@ -21,7 +21,7 @@ import Combine
         self.dataSource = dataSource
         self.medicalRecords = medicalRecords
         self.pet = pet
-        self.events = events
+//        self.events = events
         super.init()
         
     }
@@ -32,7 +32,7 @@ import Combine
         self.init(dataSource: dataSource, pet: pet, medicalRecords: [], events: [])
         self.assignListeners()
         self.fetchMyPetsMedicalRecords()
-        self.fetchMyPetsEvents()
+//        self.fetchMyPetsEvents()
     }
     
     func isLast(_ item: MedicalRecordItem) -> Bool {
@@ -59,16 +59,18 @@ import Combine
         }
     }
     
-    private func fetchMyPetsEvents() {
-        do {
-            let petId = pet.id
-            self.events = try dataSource.fetch(type: PetEvent.self, fetchLimit: 3, predicate: #Predicate { event in
-                event.petId == petId
-            }, sortBy: [SortDescriptor(\.date)])
-        } catch {
-            print("Fetch failed")
-        }
-    }
+//    private func fetchMyPetsEvents() {
+//        events = pet.events
+//        do {
+//            let petId = pet.id
+//            self.events = pet.events
+////            self.events = try dataSource.fetch(type: PetEvent.self, fetchLimit: 3, predicate: #Predicate { event in
+////                event.petId == petId
+////            }, sortBy: [SortDescriptor(\.date)])
+//        } catch {
+//            print("Fetch failed")
+//        }
+//    }
     
     private func fetchMyPetsMedicalRecords() {
         do {
@@ -107,7 +109,8 @@ import Combine
                 publisher
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] in
-                        self?.fetchMyPetsEvents()
+                        self?.fetchPet()
+//                        self?.fetchMyPetsEvents()
                     }
                     .store(in: &cancelable)
             }

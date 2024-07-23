@@ -17,6 +17,7 @@ class Pet: Identifiable, Hashable {
     var birthDate: Date
     private var speciesRaw: String
     private var genderRaw: String
+    @Relationship(deleteRule: .cascade) var events: [PetEvent] = []
     
     var image: UIImage? {
         get {
@@ -46,12 +47,13 @@ class Pet: Identifiable, Hashable {
         }
     }
     
-    init(id: String, name: String, species: Species, image: UIImage?, gender: Gender, birthDate: Date) {
+    init(id: String, name: String, species: Species, image: UIImage?, gender: Gender, birthDate: Date, petEvents: [PetEvent] = []) {
         self.id = id
         self.name = name
         self.speciesRaw = species.rawValue
         self.genderRaw = gender.rawValue
         self.birthDate = birthDate
+        self.events = petEvents
         self.image = image
     }
     

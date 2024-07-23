@@ -16,10 +16,11 @@ struct EventsView: View {
         List {
             ForEach(viewModel.events) { event in
                 EventCell(event: event,
+                          showPet: !viewModel.isPetView,
                           isLast: viewModel.events.isLast(event),
                           isFirst: viewModel.events.isFirst(event))
                 .asButton {
-                    guard let pet = viewModel.pet else { return }
+                    guard viewModel.isPetView else { return }
                     navigation.navigationPath.append(Navigation.EventsPath.manageEvent(event))
                 }
             }
@@ -45,6 +46,7 @@ struct EventsView: View {
                 ManageEventsView(viewModel: .init(dataSource: viewModel.dataSource, pet: pet))
             case .manageEvent(let event):
                 //                    ManageEventsView(viewModel: .init(dataSource: viewModel.dataSource, pet: <#T##Pet#>, event: <#T##PetEvent?#>))
+                EmptyView()
             }
         }
 //        .animation(.easeInOut, value: viewModel.events)

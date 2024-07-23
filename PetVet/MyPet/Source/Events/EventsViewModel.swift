@@ -38,9 +38,10 @@ import SwiftUI
         do {
             if let pet {
                 let petId = pet.id
-                self.events = try dataSource.fetch(type: PetEvent.self,
-                                                   predicate: #Predicate { event in event.petId == petId },
-                                                   sortBy: [SortDescriptor(\.date)])
+                self.events = pet.events
+//                self.events = try dataSource.fetch(type: PetEvent.self,
+//                                                   predicate: #Predicate { event in event.petId == petId },
+//                                                   sortBy: [SortDescriptor(\.date)])
             } else {
                 self.events = try dataSource.fetch(type: PetEvent.self,
                                                    sortBy: [SortDescriptor(\.date)])
@@ -65,11 +66,11 @@ import SwiftUI
     func delete(at offsets: IndexSet) {
         let items = offsets.map { events[$0] }
         items.forEach {
+            let petID = $0.pet.id
             dataSource.delete($0)
-            let notificationData = try? EventNotificationId(id: $0.id, petId: $0.petId).dictionary()
-            NotificationManager.shared.postNotification(.eventDeleted, data: notificationData)
+//            let notificationData = try? EventNotificationId(id: $0.id, petId: petID).dictionary()
+//            NotificationManager.shared.postNotification(.eventDeleted, data: notificationData)
         }
-        
     }
     
 }

@@ -245,8 +245,8 @@
 				C0009F332C41117600A950D1 /* DataSource.swift */,
 				C0375E4D2C2D5A3A00167ADF /* MockedData.swift */,
 				C0375E4F2C2D5A6C00167ADF /* Pet.swift */,
-				C0375E582C2EA96800167ADF /* MedicalRecordItem.swift */,
 				C00A54D62C45374D008B91F9 /* Event.swift */,
+				C0375E582C2EA96800167ADF /* MedicalRecordItem.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
