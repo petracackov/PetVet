@@ -9,7 +9,11 @@ import SwiftUI
 
 @Observable class DashboardViewModel {
     
-    var dashboardView: DashboardItem = .home
+    var scrollPosition: Int? = 1
+    var dashboardItem: DashboardItem {
+        DashboardItem.item(for: scrollPosition ?? DashboardItem.home.scrollPosition)
+    }
+    
     let dataService: DataService
     
     init(dataService: DataService) {
@@ -17,10 +21,25 @@ import SwiftUI
         self.dataService = dataService
     }
     
-    enum DashboardItem {
+    enum DashboardItem: CaseIterable, Identifiable {
+        
+        var id: Self { self }
+        
         case events
         case home
         case settings
+        
+        static func item(for scrollPosition: Int) -> Self {
+            return DashboardItem.allCases.first(where: { $0.scrollPosition == scrollPosition }) ?? .home
+        }
+        
+        var scrollPosition: Int {
+            switch self {
+            case .events: 0
+            case .home: 1
+            case .settings: 2
+            }
+        }
         
         var image: Image {
             switch self {

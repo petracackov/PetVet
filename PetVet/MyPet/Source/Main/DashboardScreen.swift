@@ -17,28 +17,49 @@ struct DashboardScreen: View {
     var body: some View {
         NavigationStack(path: $navigation.navigationPath) {
             ZStack(alignment: .bottom) {
-                TabView(selection: $viewModel.dashboardView) {
-                    EventsView(viewModel: .init(dataService: viewModel.dataService))
-                        .toolbar(.hidden, for: .tabBar)
-                        .tag(DashboardItem.events)
-                    HomeView(viewModel: .init(dataService: viewModel.dataService))
-                        .toolbar(.hidden, for: .navigationBar, .bottomBar, .tabBar)
-                        .tag(DashboardItem.home)
-                    SettingsView(viewModel: .init(dataService: viewModel.dataService))
-                        .toolbar(.hidden, for: .tabBar)
-                        .tag(DashboardItem.settings)
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .tabViewStyle(.page(indexDisplayMode: .never))
+                
+                content()
     
                 menu()
             }
             .ignoresSafeArea(edges: .bottom)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle(viewModel.dashboardView.title)
+            .navigationTitle(viewModel.dashboardItem.title)
             
         }
         .accentColor(.appPurple)
+    }
+    
+    private func content() -> some View {
+        GeometryReader { proxy in
+            ScrollView(.horizontal) {
+                HStack(spacing: 0) {
+                    ForEach(DashboardItem.allCases) { item in
+                        switch item {
+                        case .events:
+                            EventsView(viewModel: .init(dataService: viewModel.dataService))
+                                .frame(width: proxy.size.width)
+                                .id(item.scrollPosition)
+                        case .home:
+                            HomeView(viewModel: .init(dataService: viewModel.dataService))
+                                .frame(width: proxy.size.width)
+                                .id(item.scrollPosition)
+                        case .settings:
+                            SettingsView(viewModel: .init(dataService: viewModel.dataService))
+                                .frame(width: proxy.size.width)
+                                .id(item.scrollPosition)
+                        }
+                    }
+                }
+                .scrollTargetLayout()
+            }
+            .scrollDisabled(true)
+            .scrollTargetBehavior(.paging)
+            .scrollIndicators(.hidden)
+            .scrollPosition(id: $viewModel.scrollPosition)
+            
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     private func menu() -> some View {
@@ -57,9 +78,9 @@ struct DashboardScreen: View {
             .scaledToFit()
             .frame(height: 30)
             .padding(25)
-            .foregroundStyle(item == viewModel.dashboardView ? .appPurple : .appText)
+            .foregroundStyle(item.scrollPosition == viewModel.scrollPosition ? .appPurple : .appText)
             .asButton {
-                viewModel.dashboardView = item
+                viewModel.scrollPosition = item.scrollPosition
             }
     }
     
