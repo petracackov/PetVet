@@ -54,7 +54,7 @@ struct MyPetView: View {
                 Rectangle().foregroundStyle(.appGray3.opacity(0.2))
                 Image(uiImage: pet.image ?? UIImage(resource: pet.species.image))
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
+                    .aspectRatio(contentMode: pet.image != nil ? .fill : .fit)
                     .frame(height: 200)
                     
             }
@@ -68,7 +68,7 @@ struct MyPetView: View {
                 
                 Spacer()
                 
-                Image.systemIconEdit
+                SystemIcon.systemIconEdit.image
                     .resizable()
                     .frame(width: 24, height: 24)
                     .asButton {
@@ -92,9 +92,9 @@ struct MyPetView: View {
                     .font(.largeTitle)
                 Spacer()
                 if viewModel.medicalRecords.isEmpty {
-                    Image.systemIconPlus
+                    SystemIcon.systemIconPlus.image
                 } else {
-                    Image.systemIconChevronRight
+                    SystemIcon.systemIconChevronRight.image
                 }
             }
             .foregroundStyle(.appText)
@@ -145,9 +145,9 @@ struct MyPetView: View {
                 Spacer()
                 
                 if viewModel.events.isEmpty {
-                    Image.systemIconPlus
+                    SystemIcon.systemIconPlus.image
                 } else {
-                    Image.systemIconChevronRight
+                    SystemIcon.systemIconChevronRight.image
                 }
             }
             .foregroundStyle(.appText)

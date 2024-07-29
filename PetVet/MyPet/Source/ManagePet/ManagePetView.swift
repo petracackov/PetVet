@@ -36,6 +36,7 @@ struct ManagePetView: View {
             
             Spacer()
             AppButton(title: "Save", action: viewModel.savePet)
+                .padding(.bottom)
         }
         .background(.clear)
         .padding(.horizontal)
@@ -116,7 +117,7 @@ struct ManagePetView: View {
             }
             Rectangle()
                 .foregroundStyle(.appPurpleLightDark.opacity(0.7))
-            Image.systemIconCamera
+            SystemIcon.systemIconCamera.image
                 .resizable()
                 .scaledToFit()
                 .scaleEffect(CGSize(width: 0.6, height: 0.6))

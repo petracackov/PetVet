@@ -38,9 +38,9 @@ struct AppTextField: View {
                     .accentColor(.appPurple)
             }
             .padding(.leading, 12)
-            .clipShape(.capsule)
+            .clipShape(.rect(cornerRadius: 10))
             .overlay {
-                    Capsule()
+                RoundedRectangle(cornerRadius: 10)
                     .strokeBorder(.appGray3, lineWidth: 1)
                 }
             

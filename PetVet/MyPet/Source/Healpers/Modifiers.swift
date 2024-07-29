@@ -77,7 +77,7 @@ extension View {
 
 fileprivate struct ToolbarItemModifier: ViewModifier {
     
-    let icon: Image
+    let icon: SystemIcon
     var placement: ToolbarItemPlacement
     let isVisible: Bool
     let action: () -> Void
@@ -88,14 +88,13 @@ fileprivate struct ToolbarItemModifier: ViewModifier {
             .toolbar {
                 if isVisible {
                     ToolbarItem(placement: placement) {
-                        icon
+                        icon.image
                             .resizable()
                             .scaledToFit()
                             .frame(height: 20)
                             .asButton {
                                 action()
                             }
-//                            .offset(x: -16)
                     }
                 }
             }
@@ -105,7 +104,7 @@ fileprivate struct ToolbarItemModifier: ViewModifier {
 
 extension View {
     
-    func toolbarItem(_ icon: Image, placement: ToolbarItemPlacement = .topBarTrailing, isVisible: Bool = true, action: @escaping () -> Void) -> some View {
+    func toolbarItem(_ icon: SystemIcon, placement: ToolbarItemPlacement = .topBarTrailing, isVisible: Bool = true, action: @escaping () -> Void) -> some View {
         modifier(ToolbarItemModifier(icon: icon, placement: placement, isVisible: isVisible, action: action))
     }
     

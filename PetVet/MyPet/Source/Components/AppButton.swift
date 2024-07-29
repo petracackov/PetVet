@@ -22,7 +22,7 @@ struct AppButton: View {
         }
         .frame(maxWidth: .infinity)
         .frame(height: 50)
-        .clipShape(.capsule)
+        .clipShape(.rect(cornerRadius: 20))
         .asButton {
             action()
         }

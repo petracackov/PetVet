@@ -43,9 +43,9 @@ import SwiftUI
         
         var image: Image {
             switch self {
-            case .events: .systemIconBell
-            case .home: .systemIconHouse
-            case .settings: .systemIconGear
+            case .events: SystemIcon.systemIconBell.image
+            case .home: SystemIcon.systemIconHouse.image
+            case .settings: SystemIcon.systemIconGear.image
             }
         }
         

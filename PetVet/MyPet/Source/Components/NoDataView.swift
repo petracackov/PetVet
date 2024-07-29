@@ -12,7 +12,7 @@ enum NoDataType {
     case events
     case medicalRecords
     
-    var images: [UIImage] {
+    var images: [SystemIcon] {
         switch self {
         case .generic: [.systemIconTortoiseFill]
         case .events: [.systemIconBellFill, .systemIconCalendar, .systemIconClockFill]
@@ -31,12 +31,12 @@ enum NoDataType {
 
 struct NoDataView: View {
     
-    let images: [UIImage]
+    let images: [SystemIcon]
     let title: String
     let color: Color
     let addDataAction: (() -> Void)?
     
-    init(images: [UIImage] = [.systemIconTortoiseFill],
+    init(images: [SystemIcon] = [.systemIconTortoiseFill],
          title: String = "",
          color: Color = .appPurpleLightDark,
          addDataAction: (() -> Void)? = nil) {
@@ -69,7 +69,7 @@ struct NoDataView: View {
             }
             
             if let addDataAction {
-                Image.systemIconPlus
+                SystemIcon.systemIconPlus.image
                     .resizable()
                     .frame(width: 40, height: 40)
                     .scaledToFit()
