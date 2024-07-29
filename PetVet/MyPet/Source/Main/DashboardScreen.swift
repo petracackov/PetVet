@@ -12,7 +12,8 @@ struct DashboardScreen: View {
     typealias DashboardItem = DashboardViewModel.DashboardItem
     
     @State var viewModel: DashboardViewModel
-    @EnvironmentObject var navigation: Navigation
+    @State var navigation = Navigation.shared
+    @Namespace var internalNamespace
     
     var body: some View {
         NavigationStack(path: $navigation.navigationPath) {
@@ -20,17 +21,22 @@ struct DashboardScreen: View {
                 
                 content()
     
-                menu()
+                if !navigation.tabBarIsHidden {
+                    menu()
+                        .globalElementId("menu", namespace: internalNamespace)
+                        .zIndex(2) // Because of the animation
+                        .transition(.move(edge: .bottom))
+                }
                 
             }
+            .animation(.easeInOut, value: navigation.tabBarIsHidden)
             .ignoresSafeArea(edges: .bottom)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle(viewModel.dashboardItem.title)
             
-            
         }
         .accentColor(.appPurple)
-
+        
     }
     
     private func content() -> some View {
@@ -44,7 +50,7 @@ struct DashboardScreen: View {
                                 .frame(width: proxy.size.width)
                                 .id(item.scrollPosition)
                         case .home:
-                            HomeView(viewModel: .init(dataService: viewModel.dataService))
+                            HomeView(viewModel: .init(dataService: viewModel.dataService), internalNamespace: internalNamespace)
                                 .frame(width: proxy.size.width)
                                 .id(item.scrollPosition)
                         case .settings:
@@ -60,6 +66,7 @@ struct DashboardScreen: View {
             .scrollTargetBehavior(.paging)
             .scrollIndicators(.hidden)
             .scrollPosition(id: $viewModel.scrollPosition)
+            .defaultScrollAnchor(.center)
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -83,7 +90,9 @@ struct DashboardScreen: View {
             .padding(25)
             .foregroundStyle(item.scrollPosition == viewModel.scrollPosition ? .appPurple : .appText)
             .asButton {
-                viewModel.scrollPosition = item.scrollPosition
+                withAnimation {
+                    viewModel.scrollPosition = item.scrollPosition
+                }
             }
     }
     

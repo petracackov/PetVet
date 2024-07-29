@@ -18,6 +18,7 @@ import _PhotosUI_SwiftUI
     var image: UIImage?
     var photoPickerItem: PhotosPickerItem?
     var date: Date
+    var cameraAccessGranted: Bool = false
     
     var isEditMode: Bool {
         pet != nil
@@ -32,6 +33,7 @@ import _PhotosUI_SwiftUI
         image = pet?.image
         gender = pet?.gender ?? .unknown
         date = Date()
+        checkCameraAccess()
     }
         
     func savePet() {
@@ -62,6 +64,24 @@ import _PhotosUI_SwiftUI
             } catch {
                 AppError.handle(error)
             }
+        }
+    }
+    
+    private func checkCameraAccess() {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .denied, .restricted:
+            cameraAccessGranted = false
+        case .authorized:
+            cameraAccessGranted = true
+        case .notDetermined:
+            Task {
+                let granted = await AVCaptureDevice.requestAccess(for: .video)
+                await MainActor.run {
+                    self.cameraAccessGranted = granted
+                }
+            }
+        @unknown default:
+            cameraAccessGranted = false
         }
     }
     

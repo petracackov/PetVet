@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @EnvironmentObject private var navigation: Navigation
+    @State var navigation = Navigation.shared
     @State var viewModel: SettingsViewModel
     
     var body: some View {

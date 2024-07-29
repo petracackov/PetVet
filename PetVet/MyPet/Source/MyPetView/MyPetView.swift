@@ -9,9 +9,10 @@ import SwiftUI
 
 struct MyPetView: View {
     
-    @EnvironmentObject private var navigation: Navigation
+    @State var navigation = Navigation.shared
     @State var viewModel: MyPetViewModel
-    var pet: Pet { viewModel.pet }
+    private var pet: Pet { viewModel.pet }
+    var namespace: Namespace.ID? = nil
     
     var body: some View {
         ScrollView {
@@ -27,6 +28,7 @@ struct MyPetView: View {
             .padding(.horizontal, 20)
             .padding(.top, 20)
             .padding(.bottom, 125)
+            
         }
         .background(.appBackground)
         .navigationDestination(for: Navigation.PetPath.self) { path in
@@ -57,12 +59,14 @@ struct MyPetView: View {
                     
             }
             .clipShape(.rect(cornerRadius: 10))
+            .globalElementId(pet.id, item: "image", namespace: namespace)
             HStack {
                 Text(pet.name)
                     .font(.largeTitle)
+                    .foregroundStyle(.appText)
+                    .globalElementId(pet.id, item: "name", namespace: namespace)
                 
                 Spacer()
-                
                 
                 Image.systemIconEdit
                     .resizable()

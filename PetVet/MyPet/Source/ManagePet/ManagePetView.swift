@@ -7,33 +7,38 @@
 
 import SwiftUI
 import SwiftData
+import _PhotosUI_SwiftUI
 
 struct ManagePetView: View {
     
-    @EnvironmentObject private var navigation: Navigation
+    @State var navigation = Navigation.shared
     @State var viewModel: ManagePetViewModel
     @State var isPresented = false
     @State var cameraSheetIsPresented = false
     @State var photoPickerIsShown = false
     
     var body: some View {
-        VStack(alignment: .center, spacing: 20) {
+        VStack {
+            ScrollView {
+                VStack(alignment: .center, spacing: 20) {
+                    
+                    AppTextField(text: $viewModel.name, title: "Name")
+                    
+                    speciesPicker()
+                    
+                    genderPicker()
+                    
+                    datePicker()
+                    
+                    imageSelector()
+                }
+            }
             
-            AppTextField(text: $viewModel.name, title: "Name")
-            
-            speciesPicker()
-            
-            genderPicker()
-            
-            datePicker()
-            
-            imageSelector()
-       
             Spacer()
-            
             AppButton(title: "Save", action: viewModel.savePet)
         }
-        .padding()
+        .background(.clear)
+        .padding(.horizontal)
         .navigationTitle(viewModel.isEditMode ? "Edit your pet" : "Create your pet")
         .navigationBarTitleDisplayMode(.inline)
         .toolbarItem(.systemIconTrash, isVisible: viewModel.isEditMode, action: {
@@ -43,17 +48,19 @@ struct ManagePetView: View {
             navigation.navigationPath.removeLast()
         }
         .confirmationDialog("", isPresented: $isPresented, actions: {
-            Text("Camera")
-                .asButton {
-                    cameraSheetIsPresented = true
-                }
+            if viewModel.cameraAccessGranted {
+                Text("Camera")
+                    .asButton {
+                        cameraSheetIsPresented = true
+                    }
+            }
             
             Text("Photo library")
                 .asButton {
                     photoPickerIsShown = true
                 }
         })
-        .photosPicker(isPresented: $photoPickerIsShown, selection: $viewModel.photoPickerItem, matching: .images)
+        .photosPicker(isPresented:  $photoPickerIsShown, selection: $viewModel.photoPickerItem, matching: .images)
         .fullScreenCover(isPresented: $cameraSheetIsPresented) {
             CameraView(selectedImage: $viewModel.image)
                 .ignoresSafeArea()
@@ -104,6 +111,8 @@ struct ManagePetView: View {
                     .resizable()
                     .scaledToFill()
                     .frame(height: 200)
+                    .allowsHitTesting(false) // otherwise the image (or rather its frame) goes over content
+                    
             }
             Rectangle()
                 .foregroundStyle(.appPurpleLightDark.opacity(0.7))

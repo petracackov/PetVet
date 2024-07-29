@@ -9,8 +9,9 @@ import SwiftUI
 
 struct MyPetsView: View {
     
-    @EnvironmentObject private var navigation: Navigation
+    @State var navigation = Navigation.shared
     @State var viewModel: MyPetsViewModel
+    var namespace: Namespace.ID? = nil
     
     var body: some View {
         ZStack {
@@ -23,27 +24,40 @@ struct MyPetsView: View {
         }
         .ignoresSafeArea(edges: .bottom)
         .appGradient()
+        .globalElementId("screen", item: "", namespace: namespace)
     }
     
+    @ViewBuilder
     private func petCell(_ pet: Pet) -> some View {
-        ZStack(alignment: .bottomTrailing) {
-            Image(uiImage: pet.image ?? UIImage(resource: pet.species.image))
-                .resizable()
-                .scaledToFill()
+        ZStack {
+            Rectangle()
+                .foregroundColor(.clear)
                 .frame(height: 200)
             
-            LinearGradient(colors: [.clear, .black.opacity(0.7)], startPoint: .top, endPoint: .bottom)
-            
-            Text(pet.name)
-                .foregroundStyle(.white)
-                .font(.title)
-                .padding()
-        }
-        .frame(height: 200)
-        .clipShape(.rect(cornerRadius: 20))
-        .asButton {
-            //navigation.navigationPath.append(Navigation.MyPetsPath.pet(pet))
-            viewModel.selectedPet = pet
+            if viewModel.selectedPet != pet {
+                ZStack(alignment: .bottomTrailing) {
+                    
+                    Image(uiImage: pet.image ?? UIImage(resource: pet.species.image))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(height: 200)
+                    
+                    LinearGradient(colors: [.clear, .black.opacity(0.7)], startPoint: .top, endPoint: .bottom)
+                    
+                    Text(pet.name)
+                        .foregroundStyle(.appWhite)
+                        .font(.largeTitle)
+                        .globalElementId(pet.id, item: "name", namespace: namespace)
+                        .padding()
+                }
+                .frame(height: 200)
+                .clipShape(.rect(cornerRadius: 20))
+                .asButton {
+                    //navigation.navigationPath.append(Navigation.MyPetsPath.pet(pet))
+                    viewModel.selectedPet = pet
+                }
+                .globalElementId(pet.id, item: "image", namespace: namespace)
+            }
         }
     }
 }

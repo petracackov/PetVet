@@ -9,8 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @EnvironmentObject private var navigation: Navigation
+    @State var navigation = Navigation.shared
     @State var viewModel: MyPetsViewModel
+    var internalNamespace: Namespace.ID
     
     var body: some View {
         ZStack {
@@ -21,17 +22,23 @@ struct HomeView: View {
             } else if viewModel.pets.count == 1, let pet = viewModel.pets.first  {
                 MyPetView(viewModel: .init(dataService: viewModel.dataService, pet: pet))
             } else {
-                MyPetsView(viewModel: viewModel)
+                MyPetsView(viewModel: viewModel, namespace: internalNamespace)
             }
             
             if let selectedPet = viewModel.selectedPet {
-                MyPetView(viewModel: .init(dataService: viewModel.dataService, pet: selectedPet))
+                MyPetView(viewModel: .init(dataService: viewModel.dataService, pet: selectedPet), namespace: internalNamespace)
                     .navigationTitle("")
                     .toolbarItem(.systemIconChevronLeft, placement: .navigation) {
                         viewModel.selectedPet = nil
                     }
+                   
             }
         }
+        .onChange(of: viewModel.selectedPet) { oldValue, newValue in
+            navigation.tabBarIsHidden = newValue != nil
+        }
+        .animation(.easeInOut(duration: 3), value: viewModel.selectedPet)
+        
         .navigationDestination(for: Navigation.MyPetsPath.self, destination: { path in
             switch path {
             case .pet(let pet):

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EventsView: View {
     
-    @EnvironmentObject private var navigation: Navigation
+    @State var navigation = Navigation.shared
     @State var viewModel: EventsViewModel
     
     var body: some View {

@@ -7,9 +7,12 @@
 
 import SwiftUI
 
-class Navigation: ObservableObject {
+@Observable class Navigation {
 
-    @Published var navigationPath = NavigationPath()
+    var navigationPath = NavigationPath()
+    var tabBarIsHidden: Bool = false
+    
+    static var shared = Navigation()
     
     enum PetPath: Hashable {
         case reminders

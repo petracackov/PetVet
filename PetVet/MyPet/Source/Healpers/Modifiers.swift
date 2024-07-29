@@ -42,6 +42,15 @@ extension View {
         }
     }
     
+    @ViewBuilder
+    func globalElementId(_ id: String, item: String, namespace: Namespace.ID?) -> some View {
+        if let namespace {
+            self.matchedGeometryEffect(id: id + item, in: namespace)
+        } else {
+            self
+        }
+    }
+    
 }
 
 extension View {

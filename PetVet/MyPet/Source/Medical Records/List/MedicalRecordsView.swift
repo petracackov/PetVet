@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MedicalRecordsView: View {
     
-    @EnvironmentObject private var navigation: Navigation
+    @State var navigation = Navigation.shared
     @State var viewModel: MedicalRecordsViewModel
     
     var body: some View {
