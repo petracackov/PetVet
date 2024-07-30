@@ -7,6 +7,11 @@
 
 import Foundation
 /*
+ 
+ IN PROGRESS:
+ 
+ - Fix simulators
+ 
  IMPROVEMENTS:
  
  - improve animations in lists when adding removing item (manually remove item don't just reload whole view)
