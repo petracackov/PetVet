@@ -31,6 +31,10 @@ struct MyPetView: View {
             
         }
         .background(.appBackground)
+        .navigationTitle("My Pet")
+        .toolbarItem(SystemIcon.systemIconEdit, action: {
+            navigation.navigationPath.append(Navigation.PetPath.editPet)
+        })
         .navigationDestination(for: Navigation.PetPath.self) { path in
             switch path {
             case .addReminder:
@@ -67,14 +71,6 @@ struct MyPetView: View {
                     .globalElementId(pet.id, item: "name", namespace: namespace)
                 
                 Spacer()
-                
-                SystemIcon.systemIconEdit.image
-                    .resizable()
-                    .frame(width: 24, height: 24)
-                    .asButton {
-                        navigation.navigationPath.append(Navigation.PetPath.editPet)
-                    }
-                    .foregroundStyle(.appText)
             }
             
             VStack(spacing: 10) {
@@ -187,8 +183,10 @@ struct MyPetView: View {
 
 #Preview {
     let dataService = DataService(dataSource: DataSource.shared)
+    let pet = MockedData.pets[0]
+    dataService.dataSource.modelContext.insert(pet)
     return MyPetView(viewModel: .init(dataService: dataService,
-                             pet: MockedData.pets.first!,
-                                      medicalRecords: [], 
+                                      pet: pet,
+                                      medicalRecords: [],
                                       events: []))
 }

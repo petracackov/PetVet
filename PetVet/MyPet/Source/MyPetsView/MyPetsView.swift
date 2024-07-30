@@ -65,5 +65,7 @@ struct MyPetsView: View {
 
 #Preview {
     let dataService = DataService(dataSource: DataSource.shared)
-    return MyPetsView(viewModel: .init(pets: MockedData.pets, dataService: dataService))
+    let pets = MockedData.pets
+    pets.forEach { dataService.dataSource.modelContext.insert($0) }
+    return MyPetsView(viewModel: .init(pets: pets, dataService: dataService))
 }
