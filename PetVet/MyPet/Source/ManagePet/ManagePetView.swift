@@ -149,12 +149,12 @@ struct ManagePetView: View {
     
 }
 
-#Preview {
+#Preview("Create new") {
     let dataService = DataService(dataSource: DataSource.shared)
     return ManagePetView(viewModel: .init(dataService: dataService, pet: nil))
 }
 
-#Preview {
+#Preview("Edit") {
     let dataService = DataService(dataSource: DataSource.shared)
-    return ManagePetView(viewModel: ManagePetViewModel(dataService: dataService, pet: MockedData.pets.first!))
+    return ManagePetView(viewModel: ManagePetViewModel(dataService: dataService, pet: MockedData.pets[0]))
 }

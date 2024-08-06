@@ -12,7 +12,7 @@ class MockedData {
     static let pets = [
         Pet(id: UUID().uuidString, name: "Cat", species: .cat, image: .nacho, gender: .female, birthDate: Date().addingTimeInterval(-12345)),
         Pet(id: UUID().uuidString, name: "Dog", species: .dog, image: nil, gender: .male, birthDate: Date()),
-        Pet(id: UUID().uuidString, name: "Unknown", species: .unknown, image: .nacho, gender: .unknown, birthDate: Date().addingTimeInterval(-6543)),
+        Pet(id: UUID().uuidString, name: "Unknown platapus", species: .unknown, image: .nacho, gender: .unknown, birthDate: Date().addingTimeInterval(-6543)),
     ]
     
     static let medicalRecords = [

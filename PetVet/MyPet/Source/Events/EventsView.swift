@@ -55,21 +55,21 @@ struct EventsView: View {
     
 }
 
-#Preview {
-    let dataService = DataService(dataSource: DataSource.shared)
-    return EventsView(viewModel: .init(dataService: dataService,
-                                pet: MockedData.pets.first!,
-                                events: MockedData.events))
-}
-
-#Preview {
+#Preview("All events") {
     let dataService = DataService(dataSource: DataSource.shared)
     return EventsView(viewModel: .init(dataService: dataService,
                                 pet: nil,
                                 events: MockedData.events))
 }
 
-#Preview {
+#Preview("Pet view") {
+    let dataService = DataService(dataSource: DataSource.shared)
+    return EventsView(viewModel: .init(dataService: dataService,
+                                pet: MockedData.pets.first!,
+                                events: MockedData.events))
+}
+
+#Preview("Empty view") {
     let dataService = DataService(dataSource: DataSource.shared)
     return EventsView(viewModel: .init(dataService: dataService,
                                 pet: MockedData.pets.first!,

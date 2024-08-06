@@ -176,15 +176,14 @@ struct MyPetView: View {
 #Preview {
     let dataService = DataService(dataSource: DataSource.shared)
     return MyPetView(viewModel: .init(dataService: dataService,
-                             pet: MockedData.pets[1],
+                                      pet: MockedData.pets[1],
                                       medicalRecords: Array(MockedData.medicalRecords.prefix(3)),
                                       events: Array(MockedData.events.prefix(3))))
 }
 
-#Preview {
+#Preview("No data") {
     let dataService = DataService(dataSource: DataSource.shared)
     let pet = MockedData.pets[0]
-    dataService.dataSource.modelContext.insert(pet)
     return MyPetView(viewModel: .init(dataService: dataService,
                                       pet: pet,
                                       medicalRecords: [],

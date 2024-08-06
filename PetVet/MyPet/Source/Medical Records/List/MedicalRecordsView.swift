@@ -63,10 +63,10 @@ struct MedicalRecordsView: View {
     let dataService = DataService(dataSource: DataSource.shared)
     return MedicalRecordsView(viewModel: .init(dataService: dataService,
                                                medicalRecords: MockedData.medicalRecords,
-                                               pet: MockedData.pets.first!))
+                                               pet: MockedData.pets[0]))
 }
 
-#Preview {
+#Preview("No data") {
     let dataService = DataService(dataSource: DataSource.shared)
     return MedicalRecordsView(viewModel: .init(dataService: dataService,
                                                medicalRecords: [],

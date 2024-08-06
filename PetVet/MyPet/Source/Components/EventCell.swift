@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct EventCell: View {
     
@@ -67,22 +68,14 @@ struct EventCell: View {
 }
 
 #Preview {
-    let modelContext = DataSource.shared.modelContext
+    let _ = DataSource.shared
+    let firstEvent = MockedData.events[0]
+    let secondEvent = MockedData.events[2]
+    
     return VStack(spacing: 0) {
-        EventCell(event: MockedData.events.first!, isLast: true, isFirst: false, showPet: true)
-        EventCell(event: MockedData.events[2], isLast: true, isFirst: true, showPet: false)
+        EventCell(event: firstEvent, isLast: false, isFirst: true, showPet: true)
+        EventCell(event: secondEvent, isLast: true, isFirst: false, showPet: false)
     }
-    .modelContext(modelContext)
-
-}
-
-#Preview {
-    let modelContext = DataSource.shared.modelContext
-    return VStack(spacing: 0) {
-        EventCell(event: MockedData.events[1], isLast: false, isFirst: true, showPet: false)
-        EventCell(event: MockedData.events.first!, isLast: false, isFirst: true, showPet: false)
-    }
-    .modelContext(modelContext)
 
 }
 

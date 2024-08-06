@@ -21,7 +21,7 @@ final class DataSource {
             self.modelContainer = try ModelContainer(for: Pet.self, MedicalRecordItem.self, PetEvent.self)
             self.modelContext = modelContainer.mainContext
         } catch {
-            fatalError("Failed to create ModelContainer.")
+            fatalError("Failed to create ModelContainer. \(error)")
         }
     }
     
