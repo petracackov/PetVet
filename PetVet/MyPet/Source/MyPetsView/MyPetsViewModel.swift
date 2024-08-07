@@ -7,16 +7,31 @@
 
 import Foundation
 
+enum DataState {
+    case data([Pet])
+    case oneItem(Pet)
+    case empty
+    
+    var items: [Pet] {
+        switch self {
+        case .data(let items): items
+        case .oneItem(let item): [item]
+        case .empty: []
+        }
+    }
+}
+
 @Observable class MyPetsViewModel: Cancelable {
     
     let dataService: DataService
-    private(set) var pets: [Pet] = []
+    private(set) var dataState: DataState
+    var pets: [Pet] { dataState.items }
     var selectedPet: Pet?
     
     /// For preview
     init(pets: [Pet], dataService: DataService) {
         print("init", "MyPetsViewModel")
-        self.pets = pets
+        self.dataState = Self.getDataState(pets)
         self.dataService = dataService
         super.init()
     }
@@ -30,9 +45,20 @@ import Foundation
         assignListeners()
     }
     
+    private static func getDataState(_ items: [Pet]) -> DataState {
+        if items.isEmpty {
+            return .empty
+        } else if items.count == 1 {
+            return .oneItem(items.first!)
+        } else {
+            return .data(items)
+        }
+    }
+    
     func fetchMyPets() {
         do {
-            self.pets = try dataService.fetchMyPets()
+            let pets = try dataService.fetchMyPets()
+            self.dataState = Self.getDataState(pets)
         } catch {
             AppError.handle(error)
         }

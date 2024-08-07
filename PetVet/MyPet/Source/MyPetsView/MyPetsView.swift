@@ -36,11 +36,12 @@ struct MyPetsView: View {
             
             if viewModel.selectedPet != pet {
                 ZStack(alignment: .bottomTrailing) {
-                    
+                    Rectangle().foregroundStyle(.appGray3.opacity(0.2))
                     Image(uiImage: pet.image ?? UIImage(resource: pet.species.image))
                         .resizable()
-                        .scaledToFill()
+                        .aspectRatio(contentMode: pet.image != nil ? .fill : .fit)
                         .frame(height: 200)
+                        .frame(maxWidth: .infinity)
                     
                     LinearGradient(colors: [.clear, .black.opacity(0.7)], startPoint: .top, endPoint: .bottom)
                     

@@ -68,16 +68,6 @@ import Combine
     }
     
     private func assignListeners() {
-//        NotificationManager.shared.publishersFor([.petAdded, .petDeleted, .petUpdated])
-//            .forEach { publisher in
-//                publisher
-//                    .receive(on: DispatchQueue.main)
-//                    .sink { [weak self] in
-//                        self?.fetchPet()
-//                    }
-//                    .store(in: &cancelable)
-//            }
-        
         NotificationManager.shared.publishersFor([.medicalRecordUpdated, .medicalRecordAdded, .medicalRecordDeleted])
             .forEach { publisher in
                 publisher

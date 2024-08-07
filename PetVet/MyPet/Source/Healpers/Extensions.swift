@@ -20,7 +20,7 @@ extension Array where Element : Equatable {
 extension Date {
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/mm/yyyy"
+        dateFormatter.dateFormat = "dd/MM/yyyy"
         return dateFormatter
     }()
     

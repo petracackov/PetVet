@@ -10,7 +10,7 @@ import Foundation
  
  IN PROGRESS:
  
- - Fix simulators
+ - Fix simulators - currently fixed until next time
  
  IMPROVEMENTS:
  
@@ -26,6 +26,7 @@ import Foundation
  - notifications
  - error handling
  - alerts
+ - camera crop
  
  */
 

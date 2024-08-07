@@ -31,7 +31,6 @@ struct MyPetView: View {
             
         }
         .background(.appBackground)
-        .navigationTitle("My Pet")
         .toolbarItem(SystemIcon.systemIconEdit, action: {
             navigation.navigationPath.append(Navigation.PetPath.editPet)
         })

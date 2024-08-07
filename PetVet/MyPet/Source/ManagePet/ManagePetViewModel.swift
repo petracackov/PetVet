@@ -32,7 +32,7 @@ import _PhotosUI_SwiftUI
         species = pet?.species ?? .unknown
         image = pet?.image
         gender = pet?.gender ?? .unknown
-        date = Date()
+        date = pet?.birthDate ?? Date()
         checkCameraAccess()
     }
         

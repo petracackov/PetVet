@@ -15,19 +15,20 @@ struct HomeView: View {
     
     var body: some View {
         ZStack {
-            if viewModel.pets.isEmpty {
+            switch viewModel.dataState {
+            case .data:
+                MyPetsView(viewModel: viewModel, namespace: internalNamespace)
+            case .oneItem(let pet):
+                MyPetView(viewModel: .init(dataService: viewModel.dataService, pet: pet))
+            case .empty:
                 NoDataView(.generic) {
                     navigation.navigationPath.append(Navigation.MyPetsPath.createNewPet)
                 }
-            } else if viewModel.pets.count == 1, let pet = viewModel.pets.first  {
-                MyPetView(viewModel: .init(dataService: viewModel.dataService, pet: pet))
-            } else {
-                MyPetsView(viewModel: viewModel, namespace: internalNamespace)
             }
             
             if let selectedPet = viewModel.selectedPet {
                 MyPetView(viewModel: .init(dataService: viewModel.dataService, pet: selectedPet), namespace: internalNamespace)
-                    .navigationTitle("")
+                    .navigationTitle("My Pet")
                     .toolbarItem(.systemIconChevronLeft, placement: .navigation) {
                         viewModel.selectedPet = nil
                     }
@@ -37,7 +38,7 @@ struct HomeView: View {
         .onChange(of: viewModel.selectedPet) { oldValue, newValue in
             navigation.tabBarIsHidden = newValue != nil
         }
-        .animation(.easeInOut(duration: 3), value: viewModel.selectedPet)
+        .animation(.easeInOut, value: viewModel.selectedPet)
         
         .navigationDestination(for: Navigation.MyPetsPath.self, destination: { path in
             switch path {
