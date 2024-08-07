@@ -27,6 +27,8 @@ import Foundation
  - error handling
  - alerts
  - camera crop
+ - splash screen
+ - swipe back
  
  */
 

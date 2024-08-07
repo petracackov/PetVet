@@ -54,6 +54,7 @@
 		C0375E7F2C33E69700167ADF /* MedicalRecordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E7E2C33E69700167ADF /* MedicalRecordsViewModel.swift */; };
 		C04AA5852C4FBB7A00748AED /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04AA5842C4FBB7A00748AED /* DataService.swift */; };
 		C04AA5872C4FC62F00748AED /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04AA5862C4FC62F00748AED /* Error.swift */; };
+		C0986A932C63ADA1006B9BE8 /* LaunchScreenUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0986A922C63ADA1006B9BE8 /* LaunchScreenUI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +107,7 @@
 		C04AA5842C4FBB7A00748AED /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		C04AA5862C4FC62F00748AED /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		C08629692C578C1100C75013 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C0986A922C63ADA1006B9BE8 /* LaunchScreenUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenUI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 		C0375E492C2D528000167ADF /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				C0986A922C63ADA1006B9BE8 /* LaunchScreenUI.swift */,
 				C0375E352C2D503600167ADF /* MyPetApp.swift */,
 				C00CA20C2C37EC7400383CEB /* DashboardScreen.swift */,
 				C00CA2112C37FF9C00383CEB /* DashboardViewModel.swift */,
@@ -398,6 +401,7 @@
 				C0375E5D2C2EB52A00167ADF /* Extensions.swift in Sources */,
 				C00CA2272C3D263300383CEB /* NotificationManager.swift in Sources */,
 				C0009F322C3FC41D00A950D1 /* Cancelable.swift in Sources */,
+				C0986A932C63ADA1006B9BE8 /* LaunchScreenUI.swift in Sources */,
 				C04AA5852C4FBB7A00748AED /* DataService.swift in Sources */,
 				C00A54C32C427158008B91F9 /* CameraView.swift in Sources */,
 				C00A54DF2C466CCD008B91F9 /* AppDatePicker.swift in Sources */,
@@ -566,7 +570,6 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "Used for adding images to the app";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
@@ -599,7 +602,6 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "Used for adding images to the app";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
