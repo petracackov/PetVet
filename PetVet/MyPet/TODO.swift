@@ -24,11 +24,9 @@ import Foundation
  - my vet info section
  - sync with iCloud
  - notifications
- - error handling
- - alerts
  - camera crop
- - splash screen
  - swipe back
+ - update dark/light stile icons when available
  
  */
 

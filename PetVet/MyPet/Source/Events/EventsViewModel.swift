@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@Observable class EventsViewModel: Cancelable {
+@Observable class EventsViewModel: ViewModel {
     
     let dataService: DataService
     /// If pet is provided only events for that pet will be fetched
@@ -38,7 +38,7 @@ import SwiftUI
         do {
             self.events = try dataService.fetchEvents(for: pet)
         } catch {
-            AppError.handle(error)
+            handleError(error)
         }
     }
     
@@ -56,9 +56,15 @@ import SwiftUI
     
     func delete(at offsets: IndexSet) {
         let items = offsets.map { events[$0] }
+        var currentError: Error?
         items.forEach {
-            dataService.deleteEvent($0)
+            do {
+                try dataService.deleteEvent($0)
+            } catch {
+                currentError = error
+            }
         }
+        handleError(currentError)
     }
     
 }

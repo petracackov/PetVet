@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@Observable class MedicalRecordsViewModel: Cancelable {
+@Observable class MedicalRecordsViewModel: ViewModel {
     
     let dataService: DataService
     let pet: Pet
@@ -48,15 +48,21 @@ import SwiftUI
         do {
             medicalRecords = try dataService.fetchMedicalRecords(for: pet)
         } catch {
-            AppError.handle(error)
+            handleError(error)
         }
     }
     
     func delete(at offsets: IndexSet) {
         let items = offsets.map { medicalRecords[$0] }
+        var currentError: Error?
         items.forEach {
-            dataService.deleteMedicalRecord($0)
+            do {
+                try dataService.deleteMedicalRecord($0)
+            } catch {
+                currentError = error
+            }
         }
+        handleError(currentError)
         
     }
     

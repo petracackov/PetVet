@@ -38,8 +38,8 @@ struct ManagePetView: View {
             AppButton(title: "Save", action: viewModel.savePet)
                 .padding(.bottom)
         }
-        .background(.clear)
         .padding(.horizontal)
+        .appGradient()
         .navigationTitle(viewModel.isEditMode ? "Edit your pet" : "Create your pet")
         .navigationBarTitleDisplayMode(.inline)
         .toolbarItem(.systemIconTrash, isVisible: viewModel.isEditMode, action: {
@@ -48,6 +48,7 @@ struct ManagePetView: View {
         .toolbarItem(.systemIconChevronLeft, placement: .navigation) {
             navigation.navigationPath.removeLast()
         }
+        .appAlert(error: viewModel.error, isPresented: $viewModel.alertIsShown)
         .confirmationDialog("", isPresented: $isPresented, actions: {
             if viewModel.cameraAccessGranted {
                 Text("Camera")

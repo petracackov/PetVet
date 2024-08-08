@@ -11,11 +11,10 @@ class ImageTools {
     
     static func convertImageToData(uiImage: UIImage?) throws -> Data {
         guard let image = uiImage else {
-            // TODO
-            throw NSError()
+            throw AppError.noData
         }
         guard let pngData = image.pngData() else {
-            throw NSError()
+            throw AppError.noData
         }
         return pngData
     }

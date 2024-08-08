@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable class ManageMedicalRecordViewModel {
+@Observable class ManageMedicalRecordViewModel: ViewModel {
     
     private let dataService: DataService
     private let medicalRecord: MedicalRecordItem?
@@ -31,18 +31,26 @@ import Foundation
     }
     
     func save() {
-        if let medicalRecord {
-            dataService.updateMedicalRecord(medicalRecord, title: title, description: description, date: date)
-        } else if !description.isEmpty, !title.isEmpty {
-            dataService.createMedicalRecord(for: pet, title: title, description: description, date: date)
-        } else {
-            AppError.handle(NSError())
+        do {
+            if let medicalRecord, !description.isEmpty, !title.isEmpty {
+                dataService.updateMedicalRecord(medicalRecord, title: title, description: description, date: date)
+            } else if !description.isEmpty, !title.isEmpty {
+                try dataService.createMedicalRecord(for: pet, title: title, description: description, date: date)
+            } else {
+                handleError(.validationFailed)
+            }
+        } catch {
+            handleError(error)
         }
     }
     
     func deleteMedicalRecord() {
         guard let medicalRecord else { return }
-        dataService.deleteMedicalRecord(medicalRecord)
+        do {
+            try dataService.deleteMedicalRecord(medicalRecord)
+        } catch {
+            handleError(error)
+        }
     }
     
 }

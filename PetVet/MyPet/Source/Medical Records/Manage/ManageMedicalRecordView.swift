@@ -13,21 +13,23 @@ struct ManageMedicalRecordView: View {
     @State var viewModel: ManageMedicalRecordViewModel
     
     var body: some View {
-        VStack(spacing: 10) {
-            AppTextField(text: $viewModel.title, title: "Title")
-            AppTextField(text: $viewModel.description, title: "Description")
-            
-            AppDatePicker(date: $viewModel.date, title: "Date:", components: .date)
-                .padding(.top, 20)
-            Spacer()
-            
+        VStack {
+            ScrollView {
+                VStack(spacing: 10) {
+                    AppTextField(text: $viewModel.title, title: "Title")
+                    AppTextField(text: $viewModel.description, title: "Description")
+                    
+                    AppDatePicker(date: $viewModel.date, title: "Date:", components: .date)
+                        .padding(.top, 20)
+                }
+            }
             AppButton(title: "Save") {
                 viewModel.save()
             }
-
         }
         .padding()
         .appGradient()
+        .appAlert(error: viewModel.error, isPresented: $viewModel.alertIsShown)
         .navigationTitle(viewModel.isEditing ? "Edit medical record" : "Create medical record")
         .navigationBarTitleDisplayMode(.inline)
         .toolbarItem(.systemIconTrash, isVisible: viewModel.isEditing) {
@@ -37,6 +39,7 @@ struct ManageMedicalRecordView: View {
             navigation.navigationPath.removeLast()
         }
     }
+    
 }
 
 #Preview("Create new") {

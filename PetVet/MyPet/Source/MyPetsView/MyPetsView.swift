@@ -54,7 +54,6 @@ struct MyPetsView: View {
                 .frame(height: 200)
                 .clipShape(.rect(cornerRadius: 20))
                 .asButton {
-                    //navigation.navigationPath.append(Navigation.MyPetsPath.pet(pet))
                     viewModel.selectedPet = pet
                 }
                 .globalElementId(pet.id, item: "image", namespace: namespace)

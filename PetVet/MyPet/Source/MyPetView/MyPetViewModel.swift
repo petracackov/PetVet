@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-@Observable class MyPetViewModel: Cancelable {
+@Observable class MyPetViewModel: ViewModel {
     
     let dataService: DataService
     private(set) var pet: Pet
@@ -47,7 +47,7 @@ import Combine
         do {
             pet = try dataService.fetchPet(id: pet.id)
         } catch {
-            AppError.handle(error)
+            handleError(error)
         }
     }
     
@@ -55,7 +55,7 @@ import Combine
         do {
             events = try dataService.fetchEvents(for: pet, fetchLimit: 3)
         } catch {
-            AppError.handle(error)
+            handleError(error)
         }
     }
     
@@ -63,7 +63,7 @@ import Combine
         do {
             medicalRecords = try dataService.fetchMedicalRecords(for: pet, fetchLimit: 3)
         } catch {
-            AppError.handle(error)
+            handleError(error)
         }
     }
     

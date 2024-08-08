@@ -44,6 +44,7 @@ struct MedicalRecordsView: View {
         .toolbarItem(.systemIconChevronLeft, placement: .navigation) {
             navigation.navigationPath.removeLast()
         }
+        .appAlert(error: viewModel.error, isPresented: $viewModel.alertIsShown)
         .navigationDestination(for: Navigation.MedicalRecordsPath.self, destination: { path in
             switch path {
             case .addMedicalRecord:

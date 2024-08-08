@@ -8,7 +8,7 @@
 import SwiftUI
 import _PhotosUI_SwiftUI
 
-@Observable class ManagePetViewModel {
+@Observable class ManagePetViewModel: ViewModel {
     
     private let dataService: DataService
     private let pet: Pet?
@@ -33,22 +33,32 @@ import _PhotosUI_SwiftUI
         image = pet?.image
         gender = pet?.gender ?? .unknown
         date = pet?.birthDate ?? Date()
+        super.init()
         checkCameraAccess()
     }
         
     func savePet() {
-        if let pet {
-            dataService.updatePet(pet, name: name, species: species, image: image, birthDate: date)
-        } else if !name.isEmpty {
-            dataService.createPet(name: name, species: species, image: image, gender: gender, birthDate: date)
-        } else {
-            AppError.handle(NSError())
+        do {
+            if let pet {
+                dataService.updatePet(pet, name: name, species: species, image: image, birthDate: date)
+            } else if !name.isEmpty {
+                try dataService.createPet(name: name, species: species, image: image, gender: gender, birthDate: date)
+            } else {
+                handleError(.validationFailed)
+            }
+        } catch {
+            handleError(error)
         }
     }
     
     func deletePet() {
         guard let pet else { return }
-        dataService.deletePet(pet)
+        do {
+            try dataService.deletePet(pet)
+        } catch {
+            handleError(error)
+        }
+            
     }
     
     func onImageSelected(_ imageItem: PhotosPickerItem) {
@@ -62,7 +72,7 @@ import _PhotosUI_SwiftUI
                     throw NSError()
                 }
             } catch {
-                AppError.handle(error)
+                handleError(error)
             }
         }
     }

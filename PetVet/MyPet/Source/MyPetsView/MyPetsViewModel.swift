@@ -11,17 +11,18 @@ enum DataState {
     case data([Pet])
     case oneItem(Pet)
     case empty
+    case error(AppError)
     
     var items: [Pet] {
         switch self {
         case .data(let items): items
         case .oneItem(let item): [item]
-        case .empty: []
+        case .empty, .error: []
         }
     }
 }
 
-@Observable class MyPetsViewModel: Cancelable {
+@Observable class MyPetsViewModel: ViewModel {
     
     let dataService: DataService
     private(set) var dataState: DataState
@@ -60,8 +61,14 @@ enum DataState {
             let pets = try dataService.fetchMyPets()
             self.dataState = Self.getDataState(pets)
         } catch {
-            AppError.handle(error)
+            handleError(error)
         }
+    }
+    
+    override func handleError(_ error: (any Error)?) {
+        super.handleError(error)
+        guard let appError = self.error else { return }
+        dataState = .error(appError)
     }
     
     private func assignListeners() {

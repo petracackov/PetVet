@@ -38,10 +38,12 @@ struct EventsView: View {
         }
         .overlay {
             if viewModel.events.isEmpty {
-                NoDataView(.events, title: "You have no upcoming events")
+                let message = viewModel.error?.description ?? "You have no upcoming events"
+                NoDataView(.events, title: message)
                     .padding(20)
             }
         }
+        .appAlert(error: viewModel.error, isPresented: $viewModel.alertIsShown)
         .navigationDestination(for: Navigation.EventsPath.self) { path in
             switch path {
             case .addEvent(let pet):

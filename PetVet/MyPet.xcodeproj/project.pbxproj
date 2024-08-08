@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C0009F2E2C3FC36E00A950D1 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0009F2D2C3FC36E00A950D1 /* SettingsViewModel.swift */; };
-		C0009F322C3FC41D00A950D1 /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0009F312C3FC41D00A950D1 /* Cancelable.swift */; };
+		C0009F322C3FC41D00A950D1 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0009F312C3FC41D00A950D1 /* ViewModel.swift */; };
 		C0009F342C41117600A950D1 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0009F332C41117600A950D1 /* DataSource.swift */; };
 		C00A54C32C427158008B91F9 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A54C22C427158008B91F9 /* CameraView.swift */; };
 		C00A54C72C42723D008B91F9 /* ImageTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A54C62C42723D008B91F9 /* ImageTools.swift */; };
@@ -53,13 +53,13 @@
 		C0375E7D2C33E67400167ADF /* MedicalRecordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E7C2C33E67400167ADF /* MedicalRecordsView.swift */; };
 		C0375E7F2C33E69700167ADF /* MedicalRecordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0375E7E2C33E69700167ADF /* MedicalRecordsViewModel.swift */; };
 		C04AA5852C4FBB7A00748AED /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04AA5842C4FBB7A00748AED /* DataService.swift */; };
-		C04AA5872C4FC62F00748AED /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04AA5862C4FC62F00748AED /* Error.swift */; };
+		C04AA5872C4FC62F00748AED /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04AA5862C4FC62F00748AED /* AppError.swift */; };
 		C0986A932C63ADA1006B9BE8 /* LaunchScreenUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0986A922C63ADA1006B9BE8 /* LaunchScreenUI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C0009F2D2C3FC36E00A950D1 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		C0009F312C3FC41D00A950D1 /* Cancelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancelable.swift; sourceTree = "<group>"; };
+		C0009F312C3FC41D00A950D1 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		C0009F332C41117600A950D1 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		C00A54C22C427158008B91F9 /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraView.swift; path = MyPet/Source/Components/CameraView.swift; sourceTree = SOURCE_ROOT; };
 		C00A54C62C42723D008B91F9 /* ImageTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTools.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		C0375E7C2C33E67400167ADF /* MedicalRecordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalRecordsView.swift; sourceTree = "<group>"; };
 		C0375E7E2C33E69700167ADF /* MedicalRecordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalRecordsViewModel.swift; sourceTree = "<group>"; };
 		C04AA5842C4FBB7A00748AED /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
-		C04AA5862C4FC62F00748AED /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		C04AA5862C4FC62F00748AED /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		C08629692C578C1100C75013 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C0986A922C63ADA1006B9BE8 /* LaunchScreenUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenUI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -223,6 +223,7 @@
 		C0375E482C2D527300167ADF /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				C0986A962C64E97C006B9BE8 /* Models */,
 				C0375E4C2C2D5A2A00167ADF /* Data */,
 				C0375E6F2C3298E400167ADF /* Healpers */,
 				C00A54C42C427166008B91F9 /* Components */,
@@ -252,10 +253,10 @@
 			isa = PBXGroup;
 			children = (
 				C0009F332C41117600A950D1 /* DataSource.swift */,
-				C0375E4D2C2D5A3A00167ADF /* MockedData.swift */,
 				C0375E4F2C2D5A6C00167ADF /* Pet.swift */,
 				C0375E582C2EA96800167ADF /* MedicalRecordItem.swift */,
 				C00A54D62C45374D008B91F9 /* Event.swift */,
+				C0375E4D2C2D5A3A00167ADF /* MockedData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -285,12 +286,11 @@
 				C00CA2242C3BC61400383CEB /* Design.swift */,
 				C00A54C62C42723D008B91F9 /* ImageTools.swift */,
 				C00CA2262C3D263300383CEB /* NotificationManager.swift */,
-				C0009F312C3FC41D00A950D1 /* Cancelable.swift */,
+				C0009F312C3FC41D00A950D1 /* ViewModel.swift */,
 				C00CA2022C37C77A00383CEB /* Navigation.swift */,
 				C0375E5C2C2EB52A00167ADF /* Extensions.swift */,
 				C0375E702C3298F500167ADF /* Modifiers.swift */,
 				C04AA5842C4FBB7A00748AED /* DataService.swift */,
-				C04AA5862C4FC62F00748AED /* Error.swift */,
 			);
 			path = Healpers;
 			sourceTree = "<group>";
@@ -311,6 +311,14 @@
 				C00CA2042C37CBC400383CEB /* List */,
 			);
 			path = "Medical Records";
+			sourceTree = "<group>";
+		};
+		C0986A962C64E97C006B9BE8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C04AA5862C4FC62F00748AED /* AppError.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,13 +402,13 @@
 				C0375E522C2D5D5400167ADF /* MyPetsViewModel.swift in Sources */,
 				C0375E742C3299DE00167ADF /* ManagePetView.swift in Sources */,
 				C0009F342C41117600A950D1 /* DataSource.swift in Sources */,
-				C04AA5872C4FC62F00748AED /* Error.swift in Sources */,
+				C04AA5872C4FC62F00748AED /* AppError.swift in Sources */,
 				C00CA2032C37C77A00383CEB /* Navigation.swift in Sources */,
 				C00A54C92C42C908008B91F9 /* AppButton.swift in Sources */,
 				C00CA20D2C37EC7400383CEB /* DashboardScreen.swift in Sources */,
 				C0375E5D2C2EB52A00167ADF /* Extensions.swift in Sources */,
 				C00CA2272C3D263300383CEB /* NotificationManager.swift in Sources */,
-				C0009F322C3FC41D00A950D1 /* Cancelable.swift in Sources */,
+				C0009F322C3FC41D00A950D1 /* ViewModel.swift in Sources */,
 				C0986A932C63ADA1006B9BE8 /* LaunchScreenUI.swift in Sources */,
 				C04AA5852C4FBB7A00748AED /* DataService.swift in Sources */,
 				C00A54C32C427158008B91F9 /* CameraView.swift in Sources */,

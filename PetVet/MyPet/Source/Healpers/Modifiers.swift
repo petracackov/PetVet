@@ -31,6 +31,8 @@ extension View {
     
 }
 
+// MARK: - globalElementId
+
 extension View {
     
     @ViewBuilder
@@ -53,6 +55,8 @@ extension View {
     
 }
 
+// MARK: - plainList
+
 extension View {
     
     func plainList() -> some View {
@@ -64,8 +68,9 @@ extension View {
     
 }
 
+// MARK: - appGradient
+
 extension View {
-    
     
     func appGradient() -> some View {
         
@@ -74,6 +79,8 @@ extension View {
     }
     
 }
+
+// MARK: - ToolbarItemModifier
 
 fileprivate struct ToolbarItemModifier: ViewModifier {
     
@@ -110,6 +117,8 @@ extension View {
     
 }
 
+// MARK: - NavigationTitleModifier
+
 fileprivate struct NavigationTitleModifier: ViewModifier {
     
     let title: String
@@ -138,6 +147,26 @@ extension View {
     
     func navigationBarTitle(_ title: String, isVisible: Bool = true) -> some View {
         modifier(NavigationTitleModifier(title: title, isVisible: isVisible))
+    }
+    
+}
+
+extension View {
+    
+    
+    func appAlert(title: String?, description: String?, isPresented: Binding<Bool>, onOkPress: @escaping () -> Void = {}) -> some View {
+        self.alert(title ?? "", isPresented: isPresented) {
+            Text("OK")
+                .foregroundStyle(.red)
+                .asButton(action: onOkPress)
+            
+        } message: {
+            Text(description ?? "")
+        }
+    }
+    
+    func appAlert(error: AppError?,  isPresented: Binding<Bool>, onOkPress: @escaping () -> Void = {}) -> some View {
+        self.appAlert(title: error?.title, description: error?.description, isPresented: isPresented, onOkPress: onOkPress)
     }
     
 }

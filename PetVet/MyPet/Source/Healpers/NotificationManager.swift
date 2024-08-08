@@ -87,20 +87,32 @@ protocol CodableDataModel: Codable {
 extension CodableDataModel {
     
     init(data: [String: Any]) throws {
-        let json = try JSONSerialization.data(withJSONObject: data)
-        let decoder = JSONDecoder()
-        let decoded = try decoder.decode(Self.self, from: json)
-        self = decoded
+        do {
+            let json = try JSONSerialization.data(withJSONObject: data)
+            let decoder = JSONDecoder()
+            let decoded = try decoder.decode(Self.self, from: json)
+            self = decoded
+        } catch {
+            throw AppError.decodingFailed(error)
+        }
     }
     
     func dictionary() throws -> [String: Any] {
-        let encoder = JSONEncoder()
-        let data = try encoder.encode(self)
-        if let json = try JSONSerialization.jsonObject(with: data) as? [String : Any] {
-            return json
-        } else {
-            throw NSError()
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(self)
+            let json = try JSONSerialization.jsonObject(with: data)
+            
+            if let jsonDict = json as? [String : Any] {
+                return jsonDict
+            } else {
+                throw AppError.parsingFailed
+            }
+            
+        } catch {
+            throw AppError.encodingFailed(error)
         }
+        
 
     }
 }

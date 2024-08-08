@@ -34,6 +34,7 @@ struct MyPetView: View {
         .toolbarItem(SystemIcon.systemIconEdit, action: {
             navigation.navigationPath.append(Navigation.PetPath.editPet)
         })
+        .appAlert(error: viewModel.error, isPresented: $viewModel.alertIsShown)
         .navigationDestination(for: Navigation.PetPath.self) { path in
             switch path {
             case .addReminder:

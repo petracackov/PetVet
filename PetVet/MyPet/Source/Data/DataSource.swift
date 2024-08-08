@@ -33,15 +33,30 @@ final class DataSource {
             predicate: predicate,
             sortBy: sortBy ?? [])
         medicalRecordsDescriptor.fetchLimit = fetchLimit
-        return try modelContext.fetch(medicalRecordsDescriptor)
+        do {
+            return try modelContext.fetch(medicalRecordsDescriptor)
+        } catch {
+            throw AppError.dataSource(error)
+        }
     }
     
-    func delete(_ model: any PersistentModel) {
+    func delete(_ model: any PersistentModel) throws {
         modelContext.delete(model)
+        try saveData()
     }
     
-    func insert(_ model: any PersistentModel) {
+    func insert(_ model: any PersistentModel) throws {
         modelContext.insert(model)
+        try saveData()
+    }
+    
+    func saveData() throws {
+        do {
+            try modelContext.save()
+        } catch {
+            throw AppError.savingDataFailed
+        }
+        
     }
     
 }

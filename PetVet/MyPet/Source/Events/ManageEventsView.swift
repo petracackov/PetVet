@@ -13,19 +13,21 @@ struct ManageEventsView: View {
     @State var viewModel: ManageEventsViewModel
     
     var body: some View {
-        VStack(spacing: 20) {
-            
-            AppTextField(text: $viewModel.title, title: "Title")
-            AppTextField(text: $viewModel.description, title: "Description")
-            AppDatePicker(date: $viewModel.date, title: "Date of event:", components: [.date, .hourAndMinute])
-            
-            reminderTimePicker()
-            
-            if viewModel.isEditingMode {
-                AppToggle(isOn: $viewModel.completed, title: "Compleated:")
+        VStack {
+            ScrollView {
+                VStack(spacing: 20) {
+                    
+                    AppTextField(text: $viewModel.title, title: "Title")
+                    AppTextField(text: $viewModel.description, title: "Description")
+                    AppDatePicker(date: $viewModel.date, title: "Date of event:", components: [.date, .hourAndMinute])
+                    
+                    reminderTimePicker()
+                    
+                    if viewModel.isEditingMode {
+                        AppToggle(isOn: $viewModel.completed, title: "Compleated:")
+                    }
+                }
             }
-            
-            Spacer()
             
             AppButton(title: "Save") {
                 viewModel.save()
@@ -37,6 +39,7 @@ struct ManageEventsView: View {
         .animation(.easeInOut, value: viewModel.eventReminderTime)
         .navigationTitle(viewModel.isEditingMode ? "Edit event" : "Create event")
         .navigationBarTitleDisplayMode(.inline)
+        .appAlert(error: viewModel.error, isPresented: $viewModel.alertIsShown)
         .toolbarItem(.systemIconTrash, isVisible: viewModel.isEditingMode) {
             viewModel.delete()
         }

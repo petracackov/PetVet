@@ -24,6 +24,8 @@ struct HomeView: View {
                 NoDataView(.generic) {
                     navigation.navigationPath.append(Navigation.MyPetsPath.createNewPet)
                 }
+            case .error(let error):
+                NoDataView(.generic, title: error.description)
             }
             
             if let selectedPet = viewModel.selectedPet {
@@ -39,7 +41,7 @@ struct HomeView: View {
             navigation.tabBarIsHidden = newValue != nil
         }
         .animation(.easeInOut, value: viewModel.selectedPet)
-        
+        .appAlert(error: viewModel.error, isPresented: $viewModel.alertIsShown)
         .navigationDestination(for: Navigation.MyPetsPath.self, destination: { path in
             switch path {
             case .pet(let pet):

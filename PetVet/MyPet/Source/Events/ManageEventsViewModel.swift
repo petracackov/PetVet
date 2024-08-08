@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable class ManageEventsViewModel {
+@Observable class ManageEventsViewModel: ViewModel {
     
     private let dataService: DataService
     private let petInfo: PetEvent.PetInfo
@@ -44,18 +44,26 @@ import Foundation
     }
     
     func save() {
-        if let event {
-            dataService.updateEvent(event, title: title, description: description, date: date, completed: completed)
-        } else if !title.isEmpty {
-            dataService.createEvent(for: petInfo, title: title, description: description, date: date, completed: completed)
-        } else {
-            AppError.handle(NSError())
+        do {
+            if let event, !title.isEmpty {
+                dataService.updateEvent(event, title: title, description: description, date: date, completed: completed)
+            } else if !title.isEmpty {
+                try dataService.createEvent(for: petInfo, title: title, description: description, date: date, completed: completed)
+            } else {
+                handleError(.validationFailed)
+            }
+        } catch {
+            handleError(error)
         }
     }
     
     func delete() {
         guard let event else { return }
-        dataService.deleteEvent(event)
+        do {
+            try dataService.deleteEvent(event)
+        } catch {
+            handleError(error)
+        }
     }
     
 }
