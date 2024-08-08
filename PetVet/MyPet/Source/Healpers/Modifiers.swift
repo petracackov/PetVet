@@ -110,3 +110,35 @@ extension View {
     
 }
 
+fileprivate struct NavigationTitleModifier: ViewModifier {
+    
+    let title: String
+    let isVisible: Bool
+    
+    func body(content: Content) -> some View {
+        content
+            .toolbar {
+                if isVisible {
+                    ToolbarItem(placement: .principal) {
+                        VStack(spacing: 0) {
+                            Image(.logoSmall)
+                                .resizable()
+                                .scaledToFit()
+                            Text(title)
+                                .font(.body.bold())
+                        }
+                    }
+                }
+            }
+    }
+    
+}
+
+extension View {
+    
+    func navigationBarTitle(_ title: String, isVisible: Bool = true) -> some View {
+        modifier(NavigationTitleModifier(title: title, isVisible: isVisible))
+    }
+    
+}
+

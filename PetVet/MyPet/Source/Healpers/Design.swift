@@ -17,6 +17,7 @@ enum SystemIcon: String {
     case systemIconBell = "bell"
     case systemIconHouse = "house"
     case systemIconGear = "gearshape"
+    case systemIconGearFill = "gearshape.fill"
     case systemIconPlus = "plus"
     case systemIconTrash = "trash"
     case systemIconTortoiseFill = "tortoise.fill"

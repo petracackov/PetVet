@@ -18,14 +18,13 @@ struct LaunchScreenUI: View {
                 Image(.launchLogo)
                     .resizable()
                     .scaledToFit()
-                    .padding(.horizontal, 77)
                     .scaleEffect(CGSize(width: scale, height: scale))
                 Spacer()
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .ignoresSafeArea()
-        .background(.appPurple)
+        .appGradient()
         .onAppear {
             withAnimation(.easeIn(duration: 0.3).delay(0.2)) {
                 scale = 1.1

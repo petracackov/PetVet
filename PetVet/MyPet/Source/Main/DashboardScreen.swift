@@ -32,7 +32,8 @@ struct DashboardScreen: View {
             .animation(.easeInOut, value: navigation.tabBarIsHidden)
             .ignoresSafeArea(edges: .bottom)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle(viewModel.dashboardItem.title)
+//            .navigationTitle(viewModel.dashboardItem.title)
+            .navigationBarTitle(viewModel.dashboardItem.title)
             
         }
         .accentColor(.appPurple)
