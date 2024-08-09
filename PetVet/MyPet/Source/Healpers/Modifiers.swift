@@ -130,6 +130,7 @@ fileprivate struct NavigationTitleModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         content
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 if isVisible {
                     ToolbarItem(placement: .principal) {

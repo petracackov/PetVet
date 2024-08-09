@@ -62,6 +62,8 @@
 		C0986AA12C652A84006B9BE8 /* ManageVetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0986AA02C652A84006B9BE8 /* ManageVetView.swift */; };
 		C0986AA32C65F9D5006B9BE8 /* LinkMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0986AA22C65F9D5006B9BE8 /* LinkMetadata.swift */; };
 		C0986AA52C65F9FA006B9BE8 /* LinkPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0986AA42C65F9FA006B9BE8 /* LinkPreview.swift */; };
+		C0986AA72C66195E006B9BE8 /* CircleEditIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0986AA62C66195E006B9BE8 /* CircleEditIcon.swift */; };
+		C0986AA92C665457006B9BE8 /* AddTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0986AA82C665457006B9BE8 /* AddTextFieldView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +124,8 @@
 		C0986AA02C652A84006B9BE8 /* ManageVetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageVetView.swift; sourceTree = "<group>"; };
 		C0986AA22C65F9D5006B9BE8 /* LinkMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkMetadata.swift; sourceTree = "<group>"; };
 		C0986AA42C65F9FA006B9BE8 /* LinkPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPreview.swift; sourceTree = "<group>"; };
+		C0986AA62C66195E006B9BE8 /* CircleEditIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleEditIcon.swift; sourceTree = "<group>"; };
+		C0986AA82C665457006B9BE8 /* AddTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTextFieldView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,8 @@
 				C00A54DE2C466CCD008B91F9 /* AppDatePicker.swift */,
 				C00A54E02C468361008B91F9 /* AppToggle.swift */,
 				C0986AA42C65F9FA006B9BE8 /* LinkPreview.swift */,
+				C0986AA62C66195E006B9BE8 /* CircleEditIcon.swift */,
+				C0986AA82C665457006B9BE8 /* AddTextFieldView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -443,6 +449,7 @@
 				C0009F322C3FC41D00A950D1 /* ViewModel.swift in Sources */,
 				C0986A932C63ADA1006B9BE8 /* LaunchScreenUI.swift in Sources */,
 				C04AA5852C4FBB7A00748AED /* DataService.swift in Sources */,
+				C0986AA92C665457006B9BE8 /* AddTextFieldView.swift in Sources */,
 				C00A54C32C427158008B91F9 /* CameraView.swift in Sources */,
 				C0986A9F2C652A78006B9BE8 /* ManageVetViewModel.swift in Sources */,
 				C00A54DF2C466CCD008B91F9 /* AppDatePicker.swift in Sources */,
@@ -458,6 +465,7 @@
 				C0986AA32C65F9D5006B9BE8 /* LinkMetadata.swift in Sources */,
 				C0375E5B2C2EAB4600167ADF /* MyPetViewModel.swift in Sources */,
 				C0375E762C3299FE00167ADF /* ManagePetViewModel.swift in Sources */,
+				C0986AA72C66195E006B9BE8 /* CircleEditIcon.swift in Sources */,
 				C00A54D92C454624008B91F9 /* ManageEventsView.swift in Sources */,
 				C00CA20B2C37D26E00383CEB /* ManageMedicalRecordViewModel.swift in Sources */,
 				C0375E542C2D973C00167ADF /* MyPetView.swift in Sources */,

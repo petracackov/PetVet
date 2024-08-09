@@ -20,8 +20,7 @@ struct MyVetView: View {
             
         }
         .toolbarItem(.systemIconPlus, isVisible: !viewModel.vets.isEmpty, action: {
-            // TODO
-            print("manage items")
+            navigation.navigationPath.append(Navigation.VetsPath.addNewVet)
         })
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationBarTitle("My vet", isVisible: !viewModel.vets.isEmpty)
@@ -32,13 +31,20 @@ struct MyVetView: View {
         .overlay {
             if viewModel.vets.isEmpty {
                 NoDataView(.vets, title: "No Vets added") {
-                    // TODO: Add vet
-                    print("manage items")
+                    navigation.navigationPath.append(Navigation.VetsPath.addNewVet)
                 }
                     .padding(70)
             }
         }
         .appGradient()
+        .navigationDestination(for: Navigation.VetsPath.self) { path in
+            switch path {
+            case .addNewVet:
+                ManageVetView(viewModel: .init(dataService: viewModel.dataService))
+            case .manageVet(let info):
+                ManageVetView(viewModel: .init(dataService: viewModel.dataService, vetInfo: info))
+            }
+        }
        
     }
     
@@ -67,24 +73,12 @@ struct MyVetView: View {
                 
                 if let webPage = vetInfo.webPage, let url = URL(string: webPage) {
                     LinkPreview(urlString: webPage)
-//                    VStack {
-//                        if let image = metadata.image {
-//                            Image(uiImage: image)
-//                        }
-//                        HStack {
-//                            if let icon = metadata.icon {
-//                                Image(uiImage: icon)
-//                            }
-//                            if let title = metadata.title {
-//                                Text(title)
-//                            }
-//                        }
-//                    }
                 }
             }
             
         }
         .padding()
+        
     }
     
     @ViewBuilder

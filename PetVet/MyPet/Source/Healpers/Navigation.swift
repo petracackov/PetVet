@@ -42,7 +42,7 @@ import SwiftUI
         case vets
     }
     
-    enum VetsPath {
+    enum VetsPath: Hashable {
         case addNewVet
         case manageVet(VetInfo)
     }
