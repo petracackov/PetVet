@@ -18,7 +18,7 @@ final class DataSource {
     @MainActor
     init() {
         do {
-            self.modelContainer = try ModelContainer(for: Pet.self, MedicalRecordItem.self, PetEvent.self)
+            self.modelContainer = try ModelContainer(for: Pet.self, MedicalRecordItem.self, PetEvent.self, VetInfo.self)
             self.modelContext = modelContainer.mainContext
         } catch {
             fatalError("Failed to create ModelContainer. \(error)")

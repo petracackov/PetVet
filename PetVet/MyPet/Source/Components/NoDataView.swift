@@ -11,12 +11,14 @@ enum NoDataType {
     case generic
     case events
     case medicalRecords
+    case vets
     
     var images: [SystemIcon] {
         switch self {
         case .generic: [.systemIconTortoiseFill]
         case .events: [.systemIconBellFill, .systemIconCalendar, .systemIconClockFill]
         case .medicalRecords: [.systemIconSyringe, .systemIconStethoscope, .systemIconPillsFill]
+        case .vets: [.systemIconStethoscope]
         }
     }
     
@@ -25,6 +27,7 @@ enum NoDataType {
         case .generic: .appPurpleLightDark
         case .events: .appPurpleLightDark
         case .medicalRecords: .appOrangeLight
+        case .vets: .appOrangeLight
         }
     }
 }

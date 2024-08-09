@@ -23,9 +23,9 @@ struct SettingsView: View {
                     .asButton {
                         print("Sync with icloud - TODO")
                     }
-                Text("My vet info - TODO")
+                Text("My vet info")
                     .asButton {
-                        print("My vet info - TODO")
+                        navigation.navigationPath.append(Navigation.SettingsPath.vets)
                     }
                 
             }
@@ -34,6 +34,8 @@ struct SettingsView: View {
             switch path {
             case .addNewPet:
                 ManagePetView(viewModel: ManagePetViewModel(dataService: viewModel.dataService, pet: nil))
+            case .vets:
+                MyVetView(viewModel: .init(dataService: viewModel.dataService, vets: MockedData.vetInfo))
             }
         }
     }

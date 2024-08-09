@@ -59,4 +59,9 @@ class MockedData {
         .init(id: UUID().uuidString, name: "pet"),
     ]
     
+    static let vetInfo: [VetInfo] = [
+        .init(id: UUID().uuidString, name: "Mačja hiša", vetName: "Petra Harnik", phoneNumber: [.init(id: UUID().uuidString, numberType: .mobile, number: "+38612345678")], email: "some.email@gmail.com", address: "Zofke Kvedrove 16", webPage: "https://www.macjahisa-vet.si"),
+        .init(id: UUID().uuidString, name: "Emergency vet", vetName: nil, phoneNumber: [], email: nil, address: nil, webPage: "https://dezurni-veterinar-ljubljana.si"),
+    ]
+    
 }

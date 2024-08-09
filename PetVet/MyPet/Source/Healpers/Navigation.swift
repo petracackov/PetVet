@@ -39,6 +39,12 @@ import SwiftUI
     
     enum SettingsPath {
         case addNewPet
+        case vets
+    }
+    
+    enum VetsPath {
+        case addNewVet
+        case manageVet(VetInfo)
     }
     
 }

@@ -55,6 +55,13 @@
 		C04AA5852C4FBB7A00748AED /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04AA5842C4FBB7A00748AED /* DataService.swift */; };
 		C04AA5872C4FC62F00748AED /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04AA5862C4FC62F00748AED /* AppError.swift */; };
 		C0986A932C63ADA1006B9BE8 /* LaunchScreenUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0986A922C63ADA1006B9BE8 /* LaunchScreenUI.swift */; };
+		C0986A992C651402006B9BE8 /* MyVetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0986A982C651402006B9BE8 /* MyVetView.swift */; };
+		C0986A9B2C651413006B9BE8 /* MyVetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0986A9A2C651413006B9BE8 /* MyVetViewModel.swift */; };
+		C0986A9D2C651495006B9BE8 /* VetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0986A9C2C651495006B9BE8 /* VetInfo.swift */; };
+		C0986A9F2C652A78006B9BE8 /* ManageVetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0986A9E2C652A78006B9BE8 /* ManageVetViewModel.swift */; };
+		C0986AA12C652A84006B9BE8 /* ManageVetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0986AA02C652A84006B9BE8 /* ManageVetView.swift */; };
+		C0986AA32C65F9D5006B9BE8 /* LinkMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0986AA22C65F9D5006B9BE8 /* LinkMetadata.swift */; };
+		C0986AA52C65F9FA006B9BE8 /* LinkPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0986AA42C65F9FA006B9BE8 /* LinkPreview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +115,13 @@
 		C04AA5862C4FC62F00748AED /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		C08629692C578C1100C75013 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C0986A922C63ADA1006B9BE8 /* LaunchScreenUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenUI.swift; sourceTree = "<group>"; };
+		C0986A982C651402006B9BE8 /* MyVetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVetView.swift; sourceTree = "<group>"; };
+		C0986A9A2C651413006B9BE8 /* MyVetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVetViewModel.swift; sourceTree = "<group>"; };
+		C0986A9C2C651495006B9BE8 /* VetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VetInfo.swift; sourceTree = "<group>"; };
+		C0986A9E2C652A78006B9BE8 /* ManageVetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageVetViewModel.swift; sourceTree = "<group>"; };
+		C0986AA02C652A84006B9BE8 /* ManageVetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageVetView.swift; sourceTree = "<group>"; };
+		C0986AA22C65F9D5006B9BE8 /* LinkMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkMetadata.swift; sourceTree = "<group>"; };
+		C0986AA42C65F9FA006B9BE8 /* LinkPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPreview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +146,7 @@
 				C00A54CC2C4407C5008B91F9 /* MedicalRecordCell.swift */,
 				C00A54DE2C466CCD008B91F9 /* AppDatePicker.swift */,
 				C00A54E02C468361008B91F9 /* AppToggle.swift */,
+				C0986AA42C65F9FA006B9BE8 /* LinkPreview.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -234,6 +249,7 @@
 				C0375E7B2C33E66000167ADF /* Medical Records */,
 				C0375E722C3299D000167ADF /* ManagePet */,
 				C0375E6E2C3292DC00167ADF /* MyPetView */,
+				C0986A972C6513E4006B9BE8 /* MyVet */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -256,6 +272,7 @@
 				C0375E4F2C2D5A6C00167ADF /* Pet.swift */,
 				C0375E582C2EA96800167ADF /* MedicalRecordItem.swift */,
 				C00A54D62C45374D008B91F9 /* Event.swift */,
+				C0986A9C2C651495006B9BE8 /* VetInfo.swift */,
 				C0375E4D2C2D5A3A00167ADF /* MockedData.swift */,
 			);
 			path = Data;
@@ -317,8 +334,20 @@
 			isa = PBXGroup;
 			children = (
 				C04AA5862C4FC62F00748AED /* AppError.swift */,
+				C0986AA22C65F9D5006B9BE8 /* LinkMetadata.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C0986A972C6513E4006B9BE8 /* MyVet */ = {
+			isa = PBXGroup;
+			children = (
+				C0986A982C651402006B9BE8 /* MyVetView.swift */,
+				C0986A9A2C651413006B9BE8 /* MyVetViewModel.swift */,
+				C0986A9E2C652A78006B9BE8 /* ManageVetViewModel.swift */,
+				C0986AA02C652A84006B9BE8 /* ManageVetView.swift */,
+			);
+			path = MyVet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -393,13 +422,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0986A9B2C651413006B9BE8 /* MyVetViewModel.swift in Sources */,
 				C00A54CD2C4407C5008B91F9 /* MedicalRecordCell.swift in Sources */,
+				C0986AA52C65F9FA006B9BE8 /* LinkPreview.swift in Sources */,
 				C0375E712C3298F500167ADF /* Modifiers.swift in Sources */,
 				C0375E502C2D5A6C00167ADF /* Pet.swift in Sources */,
 				C0375E4E2C2D5A3A00167ADF /* MockedData.swift in Sources */,
 				C0375E7D2C33E67400167ADF /* MedicalRecordsView.swift in Sources */,
 				C0375E362C2D503600167ADF /* MyPetApp.swift in Sources */,
 				C0375E522C2D5D5400167ADF /* MyPetsViewModel.swift in Sources */,
+				C0986A9D2C651495006B9BE8 /* VetInfo.swift in Sources */,
 				C0375E742C3299DE00167ADF /* ManagePetView.swift in Sources */,
 				C0009F342C41117600A950D1 /* DataSource.swift in Sources */,
 				C04AA5872C4FC62F00748AED /* AppError.swift in Sources */,
@@ -412,6 +444,7 @@
 				C0986A932C63ADA1006B9BE8 /* LaunchScreenUI.swift in Sources */,
 				C04AA5852C4FBB7A00748AED /* DataService.swift in Sources */,
 				C00A54C32C427158008B91F9 /* CameraView.swift in Sources */,
+				C0986A9F2C652A78006B9BE8 /* ManageVetViewModel.swift in Sources */,
 				C00A54DF2C466CCD008B91F9 /* AppDatePicker.swift in Sources */,
 				C00CA2202C3AF86500383CEB /* NoDataView.swift in Sources */,
 				C00A54E32C469D72008B91F9 /* TODO.swift in Sources */,
@@ -422,6 +455,7 @@
 				C00A54D22C453716008B91F9 /* EventsView.swift in Sources */,
 				C00CA2072C37CBDB00383CEB /* ManageMedicalRecordView.swift in Sources */,
 				C00CA2122C37FF9C00383CEB /* DashboardViewModel.swift in Sources */,
+				C0986AA32C65F9D5006B9BE8 /* LinkMetadata.swift in Sources */,
 				C0375E5B2C2EAB4600167ADF /* MyPetViewModel.swift in Sources */,
 				C0375E762C3299FE00167ADF /* ManagePetViewModel.swift in Sources */,
 				C00A54D92C454624008B91F9 /* ManageEventsView.swift in Sources */,
@@ -430,7 +464,9 @@
 				C00A54D52C453733008B91F9 /* EventsViewModel.swift in Sources */,
 				C0375E592C2EA96800167ADF /* MedicalRecordItem.swift in Sources */,
 				C00A54C72C42723D008B91F9 /* ImageTools.swift in Sources */,
+				C0986A992C651402006B9BE8 /* MyVetView.swift in Sources */,
 				C00CA2252C3BC61400383CEB /* Design.swift in Sources */,
+				C0986AA12C652A84006B9BE8 /* ManageVetView.swift in Sources */,
 				C0375E7F2C33E69700167ADF /* MedicalRecordsViewModel.swift in Sources */,
 				C00CA2102C37FF4500383CEB /* SettingsView.swift in Sources */,
 				C0009F2E2C3FC36E00A950D1 /* SettingsViewModel.swift in Sources */,

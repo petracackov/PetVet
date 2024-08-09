@@ -29,6 +29,10 @@ extension View {
         asButton { action(item) }
     }
     
+    func asLink(destination: URL) -> some View {
+        Link(destination: destination, label: { self })
+    }
+    
 }
 
 // MARK: - globalElementId
