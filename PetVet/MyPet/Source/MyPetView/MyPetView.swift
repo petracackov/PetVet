@@ -30,7 +30,8 @@ struct MyPetView: View {
             .padding(.bottom, 125)
             
         }
-        .background(.appBackground)
+//        .background(.appBackground)
+        .appGradient()
         .toolbarItem(SystemIcon.systemIconEdit, action: {
             navigation.navigationPath.append(Navigation.PetPath.editPet)
         })
@@ -63,12 +64,12 @@ struct MyPetView: View {
                     
             }
             .clipShape(.rect(cornerRadius: 10))
-            .globalElementId(pet.id, item: "image", namespace: namespace)
+//            .globalElementId(pet.id, item: "image", namespace: nil)
             HStack {
                 Text(pet.name)
                     .font(.largeTitle)
                     .foregroundStyle(.appText)
-                    .globalElementId(pet.id, item: "name", namespace: namespace)
+//                    .globalElementId(pet.id, item: "name", namespace: nil)
                 
                 Spacer()
             }
@@ -101,13 +102,8 @@ struct MyPetView: View {
                     navigation.navigationPath.append(Navigation.PetPath.medicalRecords)
                 }
             }
-            
-            if viewModel.medicalRecords.isEmpty {
-                NoDataView(.medicalRecords)
-                .frame(height: 120)
-            } else {
-                
-                //First 3 events end then full separate screen
+
+            if !viewModel.medicalRecords.isEmpty {
                 VStack(spacing: 0) {
                     ForEach(viewModel.medicalRecords) { item in
                         MedicalRecordCell(title: item.title,
@@ -134,7 +130,7 @@ struct MyPetView: View {
     }
     
     private func events() -> some View {
-        Group {
+        VStack(spacing: 0) {
             HStack(alignment: .center) {
                 Text("Events")
                     .font(.largeTitle)
@@ -147,18 +143,8 @@ struct MyPetView: View {
                 }
             }
             .foregroundStyle(.appText)
-            .asButton {
-                if viewModel.events.isEmpty {
-                    navigation.navigationPath.append(Navigation.PetPath.addReminder)
-                } else {
-                    navigation.navigationPath.append(Navigation.PetPath.reminders)
-                }
-            }
             
-            if viewModel.events.isEmpty {
-                NoDataView(.events)
-                    .frame(height: 120)
-            } else {
+            if !viewModel.events.isEmpty {
                 VStack(spacing: 0) {
                     ForEach(viewModel.events) { event in
                         EventCell(event: event,
@@ -169,6 +155,13 @@ struct MyPetView: View {
                 }
             }
             
+        }
+        .asButton {
+            if viewModel.events.isEmpty {
+                navigation.navigationPath.append(Navigation.PetPath.addReminder)
+            } else {
+                navigation.navigationPath.append(Navigation.PetPath.reminders)
+            }
         }
     }
 }

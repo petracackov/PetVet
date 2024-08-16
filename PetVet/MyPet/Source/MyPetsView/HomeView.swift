@@ -21,9 +21,11 @@ struct HomeView: View {
             case .oneItem(let pet):
                 MyPetView(viewModel: .init(dataService: viewModel.dataService, pet: pet))
             case .empty:
-                NoDataView(.generic) {
+                NoDataView(.generic, title: "+ Add new pet") {
                     navigation.navigationPath.append(Navigation.MyPetsPath.createNewPet)
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .appGradient()
             case .error(let error):
                 NoDataView(.generic, title: error.description)
             }

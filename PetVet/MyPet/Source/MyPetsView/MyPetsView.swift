@@ -48,7 +48,7 @@ struct MyPetsView: View {
                     Text(pet.name)
                         .foregroundStyle(.appWhite)
                         .font(.largeTitle)
-                        .globalElementId(pet.id, item: "name", namespace: namespace)
+//                        .globalElementId(pet.id, item: "name", namespace: namespace)
                         .padding()
                 }
                 .frame(height: 200)
@@ -56,7 +56,9 @@ struct MyPetsView: View {
                 .asButton {
                     viewModel.selectedPet = pet
                 }
-                .globalElementId(pet.id, item: "image", namespace: namespace)
+//                .globalElementId(pet.id, item: "image", namespace: namespace)
+            } else {
+                Color.clear.frame(height: 200)
             }
         }
     }

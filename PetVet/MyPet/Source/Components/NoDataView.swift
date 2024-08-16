@@ -15,8 +15,8 @@ enum NoDataType {
     
     var images: [SystemIcon] {
         switch self {
-        case .generic: [.systemIconTortoiseFill]
-        case .events: [.systemIconBellFill, .systemIconCalendar, .systemIconClockFill]
+        case .generic: [.systemIconPawprint]//[.systemIconTortoiseFill]
+        case .events: [.systemIconBell]//[.systemIconBellFill, .systemIconCalendar, .systemIconClockFill]
         case .medicalRecords: [.systemIconSyringe, .systemIconStethoscope, .systemIconPillsFill]
         case .vets: [.systemIconStethoscope]
         }
@@ -24,8 +24,8 @@ enum NoDataType {
     
     var color: Color {
         switch self {
-        case .generic: .appPurpleLightDark
-        case .events: .appPurpleLightDark
+        case .generic: .appPurpleLightDarkReverse
+        case .events: .appPurpleLightDarkReverse
         case .medicalRecords: .appOrangeLight
         case .vets: .appOrangeLight
         }
@@ -54,6 +54,17 @@ struct NoDataView: View {
     }
     
     var body: some View {
+        if let addDataAction {
+            contentView()
+                .asButton {
+                    addDataAction()
+                }
+        } else {
+            contentView()
+        }
+    }
+    
+    private func contentView() -> some View {
         VStack {
             HStack {
                 ForEach(images, id: \.self) { uiImage in
@@ -64,6 +75,7 @@ struct NoDataView: View {
                         .padding()
                 }
             }
+            .padding(.horizontal, 80)
             if !title.isEmpty {
                 Text(title)
                     .font(.largeTitle)
@@ -71,17 +83,23 @@ struct NoDataView: View {
                     .multilineTextAlignment(.center)
             }
             
-            if let addDataAction {
-                SystemIcon.systemIconPlus.image
-                    .resizable()
-                    .frame(width: 40, height: 40)
-                    .scaledToFit()
-                    .foregroundStyle(color)
-                    .asButton {
-                        addDataAction()
-                    }
-            }
+//            if let addDataAction {
+//                SystemIcon.systemIconPlusCircle.image
+//                    .resizable()
+//                    .frame(width: 40, height: 40)
+//                    .scaledToFit()
+//                    .foregroundStyle(color)
+//                    .asButton {
+//                        addDataAction()
+//                    }
+//            }
         }
+    }
+}
+
+#Preview {
+    NoDataView(.generic, title: "Something") {
+        print("something")
     }
 }
 

@@ -29,7 +29,7 @@ struct MedicalRecordCell: View {
             }
             .padding(.horizontal, 10)
             .padding(.bottom, 10)
-            .padding(.top, 20)
+            .padding(.top, 10)
             Text(description)
                 .font(.subheadline)
                 .foregroundStyle(.appBlackWhite)
@@ -38,18 +38,20 @@ struct MedicalRecordCell: View {
                 .padding(.bottom, 10)
             
             
-                Rectangle()
-                    .frame(height: 1)
-                    .foregroundStyle(isLast ? .clear : .appBlackWhite)
+//                Rectangle()
+//                    .frame(height: 1)
+//                    .foregroundStyle(isLast ? .clear : .appBlackWhite)
             
             
         }
         .padding(.horizontal, 15)
         .background(.appGray3.opacity(0.2))
-        .clipShape(.rect(topLeadingRadius: isFirst ? 15 : 0,
-                         bottomLeadingRadius: isLast ? 15 : 0,
-                         bottomTrailingRadius:  isLast ? 15 : 0,
-                         topTrailingRadius: isFirst ? 15 : 0))
+        .clipShape(.rect(cornerRadius: 15))
+        .padding(5)
+//        .clipShape(.rect(topLeadingRadius: isFirst ? 15 : 0,
+//                         bottomLeadingRadius: isLast ? 15 : 0,
+//                         bottomTrailingRadius:  isLast ? 15 : 0,
+//                         topTrailingRadius: isFirst ? 15 : 0))
     }
     
 }

@@ -50,18 +50,20 @@ struct EventCell: View {
                 .padding(.bottom, 10)
             
             
-            Rectangle()
-                .frame(height: 1)
-                .foregroundStyle(isLast ? .clear : .appBlackWhite)
+//            Rectangle()
+//                .frame(height: 1)
+//                .foregroundStyle(isLast ? .clear : .appBlackWhite)
             
             
         }
         .padding(.horizontal, 15)
         .background(.appGray3.opacity(0.2))
-        .clipShape(.rect(topLeadingRadius: isFirst ? 15 : 0,
-                         bottomLeadingRadius: isLast ? 15 : 0,
-                         bottomTrailingRadius:  isLast ? 15 : 0,
-                         topTrailingRadius: isFirst ? 15 : 0))
+        .clipShape(.rect(cornerRadius: 15))
+        .padding(.vertical, 5)
+//        .clipShape(.rect(topLeadingRadius: isFirst ? 15 : 0,
+//                         bottomLeadingRadius: isLast ? 15 : 0,
+//                         bottomTrailingRadius:  isLast ? 15 : 0,
+//                         topTrailingRadius: isFirst ? 15 : 0))
     }
     
     
