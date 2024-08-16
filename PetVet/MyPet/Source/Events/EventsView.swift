@@ -20,10 +20,7 @@ struct EventsView: View {
                 .foregroundStyle(.clear)
                 
             ForEach(viewModel.events) { event in
-                EventCell(event: event,
-                          isLast: viewModel.events.isLast(event),
-                          isFirst: viewModel.events.isFirst(event), 
-                          showPet: !viewModel.isPetView)
+                EventCell(event: event, showPet: !viewModel.isPetView)
                 .asButton {
                     navigation.navigationPath.append(Navigation.EventsPath.manageEvent(event))
                 }
@@ -39,13 +36,13 @@ struct EventsView: View {
             guard let pet = viewModel.pet else { return }
             navigation.navigationPath.append(Navigation.EventsPath.addEvent(pet))
         })
-//        .toolbarItem(.systemIconChevronLeft, placement: .navigation, isVisible: viewModel.isPetView) {
-//            navigation.navigationPath.removeLast()
-//        }
+        .toolbarItem(.systemIconChevronLeft, placement: .navigation, isVisible: viewModel.isPetView) {
+            navigation.navigationPath.removeLast()
+        }
         .overlay {
             if viewModel.events.isEmpty {
                 let message = viewModel.error?.description ?? "You have no upcoming events"
-                NoDataView(.events, title: message)
+                NoDataView(.eventsBig, title: message)
                     .padding(20)
             }
         }

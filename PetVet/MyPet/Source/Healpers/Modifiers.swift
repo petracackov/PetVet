@@ -103,13 +103,8 @@ fileprivate struct ToolbarItemModifier: ViewModifier {
                 if isVisible {
                     ToolbarItem(placement: placement) {
                         icon.image
-//                            .resizable()
                             .scaledToFit()
-                            .frame(width: 30, height: 30)
-                            
-//                            .padding(.leading, 20)
-                            
-                            
+                            .frame(width: 25, height: 25)
                             .asButton {
                                 action()
                             }

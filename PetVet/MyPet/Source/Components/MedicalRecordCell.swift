@@ -12,11 +12,8 @@ struct MedicalRecordCell: View {
     let title: String
     let date: String
     let description: String
-    let isFirst: Bool
-    let isLast: Bool
     
     var body: some View {
-    
         VStack(alignment: .leading) {
             HStack {
                 Text(title)
@@ -36,30 +33,19 @@ struct MedicalRecordCell: View {
             
                 .padding(.horizontal, 10)
                 .padding(.bottom, 10)
-            
-            
-//                Rectangle()
-//                    .frame(height: 1)
-//                    .foregroundStyle(isLast ? .clear : .appBlackWhite)
-            
-            
         }
         .padding(.horizontal, 15)
         .background(.appGray3.opacity(0.2))
         .clipShape(.rect(cornerRadius: 15))
-        .padding(5)
-//        .clipShape(.rect(topLeadingRadius: isFirst ? 15 : 0,
-//                         bottomLeadingRadius: isLast ? 15 : 0,
-//                         bottomTrailingRadius:  isLast ? 15 : 0,
-//                         topTrailingRadius: isFirst ? 15 : 0))
+        .padding(.vertical, 5)
     }
     
 }
 
 #Preview {
     VStack(spacing: 0) {
-        MedicalRecordCell(title: "Vaccine", date: Date().string, description: "Some description", isFirst: true, isLast: false)
-        MedicalRecordCell(title: "Vaccine", date: Date().string, description: "Some description", isFirst: false, isLast: true)
+        MedicalRecordCell(title: "Vaccine", date: Date().string, description: "Some description")
+        MedicalRecordCell(title: "Vaccine", date: Date().string, description: "Some description")
     }
 
 }

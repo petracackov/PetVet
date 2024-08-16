@@ -21,9 +21,7 @@ struct MedicalRecordsView: View {
             ForEach(viewModel.medicalRecords) { item in
                 MedicalRecordCell(title: item.title,
                                   date: item.date.string,
-                                  description: item.itemDescription,
-                                  isFirst: viewModel.medicalRecords.isFirst(item),
-                                  isLast: viewModel.medicalRecords.isLast(item))
+                                  description: item.itemDescription)
                 .asButton {
                     navigation.navigationPath.append(Navigation.MedicalRecordsPath.editMedicalRecord(item))
                 }

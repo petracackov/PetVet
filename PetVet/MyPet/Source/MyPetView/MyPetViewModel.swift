@@ -35,14 +35,6 @@ import Combine
         self.fetchMyPetsEvents()
     }
     
-    func isLast(_ item: MedicalRecordItem) -> Bool {
-        medicalRecords.isLast(item)
-    }
-    
-    func isFirst(_ item: MedicalRecordItem) -> Bool {
-        medicalRecords.isFirst(item)
-    }
-    
     private func fetchPet() {
         do {
             pet = try dataService.fetchPet(id: pet.id)
