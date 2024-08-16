@@ -11,7 +11,6 @@ struct HomeView: View {
     
     @State var navigation = Navigation.shared
     @State var viewModel: MyPetsViewModel
-    var internalNamespace: Namespace.ID
     
     var body: some View {
         ZStack {
