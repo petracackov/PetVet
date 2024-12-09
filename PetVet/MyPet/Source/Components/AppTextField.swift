@@ -12,6 +12,7 @@ struct AppTextField: View {
     @Binding var text: String
     let title: String
     @Namespace private var internalNamespace
+    @FocusState private var isFocused: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -29,12 +30,10 @@ struct AppTextField: View {
                 if text.isEmpty {
                     styledTitle()
                         .foregroundStyle(.appGray1)
-                        
-                        
                         .matchedGeometryEffect(id: "label", in: internalNamespace)
                 }
                 TextField("", text: $text)
-                    .frame(height: 30)
+                    .frame(height: 50)
                     .accentColor(.appPurple)
             }
             .padding(.leading, 12)
@@ -48,6 +47,10 @@ struct AppTextField: View {
         }
         .frame(maxWidth: .infinity)
         .animation(.default, value: text)
+        .focused($isFocused)
+        .onTapGesture {
+            isFocused = true
+        }
         
     }
     
@@ -58,5 +61,9 @@ struct AppTextField: View {
 }
 
 #Preview {
-    AppTextField(text: .constant("Test"), title: "Hello")
+    VStack {
+        AppTextField(text: .constant("Test"), title: "Hello")
+        AppTextField(text: .constant(""), title: "Hello")
+    }
+    .padding()
 }

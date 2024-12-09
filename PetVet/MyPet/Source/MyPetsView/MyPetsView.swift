@@ -11,7 +11,6 @@ struct MyPetsView: View {
     
     @State var navigation = Navigation.shared
     @State var viewModel: MyPetsViewModel
-    var namespace: Namespace.ID? = nil
     
     var body: some View {
         ZStack {
@@ -24,7 +23,6 @@ struct MyPetsView: View {
         }
         .ignoresSafeArea(edges: .bottom)
         .appGradient()
-        .globalElementId("screen", item: "", namespace: namespace)
     }
     
     @ViewBuilder
@@ -48,7 +46,6 @@ struct MyPetsView: View {
                     Text(pet.name)
                         .foregroundStyle(.appWhite)
                         .font(.largeTitle)
-                        .globalElementId(pet.id, item: "name", namespace: namespace)
                         .padding()
                 }
                 .frame(height: 200)
@@ -56,7 +53,8 @@ struct MyPetsView: View {
                 .asButton {
                     viewModel.selectedPet = pet
                 }
-                .globalElementId(pet.id, item: "image", namespace: namespace)
+            } else {
+                Color.clear.frame(height: 200)
             }
         }
     }

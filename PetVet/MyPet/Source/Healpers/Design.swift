@@ -19,6 +19,7 @@ enum SystemIcon: String {
     case systemIconGear = "gearshape"
     case systemIconGearFill = "gearshape.fill"
     case systemIconPlus = "plus"
+    case systemIconPlusCircle = "plus.circle"
     case systemIconMinus = "minus"
     case systemIconTrash = "trash"
     case systemIconTortoiseFill = "tortoise.fill"
@@ -32,6 +33,7 @@ enum SystemIcon: String {
     case systemIconStethoscope = "stethoscope"
     case systemIconPillsFill = "pills.fill"
     case systemIconClockFill = "clock.fill"
+    case systemIconPawprint = "pawprint"
     
     var uiImage: UIImage {
         UIImage(systemName: self.rawValue)!.withRenderingMode(.alwaysTemplate)

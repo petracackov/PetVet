@@ -11,8 +11,6 @@ import SwiftData
 struct EventCell: View {
     
     let event: PetEvent
-    let isLast: Bool
-    let isFirst: Bool
     let showPet: Bool
     
     var body: some View {
@@ -49,19 +47,11 @@ struct EventCell: View {
                 .padding(.horizontal, 10)
                 .padding(.bottom, 10)
             
-            
-            Rectangle()
-                .frame(height: 1)
-                .foregroundStyle(isLast ? .clear : .appBlackWhite)
-            
-            
         }
         .padding(.horizontal, 15)
         .background(.appGray3.opacity(0.2))
-        .clipShape(.rect(topLeadingRadius: isFirst ? 15 : 0,
-                         bottomLeadingRadius: isLast ? 15 : 0,
-                         bottomTrailingRadius:  isLast ? 15 : 0,
-                         topTrailingRadius: isFirst ? 15 : 0))
+        .clipShape(.rect(cornerRadius: 15))
+        .padding(.vertical, 5)
     }
     
     
@@ -73,8 +63,8 @@ struct EventCell: View {
     let secondEvent = MockedData.events[2]
     
     return VStack(spacing: 0) {
-        EventCell(event: firstEvent, isLast: false, isFirst: true, showPet: true)
-        EventCell(event: secondEvent, isLast: true, isFirst: false, showPet: false)
+        EventCell(event: firstEvent, showPet: true)
+        EventCell(event: secondEvent, showPet: false)
     }
 
 }

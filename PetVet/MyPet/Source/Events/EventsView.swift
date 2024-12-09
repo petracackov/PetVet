@@ -14,11 +14,13 @@ struct EventsView: View {
     
     var body: some View {
         List {
+            Rectangle()
+                .plainList()
+                .frame(height: 20)
+                .foregroundStyle(.clear)
+                
             ForEach(viewModel.events) { event in
-                EventCell(event: event,
-                          isLast: viewModel.events.isLast(event),
-                          isFirst: viewModel.events.isFirst(event), 
-                          showPet: !viewModel.isPetView)
+                EventCell(event: event, showPet: !viewModel.isPetView)
                 .asButton {
                     navigation.navigationPath.append(Navigation.EventsPath.manageEvent(event))
                 }
@@ -28,7 +30,8 @@ struct EventsView: View {
             .padding(.horizontal, 20)
         }
         .listStyle(.plain)
-        .background(.appBackground)
+        .environment(\.defaultMinListRowHeight, 0)
+        .appGradient()
         .toolbarItem(.systemIconPlus, isVisible: viewModel.isPetView, action: {
             guard let pet = viewModel.pet else { return }
             navigation.navigationPath.append(Navigation.EventsPath.addEvent(pet))
@@ -39,7 +42,7 @@ struct EventsView: View {
         .overlay {
             if viewModel.events.isEmpty {
                 let message = viewModel.error?.description ?? "You have no upcoming events"
-                NoDataView(.events, title: message)
+                NoDataView(.eventsBig, title: message)
                     .padding(20)
             }
         }
@@ -66,9 +69,11 @@ struct EventsView: View {
 
 #Preview("Pet view") {
     let dataService = DataService(dataSource: DataSource.shared)
-    return EventsView(viewModel: .init(dataService: dataService,
-                                pet: MockedData.pets.first!,
-                                events: MockedData.events))
+    return NavigationStack {
+        EventsView(viewModel: .init(dataService: dataService,
+                                    pet: MockedData.pets.first!,
+                                    events: MockedData.events))
+    }
 }
 
 #Preview("Empty view") {

@@ -16,14 +16,20 @@ struct SettingsView: View {
         ZStack {
             List {
                 Text("Add new pet")
+                    .font(.body)
+                    .foregroundStyle(.appText)
                     .asButton {
                         navigation.navigationPath.append(Navigation.SettingsPath.addNewPet)
                     }
                 Text("Sync with icloud - TODO")
+                    .font(.body)
+                    .foregroundStyle(.appText)
                     .asButton {
                         print("Sync with icloud - TODO")
                     }
                 Text("My vet info")
+                    .font(.body)
+                    .foregroundStyle(.appText)
                     .asButton {
                         navigation.navigationPath.append(Navigation.SettingsPath.vets)
                     }

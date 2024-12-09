@@ -23,6 +23,7 @@ extension View {
     func asButton(action: @escaping () -> Void) -> some View {
         Button(action: action,
                label: { self })
+        .buttonStyle(.plain)
     }
     
     func asButton<ItemType>(for item: ItemType, action: @escaping (ItemType) -> Void) -> some View {
@@ -78,7 +79,9 @@ extension View {
     
     func appGradient() -> some View {
         
-        self.background(LinearGradient(colors: [.appPurpleGradient, .appBackground], startPoint: .bottom, endPoint: .top))
+        self.background(LinearGradient(colors: [.appPurpleGradient, .appBackground],
+                                       startPoint: .bottom,
+                                       endPoint: .top))
         
     }
     
@@ -100,9 +103,8 @@ fileprivate struct ToolbarItemModifier: ViewModifier {
                 if isVisible {
                     ToolbarItem(placement: placement) {
                         icon.image
-                            .resizable()
                             .scaledToFit()
-                            .frame(height: 20)
+                            .frame(width: 25, height: 25)
                             .asButton {
                                 action()
                             }

@@ -32,7 +32,6 @@ struct DashboardScreen: View {
             .animation(.easeInOut, value: navigation.tabBarIsHidden)
             .ignoresSafeArea(edges: .bottom)
             .navigationBarTitleDisplayMode(.inline)
-//            .navigationTitle(viewModel.dashboardItem.title)
             .navigationBarTitle(viewModel.dashboardItem.title)
             
         }
@@ -51,7 +50,7 @@ struct DashboardScreen: View {
                                 .frame(width: proxy.size.width)
                                 .id(item.scrollPosition)
                         case .home:
-                            HomeView(viewModel: .init(dataService: viewModel.dataService), internalNamespace: internalNamespace)
+                            HomeView(viewModel: .init(dataService: viewModel.dataService))
                                 .frame(width: proxy.size.width)
                                 .id(item.scrollPosition)
                         case .settings:

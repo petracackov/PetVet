@@ -12,7 +12,6 @@ struct MyPetView: View {
     @State var navigation = Navigation.shared
     @State var viewModel: MyPetViewModel
     private var pet: Pet { viewModel.pet }
-    var namespace: Namespace.ID? = nil
     
     var body: some View {
         ScrollView {
@@ -30,7 +29,7 @@ struct MyPetView: View {
             .padding(.bottom, 125)
             
         }
-        .background(.appBackground)
+        .appGradient()
         .toolbarItem(SystemIcon.systemIconEdit, action: {
             navigation.navigationPath.append(Navigation.PetPath.editPet)
         })
@@ -63,13 +62,10 @@ struct MyPetView: View {
                     
             }
             .clipShape(.rect(cornerRadius: 10))
-            .globalElementId(pet.id, item: "image", namespace: namespace)
             HStack {
                 Text(pet.name)
                     .font(.largeTitle)
                     .foregroundStyle(.appText)
-                    .globalElementId(pet.id, item: "name", namespace: namespace)
-                
                 Spacer()
             }
             
@@ -82,7 +78,7 @@ struct MyPetView: View {
     }
     
     private func medicalRecords() -> some View {
-        Group {
+        VStack(spacing: 0) {
             HStack(alignment: .center) {
                 Text("Medical records")
                     .font(.largeTitle)
@@ -94,32 +90,25 @@ struct MyPetView: View {
                 }
             }
             .foregroundStyle(.appText)
-            .asButton {
-                if viewModel.medicalRecords.isEmpty {
-                    navigation.navigationPath.append(Navigation.PetPath.addMedicalRecord)
-                } else {
-                    navigation.navigationPath.append(Navigation.PetPath.medicalRecords)
-                }
-            }
-            
-            if viewModel.medicalRecords.isEmpty {
-                NoDataView(.medicalRecords)
-                .frame(height: 120)
-            } else {
-                
-                //First 3 events end then full separate screen
+
+            if !viewModel.medicalRecords.isEmpty {
                 VStack(spacing: 0) {
                     ForEach(viewModel.medicalRecords) { item in
                         MedicalRecordCell(title: item.title,
                                           date: item.date.string,
-                                          description: item.itemDescription,
-                                          isFirst: viewModel.isFirst(item),
-                                          isLast: viewModel.isLast(item))
+                                          description: item.itemDescription)
                         
                     }
                 }
             }
             
+        }
+        .asButton {
+            if viewModel.medicalRecords.isEmpty {
+                navigation.navigationPath.append(Navigation.PetPath.addMedicalRecord)
+            } else {
+                navigation.navigationPath.append(Navigation.PetPath.medicalRecords)
+            }
         }
     }
     
@@ -134,7 +123,7 @@ struct MyPetView: View {
     }
     
     private func events() -> some View {
-        Group {
+        VStack(spacing: 0) {
             HStack(alignment: .center) {
                 Text("Events")
                     .font(.largeTitle)
@@ -147,28 +136,22 @@ struct MyPetView: View {
                 }
             }
             .foregroundStyle(.appText)
-            .asButton {
-                if viewModel.events.isEmpty {
-                    navigation.navigationPath.append(Navigation.PetPath.addReminder)
-                } else {
-                    navigation.navigationPath.append(Navigation.PetPath.reminders)
-                }
-            }
             
-            if viewModel.events.isEmpty {
-                NoDataView(.events)
-                    .frame(height: 120)
-            } else {
+            if !viewModel.events.isEmpty {
                 VStack(spacing: 0) {
                     ForEach(viewModel.events) { event in
-                        EventCell(event: event,
-                                  isLast: viewModel.events.isLast(event),
-                                  isFirst: viewModel.events.isFirst(event),
-                                  showPet: false)
+                        EventCell(event: event, showPet: false)
                     }
                 }
             }
             
+        }
+        .asButton {
+            if viewModel.events.isEmpty {
+                navigation.navigationPath.append(Navigation.PetPath.addReminder)
+            } else {
+                navigation.navigationPath.append(Navigation.PetPath.reminders)
+            }
         }
     }
 }

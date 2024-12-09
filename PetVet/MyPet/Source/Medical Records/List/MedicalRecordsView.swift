@@ -14,12 +14,14 @@ struct MedicalRecordsView: View {
     
     var body: some View {
         List {
+            Rectangle()
+                .plainList()
+                .frame(height: 20)
+                .foregroundStyle(.clear)
             ForEach(viewModel.medicalRecords) { item in
                 MedicalRecordCell(title: item.title,
                                   date: item.date.string,
-                                  description: item.itemDescription,
-                                  isFirst: viewModel.medicalRecords.isFirst(item),
-                                  isLast: viewModel.medicalRecords.isLast(item))
+                                  description: item.itemDescription)
                 .asButton {
                     navigation.navigationPath.append(Navigation.MedicalRecordsPath.editMedicalRecord(item))
                 }
@@ -28,6 +30,7 @@ struct MedicalRecordsView: View {
             .plainList()
             .padding(.horizontal, 20)
         }
+        .environment(\.defaultMinListRowHeight, 0)
         .overlay {
             if viewModel.medicalRecords.isEmpty {
                 NoDataView(.medicalRecords)
